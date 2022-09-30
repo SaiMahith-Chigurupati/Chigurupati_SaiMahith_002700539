@@ -85,5 +85,9 @@ public class EmployeeDetails {
         this.positionTitle = positionTitle;
     }
   
+    @Override
+    public String toString(){
+        return name;
+    }
       
 }

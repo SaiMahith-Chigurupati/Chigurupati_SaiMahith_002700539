@@ -33,6 +33,21 @@ public class EmployeesData {
         
     }
     
+    public void deleteEmployee(EmployeeDetails ed){
+        data.remove(ed);
+    }
     
+    public void getEmployee(String searchName){
+        EmployeeDetails ed1=new EmployeeDetails();
+        for(EmployeeDetails ed:data){
+            
+            System.out.println(ed);
+            }
+        }
+
+        
+    }
     
 }
+
+// check if item exist 

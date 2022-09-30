@@ -175,7 +175,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                         .addGap(0, 91, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(267, 267, 267)
                 .addComponent(btnSave)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -230,9 +230,9 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPhoto)
                     .addComponent(btnUpload))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSave)
-                .addContainerGap())
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -283,7 +283,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         ed.setTeamInfo(teamInfo);
         ed.setPositionTitle(positionTitle);
         
-        JOptionPane.showMessageDialog(this, "New Vital Signs added.");
+        JOptionPane.showMessageDialog(this, "New Employee added.");
         
         txtName.setText("");
         txtEmpId.setText("");
