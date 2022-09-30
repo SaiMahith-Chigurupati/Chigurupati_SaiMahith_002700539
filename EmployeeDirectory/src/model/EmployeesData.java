@@ -26,6 +26,13 @@ public class EmployeesData {
         this.data = data;
     }
     
+    public EmployeeDetails addNewEmployee(){
+        EmployeeDetails newEmployee = new EmployeeDetails();
+        data.add(newEmployee);
+        return newEmployee;
+        
+    }
+    
     
     
 }

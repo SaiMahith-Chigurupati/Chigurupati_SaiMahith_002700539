@@ -11,15 +11,16 @@ package model;
 public class EmployeeDetails {
     
     private String name;
-    private int empID;
+    private String empId;
     private int age;
     private String gender;
-    private int startDate;
+    private String startDate;
     private String level;
     private String teamInfo;
     private String positionTitle;
     
 //    add Contact Info--> Cell phone number && email address
+
     public String getName() {
         return name;
     }
@@ -28,12 +29,12 @@ public class EmployeeDetails {
         this.name = name;
     }
 
-    public int getEmpID() {
-        return empID;
+    public String getEmpId() {
+        return empId;
     }
 
-    public void setEmpID(int empID) {
-        this.empID = empID;
+    public void setEmpId(String empId) {
+        this.empId = empId;
     }
 
     public int getAge() {
@@ -52,11 +53,11 @@ public class EmployeeDetails {
         this.gender = gender;
     }
 
-    public int getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(int startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
@@ -83,7 +84,6 @@ public class EmployeeDetails {
     public void setPositionTitle(String positionTitle) {
         this.positionTitle = positionTitle;
     }
-    
-    
-    
+  
+      
 }
