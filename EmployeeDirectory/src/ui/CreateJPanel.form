@@ -38,29 +38,36 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
-                              <Component id="lblMobile" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lblEmail" max="32767" attributes="0"/>
+                                  <Component id="lblMobile" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="lblEmail" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtName" max="32767" attributes="0"/>
-                                  <Component id="txtEmpId" max="32767" attributes="0"/>
-                                  <Component id="txtAge" max="32767" attributes="0"/>
-                                  <Component id="txtGender" max="32767" attributes="0"/>
-                                  <Component id="txtStartDate" max="32767" attributes="0"/>
-                                  <Component id="txtLevel" max="32767" attributes="0"/>
-                                  <Component id="txtTeamInfo" max="32767" attributes="0"/>
-                                  <Component id="txtPositionTitle" pref="202" max="32767" attributes="0"/>
-                                  <Component id="txtMobile" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="txtEmail" min="-2" pref="203" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtName" max="32767" attributes="0"/>
+                                      <Component id="txtEmpId" max="32767" attributes="0"/>
+                                      <Component id="txtAge" max="32767" attributes="0"/>
+                                      <Component id="txtGender" max="32767" attributes="0"/>
+                                      <Component id="txtLevel" max="32767" attributes="0"/>
+                                      <Component id="txtTeamInfo" max="32767" attributes="0"/>
+                                      <Component id="txtPositionTitle" pref="202" max="32767" attributes="0"/>
+                                      <Component id="txtMobile" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="chStartDate" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="txtEmail" min="-2" pref="203" max="-2" attributes="0"/>
+                              <EmptySpace pref="286" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="btnUpload" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="btnUpload" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="91" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -87,7 +94,7 @@
                   <Component id="lblEmpId" min="-2" max="-2" attributes="0"/>
                   <Component id="txtEmpId" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblAge" min="-2" max="-2" attributes="0"/>
                   <Component id="txtAge" min="-2" max="-2" attributes="0"/>
@@ -100,7 +107,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblStartDate" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtStartDate" min="-2" max="-2" attributes="0"/>
+                  <Component id="chStartDate" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -136,7 +143,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnSave" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace pref="415" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -153,12 +160,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Name:"/>
+        <Property name="text" type="java.lang.String" value="Name*:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmpId">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Employee ID:"/>
+        <Property name="text" type="java.lang.String" value="Employee ID*:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAge">
@@ -178,17 +185,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblLevel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Level:"/>
+        <Property name="text" type="java.lang.String" value="Level*:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTeamInfo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Team Info:"/>
+        <Property name="text" type="java.lang.String" value="Team Info*:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPositionTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Position Title:"/>
+        <Property name="text" type="java.lang.String" value="Position Title*:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblContactInfo">
@@ -198,12 +205,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblMobile">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mobile:"/>
+        <Property name="text" type="java.lang.String" value="Mobile*:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmail">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Email:"/>
+        <Property name="text" type="java.lang.String" value="Email*:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPhoto">
@@ -230,8 +237,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGenderActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtStartDate">
     </Component>
     <Component class="javax.swing.JTextField" name="txtLevel">
     </Component>
@@ -261,6 +266,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="chStartDate">
     </Component>
   </SubComponents>
 </Form>

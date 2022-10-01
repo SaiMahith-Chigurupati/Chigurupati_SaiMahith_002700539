@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author mahith
@@ -14,10 +16,13 @@ public class EmployeeDetails {
     private String empId;
     private int age;
     private String gender;
-    private String startDate;
+   // private String startDate;
     private String level;
     private String teamInfo;
     private String positionTitle;
+    private String mobile;
+    private String email;
+    private Date startDate;
     
 //    add Contact Info--> Cell phone number && email address
 
@@ -53,11 +58,11 @@ public class EmployeeDetails {
         this.gender = gender;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
@@ -84,6 +89,24 @@ public class EmployeeDetails {
     public void setPositionTitle(String positionTitle) {
         this.positionTitle = positionTitle;
     }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
   
     @Override
     public String toString(){

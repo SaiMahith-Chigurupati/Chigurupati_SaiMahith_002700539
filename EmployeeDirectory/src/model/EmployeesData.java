@@ -37,13 +37,15 @@ public class EmployeesData {
         data.remove(ed);
     }
     
-    public EmployeeDetails getEmployee(String searchName){
-        EmployeeDetails ed1=new EmployeeDetails();
+    public ArrayList<EmployeeDetails> getEmployee(String searchName, String empId, String level){
+        ArrayList<EmployeeDetails> ed1=new ArrayList<EmployeeDetails>();
         for(EmployeeDetails ed:data){
             
-            if(ed.getName().equals(searchName) ){
-            
-                return ed;
+            if(ed.getName().equals(searchName)|| ed.getLevel().equals(level)|| ed.getEmpId().equals(empId)){
+                
+                ed1.add(ed);
+                
+                
             }
         }
 
@@ -51,5 +53,3 @@ public class EmployeesData {
     }
     
 }
-
-// check if item exist 
