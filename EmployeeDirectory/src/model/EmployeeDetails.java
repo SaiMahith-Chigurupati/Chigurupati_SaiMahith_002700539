@@ -24,8 +24,7 @@ public class EmployeeDetails {
     private String email;
     private Date startDate;
     
-//    add Contact Info--> Cell phone number && email address
-
+    
     public String getName() {
         return name;
     }
