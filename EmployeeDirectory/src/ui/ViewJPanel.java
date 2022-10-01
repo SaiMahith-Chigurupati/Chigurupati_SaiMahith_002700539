@@ -360,7 +360,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         // if true 
         EmployeeDetails ed =  data.getEmployee(searchName);
         
-        System.out.println(ed);
+       // System.out.println(ed);
         System.out.println(ed.getName());
         
         txtName.setText(ed.getName());

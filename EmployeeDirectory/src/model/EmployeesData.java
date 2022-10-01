@@ -37,15 +37,17 @@ public class EmployeesData {
         data.remove(ed);
     }
     
-    public void getEmployee(String searchName){
+    public EmployeeDetails getEmployee(String searchName){
         EmployeeDetails ed1=new EmployeeDetails();
         for(EmployeeDetails ed:data){
             
-            System.out.println(ed);
+            if(ed.getName().equals(searchName) ){
+            
+                return ed;
             }
         }
 
-        
+        return ed1;
     }
     
 }
