@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -23,6 +24,7 @@ public class EmployeeDetails {
     private String mobile;
     private String email;
     private Date startDate;
+    private String selectedImagePath;
     
     
     public String getName() {
@@ -103,6 +105,14 @@ public class EmployeeDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSelectedImagePath() {
+        return selectedImagePath;
+    }
+
+    public void setSelectedImagePath(String selectedImagePath) {
+        this.selectedImagePath = selectedImagePath;
     }
     
     

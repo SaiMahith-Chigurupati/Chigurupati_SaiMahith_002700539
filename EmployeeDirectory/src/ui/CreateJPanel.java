@@ -24,7 +24,9 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
-    
+    JFileChooser browseImageFile = new JFileChooser();
+    FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "PNG", "jpg", "jpeg");
+
     EmployeesData data;
     public CreateJPanel(EmployeesData data) {
         initComponents();
@@ -278,8 +280,9 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
-        JFileChooser browseImageFile = new JFileChooser();
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "PNG", "jpg", "jpeg");
+        
+        //JFileChooser browseImageFile = new JFileChooser();
+//        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "PNG", "jpg", "jpeg");
         browseImageFile.addChoosableFileFilter(fnef);
         
         int showImage = browseImageFile.showOpenDialog(null);
@@ -293,7 +296,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             Image image =ii.getImage().getScaledInstance(100,150 , Image.SCALE_SMOOTH);
             
             lblPhoto.setIcon(new ImageIcon(image));
-            
+         
         }
     }//GEN-LAST:event_btnBrowseActionPerformed
 
@@ -304,14 +307,21 @@ public class CreateJPanel extends javax.swing.JPanel {
         String empId = txtEmpId.getText();
         int age = ((txtAge.getText().isBlank()== false) || (txtAge.getText().chars().allMatch(Character::isDigit))== true)? Integer.parseInt(txtAge.getText()): 999;
         String gender = txtGender.getText();
-        //String startDate = txtStartDate.getText();
+        Date startDate = chStartDate.getDate();
         String level = txtLevel.getText();
         String teamInfo = txtTeamInfo.getText();
         String positionTitle = txtPositionTitle.getText();
         String mobile = txtMobile.getText();
         String email =txtEmail.getText();
         
-        Date startDate=chStartDate.getDate();
+        File selectedImageFile =browseImageFile.getSelectedFile();
+            String selectedImagePath =selectedImageFile.getAbsolutePath();
+            //lblPath.setText(selectedImagePath);
+            
+            ImageIcon ii = new ImageIcon(selectedImagePath);
+            Image image =ii.getImage().getScaledInstance(100,150 , Image.SCALE_SMOOTH);
+            
+            lblPhoto.setIcon(new ImageIcon(image));
         
         
         EmployeeDetails ed = data.addNewEmployee();
@@ -355,6 +365,9 @@ public class CreateJPanel extends javax.swing.JPanel {
         ed.setPositionTitle(positionTitle);
         ed.setMobile(mobile);
         ed.setEmail(email);
+        ed.setSelectedImagePath(selectedImagePath);
+        
+ 
         
         JOptionPane.showMessageDialog(this, "New Employee added.");
         
