@@ -388,9 +388,9 @@ public class ViewJPanel extends javax.swing.JPanel {
         
        
         String searchText = txtSearch.getText();
-       
         
-        ArrayList<EmployeeDetails> ed =  data.getEmployee(searchText.toLowerCase());
+        
+        ArrayList<EmployeeDetails> ed =  data.getEmployee(searchText.chars().allMatch( Character::isDigit )?searchText:searchText.toLowerCase());
         
         if(ed.isEmpty()){
             JOptionPane.showMessageDialog(this, "No Results Found!");

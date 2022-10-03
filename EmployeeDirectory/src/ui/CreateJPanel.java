@@ -349,7 +349,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         }
         
         else if(flag!=0 || age<0 || age >80){
-            JOptionPane.showMessageDialog(this, "Please nter a valid age");
+            JOptionPane.showMessageDialog(this, "Please enter a valid age");
         }
         
         else if(empId.contains("0123456789")){
