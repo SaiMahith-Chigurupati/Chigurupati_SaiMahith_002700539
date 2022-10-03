@@ -68,7 +68,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         btnSearch = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         chStartDate = new com.toedter.calendar.JDateChooser();
-        lblPhoto = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -214,20 +214,17 @@ public class ViewJPanel extends javax.swing.JPanel {
                             .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnUpdate)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtEmpId)
-                                        .addComponent(txtAge)
-                                        .addComponent(txtGender)
-                                        .addComponent(txtLevel)
-                                        .addComponent(txtTeamInfo)
-                                        .addComponent(txtPositionTitle)
-                                        .addComponent(txtMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                                    .addComponent(txtEmpId, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtGender, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtLevel, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTeamInfo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPositionTitle, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMobile, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(chStartDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -235,7 +232,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                                         .addComponent(btnSearch))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                        .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(11, 11, 11)))))))
                 .addContainerGap())
         );
@@ -281,7 +278,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTeamInfo)
                             .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPositionTitle)
@@ -318,7 +315,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         ImageIcon ii = new ImageIcon(selectedEmployee.getSelectedImagePath());
         Image image =ii.getImage().getScaledInstance(100,150 , Image.SCALE_SMOOTH);
             
-        lblPhoto.setIcon(new ImageIcon(image));
+        lblImage.setIcon(new ImageIcon(image));
         
         txtName.setText(selectedEmployee.getName());
         txtEmpId.setText(String.valueOf(selectedEmployee.getEmpId()));
@@ -390,6 +387,18 @@ public class ViewJPanel extends javax.swing.JPanel {
             populateSearchResults(ed);
         
          JOptionPane.showMessageDialog(this, "Success.");
+         
+        txtName.setText("");
+        txtEmpId.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtLevel.setText("");
+        chStartDate.setDate(null);
+        txtTeamInfo.setText("");
+        txtPositionTitle.setText("");
+        txtMobile.setText("");
+        txtEmail.setText("");
+        lblImage.setIcon(new ImageIcon());
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -422,12 +431,12 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtAge.setText("");
         txtGender.setText("");
         txtLevel.setText("");
-        //chStartDate.setDate();
+        chStartDate.setDate(null);
         txtTeamInfo.setText("");
         txtPositionTitle.setText("");
         txtMobile.setText("");
         txtEmail.setText("");
-        
+        lblImage.setIcon(new ImageIcon());
         
         
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -445,10 +454,10 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmpId;
     private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblMobile;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblPositionTitle;
     private javax.swing.JLabel lblStartDate;
     private javax.swing.JLabel lblTeamInfo;
