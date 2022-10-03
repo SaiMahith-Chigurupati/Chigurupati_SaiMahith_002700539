@@ -251,16 +251,16 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnView)
                     .addComponent(btnDelete)
                     .addComponent(btnSearch)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(26, 26, 26)
                 .addComponent(lblSelected)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblName))
@@ -307,12 +307,13 @@ public class ViewJPanel extends javax.swing.JPanel {
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(btnUpdate)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+        //when user selects a data item from the table and click on view then that particular instance is populated ion fields below
         
         int selectedRowIndex  = tblEmployees.getSelectedRow();
         
@@ -345,6 +346,9 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        
+        //when user selects a data item from the table, then delete is used to remove that particular instance from database
+        
         int selectedRowIndex  = tblEmployees.getSelectedRow();
         
         if(selectedRowIndex<0){
@@ -386,6 +390,7 @@ public class ViewJPanel extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         
+        //whenever user tries to search data from company data base, this function is executed to retrieve data from the database to populate on the screen
        
         String searchText = txtSearch.getText();
         
@@ -417,6 +422,8 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        
+        //whenever HR wants to update the data of an employee present in EMployee database
         
         int selectedRowIndex  = tblEmployees.getSelectedRow();
         
@@ -491,6 +498,8 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void populateTable() {
         
+        // this function is used to populate the employee data in the database table
+        
         DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
         model.setRowCount(0);
         
@@ -513,6 +522,8 @@ public class ViewJPanel extends javax.swing.JPanel {
     }
     
     private void populateSearchResults(ArrayList<EmployeeDetails> ed){
+        //this function is used to populate the items matching the search content
+        
         DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
         model.setRowCount(0);
         

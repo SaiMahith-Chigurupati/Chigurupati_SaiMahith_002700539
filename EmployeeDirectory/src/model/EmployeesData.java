@@ -38,6 +38,8 @@ public class EmployeesData {
     }
     
     public ArrayList<EmployeeDetails> getEmployee(String searchText){
+        //A function to search data from the database instances
+        
         ArrayList<EmployeeDetails> ed1=new ArrayList<EmployeeDetails>();
         for(EmployeeDetails ed:data){
             

@@ -288,6 +288,8 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
         
+        //whenever user clicks on browse button on create screen to upload an image using below code.
+        
         browseImageFile.addChoosableFileFilter(fnef);
         
         int showImage = browseImageFile.showOpenDialog(null);
@@ -307,6 +309,9 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        
+        //whenever User clicks on Save button on create screen, EMployee details entered 
+        //will undergo validations and data will be saved into the database(object) using this function
         
         String name=txtName.getText();
         String empId = txtEmpId.getText();
