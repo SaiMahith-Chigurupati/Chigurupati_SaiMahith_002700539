@@ -311,16 +311,14 @@ public class CreateJPanel extends javax.swing.JPanel {
         String name=txtName.getText();
         String empId = txtEmpId.getText();
         int age =0;
+        int flag =0;
+        
         try{
             age = Integer.parseInt(txtAge.getText());
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Please enter Valid Age");
+            flag++;
+            //JOptionPane.showMessageDialog(this, "Please enter Valid Age");
 
-        }finally{
-            if(age<=0 || age>80){
-                JOptionPane.showMessageDialog(this, "Please enter correct age");
-
-            }
         }
         
         String gender = txtGender.getText();
@@ -343,13 +341,15 @@ public class CreateJPanel extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(this, "Please Upload a Photo");
 
         }
-        
-        EmployeeDetails ed = data.addNewEmployee();
-        
+                
         
         if(name.isBlank() || teamInfo.isBlank() || level.isBlank()|| positionTitle.isBlank() || empId=="" || email.isBlank()){
             JOptionPane.showMessageDialog(this, "Please enter Mandatory Fields");
 
+        }
+        
+        else if(flag!=0 || age<0 || age >80){
+            JOptionPane.showMessageDialog(this, "Please nter a valid age");
         }
         
         else if(empId.contains("0123456789")){
@@ -366,7 +366,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             
         }
         
-        else if((email.endsWith(".com")!= true) || email.contains("@")!=true || email.startsWith("@")){
+        else if((email.toLowerCase().endsWith(".com")!= true) || email.contains("@")!=true || email.startsWith("@")){
             JOptionPane.showMessageDialog(this, "Please enter a valid Email Adddress");
             
             txtEmail.setText("");
@@ -378,8 +378,11 @@ public class CreateJPanel extends javax.swing.JPanel {
             
         }
         
-        else if(!empId.isBlank() || !name.isBlank()){
+        else {
         
+            EmployeeDetails ed = data.addNewEmployee();
+
+            
         ed.setName(name);
         ed.setEmpId(empId);
         ed.setAge(age);

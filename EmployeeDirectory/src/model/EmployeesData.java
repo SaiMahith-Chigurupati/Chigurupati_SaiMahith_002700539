@@ -37,11 +37,11 @@ public class EmployeesData {
         data.remove(ed);
     }
     
-    public ArrayList<EmployeeDetails> getEmployee(String searchName, String empId, String level){
+    public ArrayList<EmployeeDetails> getEmployee(String searchText){
         ArrayList<EmployeeDetails> ed1=new ArrayList<EmployeeDetails>();
         for(EmployeeDetails ed:data){
             
-            if(ed.getName().equals(searchName)|| ed.getLevel().equals(level)|| ed.getEmpId().equals(empId)){
+            if(ed.getName().equals(searchText)|| ed.getLevel().equals(searchText)|| ed.getEmpId().equals(searchText)){
                 
                 ed1.add(ed);
                 
