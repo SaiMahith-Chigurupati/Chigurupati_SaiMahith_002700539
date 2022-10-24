@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.DoctorDirectory;
+import model.PatientDirectory;
 import model.PersonDirectory;
 
 /**
@@ -17,9 +19,17 @@ public class HomeJFrame extends javax.swing.JFrame {
      */
     
     PersonDirectory personDirectory;
+    PatientDirectory patientDirectory;
+    DoctorDirectory doctorDirectory;
     public HomeJFrame() {
         initComponents();
+        
         personDirectory = new PersonDirectory();
+        patientDirectory = new PatientDirectory();
+        doctorDirectory = new DoctorDirectory();
+        
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,splitJPane);
+        splitJPane.setRightComponent(login);
     }
 
     /**
@@ -33,52 +43,25 @@ public class HomeJFrame extends javax.swing.JFrame {
 
         splitJPane = new javax.swing.JSplitPane();
         upperJPanel = new javax.swing.JPanel();
-        btnLogin = new javax.swing.JButton();
-        btnSignUp = new javax.swing.JButton();
         lowerJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("APP");
+        setTitle("HealthCare System");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         splitJPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         upperJPanel.setPreferredSize(new java.awt.Dimension(800, 75));
 
-        btnLogin.setText("Login");
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
-            }
-        });
-
-        btnSignUp.setText("Sign Up");
-        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignUpActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout upperJPanelLayout = new javax.swing.GroupLayout(upperJPanel);
         upperJPanel.setLayout(upperJPanelLayout);
         upperJPanelLayout.setHorizontalGroup(
             upperJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, upperJPanelLayout.createSequentialGroup()
-                .addContainerGap(661, Short.MAX_VALUE)
-                .addGroup(upperJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(63, 63, 63))
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         upperJPanelLayout.setVerticalGroup(
             upperJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(upperJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnLogin)
-                .addGap(18, 18, 18)
-                .addComponent(btnSignUp)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         splitJPane.setTopComponent(upperJPanel);
@@ -112,18 +95,6 @@ public class HomeJFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        // TODO add your handling code here:
-        SignUpJFrame signUp = new SignUpJFrame(personDirectory);
-        splitJPane.setRightComponent(signUp);
-    }//GEN-LAST:event_btnSignUpActionPerformed
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory);
-        splitJPane.setRightComponent(login);
-    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,8 +132,6 @@ public class HomeJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnSignUp;
     private javax.swing.JPanel lowerJPanel;
     private javax.swing.JSplitPane splitJPane;
     private javax.swing.JPanel upperJPanel;

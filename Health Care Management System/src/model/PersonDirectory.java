@@ -36,8 +36,16 @@ public class PersonDirectory {
         personDirectory.remove(person);
     }
     
+    public boolean checkDuplicatePerson(String userID){
+        for(Person person:personDirectory){
+            if(person.getUserID().equals(userID)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public Person authenticatePerson(String userID, String password){
-        System.out.println(password);
         for(Person authPerson:personDirectory){
             if(authPerson.getUserID().equals(userID) && authPerson.getPassword().equals(password)){
                 return authPerson;

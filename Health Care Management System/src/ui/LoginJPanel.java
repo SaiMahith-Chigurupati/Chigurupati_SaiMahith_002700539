@@ -5,6 +5,9 @@
 package ui;
 
 import javax.swing.JOptionPane;
+import javax.swing.JSplitPane;
+import model.DoctorDirectory;
+import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
 
@@ -18,29 +21,39 @@ public class LoginJPanel extends javax.swing.JPanel {
      * Creates new form LoginJPanel
      */
     PersonDirectory personDirectory;
-    public LoginJPanel(PersonDirectory personDirectory) {
-        initComponents();
+    PatientDirectory patientDirectory;
+    DoctorDirectory doctorDirectory;
+    JSplitPane splitPane; 
+    
+    public LoginJPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, JSplitPane splitPane) {
+       
+        this.splitPane = splitPane;
         this.personDirectory = personDirectory;
-        Person doctor = personDirectory.addPerson();
-        //Person patient = personDirectory.addPerson();
+        this.doctorDirectory = doctorDirectory;
+        this.patientDirectory = patientDirectory;
         
-        doctor.setFirstName("John");
-        doctor.setLastName("Doctor");
-        doctor.setUserID("John@doctor");
-        doctor.setPassword("password");
-        doctor.setRole("Doctor");
+        initComponents();
         
-//        patient.setFirstName("John");
-//        patient.setLastName("Patient");
-//        patient.setUserID("John@patient");
-//        patient.setPassword("password");
-//        patient.setRole("Patient");
+        Person doctorJohn = personDirectory.addPerson();
+        Person doctorJohnson = personDirectory.addPerson();
+        Person patient = personDirectory.addPerson();
         
-        doctor.setFirstName("Johnson");
-        doctor.setLastName("Banner");
-        doctor.setUserID("Johnson@doctor");
-        doctor.setPassword("passwordson");
-        doctor.setRole("Doctor");
+        doctorJohn.setLastName("Doctor");
+        doctorJohn.setUserID("John@doctor");
+        doctorJohn.setPassword("password");
+        doctorJohn.setRole("Doctor");
+        
+        patient.setFirstName("John");
+        patient.setLastName("Patient");
+        patient.setUserID("John@patient");
+        patient.setPassword("password");
+        patient.setRole("Patient");
+        
+        doctorJohnson.setFirstName("Johnson");
+        doctorJohnson.setLastName("Banner");
+        doctorJohnson.setUserID("Johnson@doctor");
+        doctorJohnson.setPassword("passwordson");
+        doctorJohnson.setRole("Doctor");
         
         
     }
@@ -59,6 +72,8 @@ public class LoginJPanel extends javax.swing.JPanel {
         btnLogin = new javax.swing.JButton();
         txtUserID = new javax.swing.JTextField();
         fldPassword = new javax.swing.JPasswordField();
+        lblNewUser = new javax.swing.JLabel();
+        lblSignUp = new javax.swing.JLabel();
 
         lblUserID.setText("User ID");
 
@@ -81,6 +96,15 @@ public class LoginJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblNewUser.setText("New User?");
+
+        lblSignUp.setText("Sign Up");
+        lblSignUp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSignUpMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,12 +114,19 @@ public class LoginJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(227, 227, 227)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblUserID)
-                            .addComponent(lblPassword))
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(txtUserID)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblUserID)
+                                    .addComponent(lblPassword))
+                                .addGap(62, 62, 62)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(txtUserID)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(lblNewUser)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblSignUp))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(291, 291, 291)
                         .addComponent(btnLogin)))
@@ -114,7 +145,11 @@ public class LoginJPanel extends javax.swing.JPanel {
                     .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(btnLogin)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNewUser)
+                    .addComponent(lblSignUp))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,23 +171,28 @@ public class LoginJPanel extends javax.swing.JPanel {
         
         Person authenticatedUser = personDirectory.authenticatePerson(userID, password);
         if(authenticatedUser!= null){
-            JOptionPane.showMessageDialog(this,"Login Successful");
-//            DoctorJPanel doctor = new DoctorJPanel();
-//            HomeJFrame hf = new HomeJFrame();
-//            JOptionPane.setRootFrame(hf);
-//            this.add
-            
-            hf.add(doctor);
+            //JOptionPane.showMessageDialog(this,"Login Successful");
+            DoctorJPanel doc =new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory);
+            splitPane.setRightComponent(doc);
+
         }else{
             JOptionPane.showMessageDialog(this, "Login Failed");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void lblSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSignUpMouseClicked
+        // TODO add your handling code here:
+        SignUpJFrame signUp = new SignUpJFrame(personDirectory,patientDirectory,doctorDirectory,splitPane);
+        splitPane.setRightComponent(signUp);
+    }//GEN-LAST:event_lblSignUpMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JPasswordField fldPassword;
+    private javax.swing.JLabel lblNewUser;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblSignUp;
     private javax.swing.JLabel lblUserID;
     private javax.swing.JTextField txtUserID;
     // End of variables declaration//GEN-END:variables
