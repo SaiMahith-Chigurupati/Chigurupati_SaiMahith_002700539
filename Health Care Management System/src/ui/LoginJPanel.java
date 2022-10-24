@@ -115,22 +115,25 @@ public class LoginJPanel extends javax.swing.JPanel {
                         .addGap(227, 227, 227)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUserID)
-                                    .addComponent(lblPassword))
-                                .addGap(62, 62, 62)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(txtUserID)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addGap(110, 110, 110)
                                 .addComponent(lblNewUser)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblSignUp))))
+                                .addComponent(lblSignUp))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblPassword)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblUserID)
+                                        .addGap(76, 76, 76)
+                                        .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(291, 291, 291)
+                        .addGap(348, 348, 348)
                         .addComponent(btnLogin)))
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,13 +146,13 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
                     .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(34, 34, 34)
                 .addComponent(btnLogin)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNewUser)
-                    .addComponent(lblSignUp))
-                .addContainerGap(258, Short.MAX_VALUE))
+                    .addComponent(lblSignUp)
+                    .addComponent(lblNewUser))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -172,7 +175,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         Person authenticatedUser = personDirectory.authenticatePerson(userID, password);
         if(authenticatedUser!= null){
             //JOptionPane.showMessageDialog(this,"Login Successful");
-            DoctorJPanel doc =new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory);
+            DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory);
             splitPane.setRightComponent(doc);
 
         }else{
