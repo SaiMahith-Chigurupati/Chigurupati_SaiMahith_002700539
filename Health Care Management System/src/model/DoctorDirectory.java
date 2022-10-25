@@ -36,6 +36,8 @@ public class DoctorDirectory {
         doctorDirectory.remove(doctor);
     }
     
+    //public Doctor getDoctor(String )
+    
     public Doctor authenticateDoctor(String userID, String password){
         System.out.println(password);
         for(Doctor authDoctor:doctorDirectory){

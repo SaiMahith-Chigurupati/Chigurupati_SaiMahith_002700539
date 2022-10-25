@@ -35,6 +35,14 @@ public class PatientDirectory {
         patientDirectory.remove(patient);
     }
     
+    public Patient getPatient(String searchPatient){
+        for(Patient patient:patientDirectory){
+            if(patient.getFirstName().equals(searchPatient)){
+                return patient;
+            }
+        }return null;
+    }
+    
     public ArrayList<Patient> searchPatient(String searchPatient){
         ArrayList<Patient> patientList = new ArrayList<Patient>();
         

@@ -45,6 +45,25 @@ public class PersonDirectory {
         return true;
     }
     
+    public boolean isExist(String userID){
+        for(Person person:personDirectory){
+            if(person.getUserID().equals(userID)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public int nameCount(String name){
+        int count =0;
+        for(Person person:personDirectory){
+            if(person.getFirstName().equals(name)){
+                count++;
+            }
+        }
+        return count;
+    }
+    
     public Person authenticatePerson(String userID, String password){
         for(Person authPerson:personDirectory){
             if(authPerson.getUserID().equals(userID) && authPerson.getPassword().equals(password)){

@@ -135,9 +135,9 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="chDateOfBirth" min="-2" max="-2" attributes="0"/>
+                  <Component id="rdFemale" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rdMale" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rdFemale" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblGender" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="lblDateOfBirth" min="-2" max="-2" attributes="0"/>

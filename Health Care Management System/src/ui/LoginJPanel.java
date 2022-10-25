@@ -38,6 +38,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         Person doctorJohnson = personDirectory.addPerson();
         Person patient = personDirectory.addPerson();
         
+        doctorJohn.setFirstName("John");
         doctorJohn.setLastName("Doctor");
         doctorJohn.setUserID("John@doctor");
         doctorJohn.setPassword("password");
@@ -175,7 +176,8 @@ public class LoginJPanel extends javax.swing.JPanel {
         Person authenticatedUser = personDirectory.authenticatePerson(userID, password);
         if(authenticatedUser!= null){
             //JOptionPane.showMessageDialog(this,"Login Successful");
-            DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory);
+            String doctorName = authenticatedUser.getFirstName();
+            DoctorJPanel doc = new DoctorJPanel(doctorName,personDirectory,patientDirectory,doctorDirectory,splitPane);
             splitPane.setRightComponent(doc);
 
         }else{

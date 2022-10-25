@@ -45,11 +45,23 @@ public class EncounterHistory {
         return null;
     }
     
+    public Encounter encounterExist(String patientName){
+        for(Encounter encounter:encounterHistory){
+            
+            if(encounter.getPatientName().equals(patientName)){
+                return encounter;
+            }
+            
+        }
+        return null;
+    }
+    
     public ArrayList<Encounter> searchEncounter(String searchPatient){
         ArrayList<Encounter> encounterList = new ArrayList<Encounter>();
         
         for(Encounter encounter:encounterHistory){
-            if(encounter.getPatientName().equals(searchPatient)){
+            String name = encounter.getPatientName();
+            if(name.equals(searchPatient)){
                 encounterList.add(encounter);
             }
             

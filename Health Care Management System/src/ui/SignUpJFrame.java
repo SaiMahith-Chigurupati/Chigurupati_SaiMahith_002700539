@@ -27,7 +27,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
     JSplitPane splitPane;
-    public SignUpJFrame(PersonDirectory personDirectory,PatientDirectory patientdirectory, DoctorDirectory doctorDirectory,JSplitPane splitPane) {
+    public SignUpJFrame(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,JSplitPane splitPane) {
         initComponents();
         
         this.splitPane = splitPane;
@@ -338,9 +338,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdFemale)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rdMale)
-                        .addComponent(rdFemale)
                         .addComponent(lblGender))
                     .addComponent(lblDateOfBirth))
                 .addGap(18, 18, 18)
