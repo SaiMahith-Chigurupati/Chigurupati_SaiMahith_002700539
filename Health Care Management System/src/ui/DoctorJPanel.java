@@ -36,12 +36,12 @@ public class DoctorJPanel extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     DoctorDirectory doctorDirectory;
     EncounterHistory encounterHistory;
-    String doctor;
+    Person doctor;
     JSplitPane splitPane;
     
-    public DoctorJPanel(String person, PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, JSplitPane splitPane){
+    public DoctorJPanel(Person person, PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, JSplitPane splitPane){
         initComponents();
-        doctor = person;
+        this.doctor = person;
         this.patientDirectory=patientDirectory;
         this.personDirectory=personDirectory;
         this.doctorDirectory =doctorDirectory;
@@ -49,7 +49,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
         
         encounterHistory = new EncounterHistory();
         
-        lblDoctor.setText("Welcome Dr. "+doctor);
+        lblDoctor.setText("Welcome Dr. "+doctor.getFirstName());
         btnView.setVisible(false);
         encounterPanel.setVisible(false);
         btnEncounter.setVisible(false);
@@ -390,12 +390,12 @@ public class DoctorJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(btnView)
-                        .addGap(0, 0, 0)
+                        .addGap(18, 18, 18)
                         .addComponent(encounterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

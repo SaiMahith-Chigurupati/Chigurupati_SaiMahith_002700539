@@ -4,6 +4,12 @@
  */
 package ui;
 
+import javax.swing.JSplitPane;
+import model.DoctorDirectory;
+import model.PatientDirectory;
+import model.Person;
+import model.PersonDirectory;
+
 /**
  *
  * @author mahith
@@ -13,8 +19,24 @@ public class PatientJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PatientJPanel
      */
-    public PatientJPanel() {
+    PatientDirectory patientDirectory;
+    PersonDirectory personDirectory;
+    DoctorDirectory doctorDirectory;
+    JSplitPane splitPane;
+    Person patient;
+    
+    public PatientJPanel(Person patient, PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, JSplitPane splitPane) {
+        this.patientDirectory = patientDirectory;
+        this.personDirectory = personDirectory;
+        this.doctorDirectory = doctorDirectory;
+        this.splitPane = splitPane;
+        this.patient = patient;
+     
         initComponents();
+        lblPatient.setText("Welcome "+patient.getFirstName());
+        vitalsPanel.setVisible(false);
+        bookAppointmentPanel.setVisible(false);
+        scrollEncounters.setVisible(false);
     }
 
     /**
@@ -26,19 +48,362 @@ public class PatientJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField2 = new javax.swing.JTextField();
+        lblPatient = new javax.swing.JLabel();
+        lblPersonalDetails = new javax.swing.JLabel();
+        txtSearchDoctor = new javax.swing.JTextField();
+        btnSearchDoctor = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDoctors = new javax.swing.JTable();
+        scrollEncounters = new javax.swing.JScrollPane();
+        tblEncounters = new javax.swing.JTable();
+        btnBookAppointment = new javax.swing.JButton();
+        btnViewEncounter = new javax.swing.JButton();
+        vitalsPanel = new javax.swing.JPanel();
+        lblBP = new javax.swing.JLabel();
+        txtSystole = new javax.swing.JTextField();
+        lblSystole = new javax.swing.JLabel();
+        lblDiastole = new javax.swing.JLabel();
+        txtDiastole = new javax.swing.JTextField();
+        lblDiabetes = new javax.swing.JLabel();
+        lblPreDiet = new javax.swing.JLabel();
+        txtPreDiet = new javax.swing.JTextField();
+        lblPostDiet = new javax.swing.JLabel();
+        txtPostDiet = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtComments = new javax.swing.JTextArea();
+        lblComments = new javax.swing.JLabel();
+        lblHeartRate = new javax.swing.JLabel();
+        txtHeartRate = new javax.swing.JTextField();
+        bookAppointmentPanel = new javax.swing.JPanel();
+        lblDate = new javax.swing.JLabel();
+        chDate = new com.toedter.calendar.JDateChooser();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtInfo = new javax.swing.JTextArea();
+        lblInfo = new javax.swing.JLabel();
+        btnBook = new javax.swing.JButton();
+
+        jTextField2.setText("jTextField2");
+
+        lblPatient.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        lblPatient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblPersonalDetails.setText("   View/Update Details");
+        lblPersonalDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPersonalDetailsMouseClicked(evt);
+            }
+        });
+
+        btnSearchDoctor.setText("Search Doctor");
+
+        tblDoctors.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Doctor", "Hospital", "Community"
+            }
+        ));
+        tblDoctors.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDoctorsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDoctors);
+
+        tblEncounters.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Encounters"
+            }
+        ));
+        scrollEncounters.setViewportView(tblEncounters);
+
+        btnBookAppointment.setText("Book Appointment");
+        btnBookAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookAppointmentActionPerformed(evt);
+            }
+        });
+
+        btnViewEncounter.setText("View Encounter History");
+        btnViewEncounter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewEncounterActionPerformed(evt);
+            }
+        });
+
+        lblBP.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblBP.setText("BP:");
+
+        lblSystole.setText("Systole");
+
+        lblDiastole.setText("Diastole");
+
+        lblDiabetes.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblDiabetes.setText("Diabetes:");
+
+        lblPreDiet.setText("Pre Diet");
+
+        lblPostDiet.setText("Post Diet");
+
+        txtComments.setColumns(20);
+        txtComments.setRows(5);
+        jScrollPane3.setViewportView(txtComments);
+
+        lblComments.setText("Comments");
+
+        lblHeartRate.setText("Heart Rate");
+
+        javax.swing.GroupLayout vitalsPanelLayout = new javax.swing.GroupLayout(vitalsPanel);
+        vitalsPanel.setLayout(vitalsPanelLayout);
+        vitalsPanelLayout.setHorizontalGroup(
+            vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vitalsPanelLayout.createSequentialGroup()
+                .addContainerGap(74, Short.MAX_VALUE)
+                .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(vitalsPanelLayout.createSequentialGroup()
+                        .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtSystole, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPreDiet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(vitalsPanelLayout.createSequentialGroup()
+                                .addComponent(lblDiastole)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDiastole, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(vitalsPanelLayout.createSequentialGroup()
+                                .addComponent(lblPostDiet)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPostDiet))))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(vitalsPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPreDiet)
+                            .addComponent(lblComments)
+                            .addComponent(lblHeartRate)
+                            .addComponent(lblSystole)
+                            .addComponent(lblBP, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblDiabetes))
+                    .addContainerGap(246, Short.MAX_VALUE)))
+        );
+        vitalsPanelLayout.setVerticalGroup(
+            vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vitalsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSystole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDiastole)
+                    .addComponent(txtDiastole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPreDiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPostDiet)
+                    .addComponent(txtPostDiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
+            .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(vitalsPanelLayout.createSequentialGroup()
+                    .addGap(78, 78, 78)
+                    .addComponent(lblBP)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblSystole)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lblDiabetes)
+                    .addGap(18, 18, 18)
+                    .addComponent(lblPreDiet)
+                    .addGap(18, 18, 18)
+                    .addComponent(lblHeartRate)
+                    .addGap(18, 18, 18)
+                    .addComponent(lblComments)
+                    .addContainerGap(128, Short.MAX_VALUE)))
+        );
+
+        lblDate.setText("Date");
+
+        txtInfo.setColumns(20);
+        txtInfo.setRows(5);
+        jScrollPane4.setViewportView(txtInfo);
+
+        lblInfo.setText("Info");
+
+        btnBook.setText("Book");
+
+        javax.swing.GroupLayout bookAppointmentPanelLayout = new javax.swing.GroupLayout(bookAppointmentPanel);
+        bookAppointmentPanel.setLayout(bookAppointmentPanelLayout);
+        bookAppointmentPanelLayout.setHorizontalGroup(
+            bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookAppointmentPanelLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
+                        .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
+                        .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)))
+                .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(chDate, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
+            .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(btnBook)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        bookAppointmentPanelLayout.setVerticalGroup(
+            bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDate))
+                .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lblInfo))
+                    .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(btnBook)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(lblPatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lblPersonalDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtSearchDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSearchDoctor)
+                .addGap(52, 52, 52))
+            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scrollEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnViewEncounter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBookAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(vitalsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bookAppointmentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(lblPatient)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPersonalDetails)
+                    .addComponent(txtSearchDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchDoctor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scrollEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBookAppointment)
+                            .addComponent(btnViewEncounter))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(vitalsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bookAppointmentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblPersonalDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPersonalDetailsMouseClicked
+        // TODO add your handling code here:
+        SignUpJFrame signUp = new SignUpJFrame(patient,personDirectory,patientDirectory,doctorDirectory,splitPane);
+        splitPane.setRightComponent(signUp);
+    }//GEN-LAST:event_lblPersonalDetailsMouseClicked
+
+    private void btnBookAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAppointmentActionPerformed
+        // TODO add your handling code here:
+        
+        bookAppointmentPanel.setVisible(false);
+    }//GEN-LAST:event_btnBookAppointmentActionPerformed
+
+    private void btnViewEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEncounterActionPerformed
+        // TODO add your handling code here:
+        
+        bookAppointmentPanel.setVisible(false);
+    }//GEN-LAST:event_btnViewEncounterActionPerformed
+
+    private void tblDoctorsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoctorsMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_tblDoctorsMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bookAppointmentPanel;
+    private javax.swing.JButton btnBook;
+    private javax.swing.JButton btnBookAppointment;
+    private javax.swing.JButton btnSearchDoctor;
+    private javax.swing.JButton btnViewEncounter;
+    private com.toedter.calendar.JDateChooser chDate;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblBP;
+    private javax.swing.JLabel lblComments;
+    private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblDiabetes;
+    private javax.swing.JLabel lblDiastole;
+    private javax.swing.JLabel lblHeartRate;
+    private javax.swing.JLabel lblInfo;
+    private javax.swing.JLabel lblPatient;
+    private javax.swing.JLabel lblPersonalDetails;
+    private javax.swing.JLabel lblPostDiet;
+    private javax.swing.JLabel lblPreDiet;
+    private javax.swing.JLabel lblSystole;
+    private javax.swing.JScrollPane scrollEncounters;
+    private javax.swing.JTable tblDoctors;
+    private javax.swing.JTable tblEncounters;
+    private javax.swing.JTextArea txtComments;
+    private javax.swing.JTextField txtDiastole;
+    private javax.swing.JTextField txtHeartRate;
+    private javax.swing.JTextArea txtInfo;
+    private javax.swing.JTextField txtPostDiet;
+    private javax.swing.JTextField txtPreDiet;
+    private javax.swing.JTextField txtSearchDoctor;
+    private javax.swing.JTextField txtSystole;
+    private javax.swing.JPanel vitalsPanel;
     // End of variables declaration//GEN-END:variables
 }

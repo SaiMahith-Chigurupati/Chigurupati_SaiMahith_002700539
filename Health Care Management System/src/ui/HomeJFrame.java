@@ -4,8 +4,12 @@
  */
 package ui;
 
+import java.util.Date;
+import model.Doctor;
 import model.DoctorDirectory;
+import model.Patient;
 import model.PatientDirectory;
+import model.Person;
 import model.PersonDirectory;
 
 /**
@@ -28,6 +32,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         patientDirectory = new PatientDirectory();
         doctorDirectory = new DoctorDirectory();
         
+        preDefinedData();
         LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,splitJPane);
         splitJPane.setRightComponent(login);
     }
@@ -136,4 +141,53 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane splitJPane;
     private javax.swing.JPanel upperJPanel;
     // End of variables declaration//GEN-END:variables
+
+    public void preDefinedData(){
+        Person person = personDirectory.addPerson();
+        Patient patient = patientDirectory.addPatient();
+        Doctor doctor = doctorDirectory.addDoctor();
+        
+        patient.setFirstName("Shubham");
+        patient.setLastName("sapkal");
+        patient.setAge(25);
+        patient.setDateOfBirth(new Date(01-01-2000));
+        patient.setEmailAddress("ss@gmail.com");
+        patient.setHeight(100);
+        patient.setWeight(100);
+        patient.setMobileNum("(999)999-9999");
+        patient.setUserID("shubham@patient");
+        patient.setPassword("password");
+        patient.setRole("Patient");
+        
+        doctor.setFirstName("Aditya");
+        doctor.setLastName("Kanala");
+        doctor.setDateOfBirth(new Date(2000-20-12));
+        doctor.setHospital("Brigham Hospital");
+        doctor.setRole("Doctor");
+        doctor.setMobileNum("(857)666-666");
+        doctor.setUserID("Aditya");
+        doctor.setEmailAddress("ak@gmail.com");
+        doctor.setPassword("password");
+        doctor.setSpecialization("Psychologist");
+        
+        person.setFirstName("Aditya");
+        person.setLastName("Kanala");
+        person.setDateOfBirth(new Date(2000-20-12));
+        person.setRole("Doctor");
+        person.setMobileNum("(857)666-666");
+        person.setUserID("aditya@doctor");
+        person.setEmailAddress("ak@gmail.com");
+        person.setPassword("password");
+        
+        person.setFirstName("Shubham");
+        person.setLastName("sapkal");
+        person.setDateOfBirth(new Date(01-01-2000));
+        person.setEmailAddress("ss@gmail.com");
+        person.setMobileNum("(999)999-9999");
+        person.setUserID("shubham@patient");
+        person.setUserID("shubham@patient");
+        person.setPassword("password");
+        person.setRole("Patient");
+    } 
+
 }

@@ -26,16 +26,36 @@ public class SignUpJFrame extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
+    Person person;
     JSplitPane splitPane;
-    public SignUpJFrame(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,JSplitPane splitPane) {
+    
+    public SignUpJFrame(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,JSplitPane splitPane) {
         initComponents();
         
         this.splitPane = splitPane;
         this.personDirectory = personDirectory;
         this.patientDirectory = patientDirectory;
         this.doctorDirectory = doctorDirectory;
+        this.person = person;
         doctorJPanel.setVisible(false);
         patientJPanel.setVisible(false);
+        btnBack.setVisible(false);
+        
+        if (person!=null){
+            btnBack.setVisible(true);
+            btnSignIn.setVisible(false);
+            lblPassword.setText("Current Pasword");
+            lblRetype.setText("NewPassword");
+            btnCreate.setText("Update");
+            lblCreateAccount.setText("View/Update Details");
+            txtFirstName.setText(person.getFirstName());
+            txtLastName.setText(person.getLastName());
+            txtUserID.setText(person.getUserID());
+            chRole.setSelectedItem(person.getRole());
+            txtEmail.setText(person.getEmailAddress());
+            txtMobile.setText(person.getMobileNum());
+
+        }
         
     }
 
@@ -84,6 +104,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
         lblHeight = new javax.swing.JLabel();
         txtHeight = new javax.swing.JTextField();
         btnSignIn = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         lblCreateAccount.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         lblCreateAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -240,29 +261,22 @@ public class SignUpJFrame extends javax.swing.JPanel {
             }
         });
 
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(doctorJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(patientJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCreate)
-                        .addGap(324, 324, 324))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSignIn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFirstName)
                             .addComponent(lblRole)
@@ -298,8 +312,28 @@ public class SignUpJFrame extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rdMale)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rdFemale)))))
+                                .addComponent(rdFemale))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSignIn)))
                 .addContainerGap(80, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(doctorJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(patientJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnCreate)
+                                .addGap(324, 324, 324))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +344,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCreateAccount)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSignIn)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSignIn)
+                            .addComponent(btnBack))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblFirstName)
@@ -373,9 +409,27 @@ public class SignUpJFrame extends javax.swing.JPanel {
         String hospital = txtHospital.getText();
         String specialization = txtSpecialization.getText();
         
-        
-        
-        if(password.equals(reType)){
+        if(person!=null){
+            if(password.equals(person.getPassword())){
+                
+                if(personDirectory.checkDuplicatePerson(userID)){
+                    person.setUserID(userID);
+                    person.setFirstName(fName);
+                    person.setLastName(lName);
+                    person.setPassword(password);
+                    person.setRole(role);
+                    person.setDateOfBirth(dateOfBirth);
+                    person.setMobileNum(mobiNum);
+                    person.setEmailAddress(emailId);
+                }else{
+                    JOptionPane.showMessageDialog(this, "User with this ID already exist. Please try again!");
+                }
+                
+                
+            }
+            JOptionPane.showMessageDialog(this, "Current password didn't match");
+        }else{
+            if(password.equals(reType)){
             if(personDirectory.checkDuplicatePerson(userID)){
                 Person newPerson = personDirectory.addPerson();
             
@@ -430,6 +484,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Passwords didn't match");
         }
 
+        }
+        
+        
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void chRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chRoleActionPerformed
@@ -496,8 +553,22 @@ public class SignUpJFrame extends javax.swing.JPanel {
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_btnSignInActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        //String patientName = txtFirstName.getText();
+        if(person.getRole()=="Patient"){
+            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,splitPane);
+            splitPane.setRightComponent(patientPane);
+        }else if(person.getRole()=="Doctor"){
+            DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,splitPane);
+            splitPane.setRightComponent(doc);
+        }
+        
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnSignIn;
     private com.toedter.calendar.JDateChooser chDateOfBirth;

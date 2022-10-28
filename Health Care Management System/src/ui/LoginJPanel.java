@@ -23,7 +23,8 @@ public class LoginJPanel extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
-    JSplitPane splitPane; 
+    JSplitPane splitPane;
+    Person person;
     
     public LoginJPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, JSplitPane splitPane) {
        
@@ -31,6 +32,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         this.personDirectory = personDirectory;
         this.doctorDirectory = doctorDirectory;
         this.patientDirectory = patientDirectory;
+        
         
         initComponents();
         
@@ -176,9 +178,17 @@ public class LoginJPanel extends javax.swing.JPanel {
         Person authenticatedUser = personDirectory.authenticatePerson(userID, password);
         if(authenticatedUser!= null){
             //JOptionPane.showMessageDialog(this,"Login Successful");
-            String doctorName = authenticatedUser.getFirstName();
-            DoctorJPanel doc = new DoctorJPanel(doctorName,personDirectory,patientDirectory,doctorDirectory,splitPane);
-            splitPane.setRightComponent(doc);
+            if(authenticatedUser.getRole().equals("Doctor")){
+                
+                DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,splitPane);
+                splitPane.setRightComponent(doc);
+            }else if(authenticatedUser.getRole().equals("Patient")){
+                //String patientName = authenticatedUser.getFirstName();
+                PatientJPanel pat = new PatientJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,splitPane);
+                splitPane.setRightComponent(pat);
+                
+            }
+            
 
         }else{
             JOptionPane.showMessageDialog(this, "Login Failed");
@@ -187,7 +197,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void lblSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSignUpMouseClicked
         // TODO add your handling code here:
-        SignUpJFrame signUp = new SignUpJFrame(personDirectory,patientDirectory,doctorDirectory,splitPane);
+        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,splitPane);
         splitPane.setRightComponent(signUp);
     }//GEN-LAST:event_lblSignUpMouseClicked
 
