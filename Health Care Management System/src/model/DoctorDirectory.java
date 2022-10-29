@@ -36,10 +36,32 @@ public class DoctorDirectory {
         doctorDirectory.remove(doctor);
     }
     
+    public Doctor getDoctor(String name){
+        for(Doctor doctor:doctorDirectory){
+            if(doctor.getFirstName().equals(name)){
+                return doctor;
+            }
+            
+        }
+        return null;
+    }
+    
+    public ArrayList<Doctor> getDoctorList(String name){
+        ArrayList<Doctor> doctorList = new ArrayList();
+        for(Doctor doctor:doctorDirectory){
+            if(doctor.getFirstName().equals(name)){
+                doctorList.add(doctor);
+            }
+            
+        }
+        return doctorList;
+    }
+    
+    
     //public Doctor getDoctor(String )
     
     public Doctor authenticateDoctor(String userID, String password){
-        System.out.println(password);
+        
         for(Doctor authDoctor:doctorDirectory){
             if(authDoctor.getUserID().equals(userID) && authDoctor.getPassword().equals(password)){
                 return authDoctor;

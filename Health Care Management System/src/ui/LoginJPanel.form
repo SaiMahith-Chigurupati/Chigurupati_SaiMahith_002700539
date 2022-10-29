@@ -100,9 +100,6 @@
     <Component class="javax.swing.JTextField" name="txtUserID">
     </Component>
     <Component class="javax.swing.JPasswordField" name="fldPassword">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="password"/>
-      </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fldPasswordFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fldPasswordFocusLost"/>

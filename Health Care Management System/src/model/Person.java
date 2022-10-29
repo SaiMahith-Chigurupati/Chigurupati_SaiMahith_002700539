@@ -19,6 +19,7 @@ public class Person {
     private String mobileNum;
     private String userID;
     private String password;
+    private String community;
 
     public String getFirstName() {
         return firstName;
@@ -82,6 +83,14 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(String community) {
+        this.community = community;
     }
     
     @Override

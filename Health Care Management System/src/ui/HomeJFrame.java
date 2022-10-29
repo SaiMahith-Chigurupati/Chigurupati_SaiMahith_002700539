@@ -7,6 +7,8 @@ package ui;
 import java.util.Date;
 import model.Doctor;
 import model.DoctorDirectory;
+import model.Encounter;
+import model.EncounterHistory;
 import model.Patient;
 import model.PatientDirectory;
 import model.Person;
@@ -25,15 +27,17 @@ public class HomeJFrame extends javax.swing.JFrame {
     PersonDirectory personDirectory;
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
+    EncounterHistory encounterHistory;
+    
     public HomeJFrame() {
         initComponents();
         
         personDirectory = new PersonDirectory();
         patientDirectory = new PatientDirectory();
         doctorDirectory = new DoctorDirectory();
-        
+        encounterHistory = new EncounterHistory();
         preDefinedData();
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,splitJPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitJPane);
         splitJPane.setRightComponent(login);
     }
 
@@ -143,7 +147,8 @@ public class HomeJFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void preDefinedData(){
-        Person person = personDirectory.addPerson();
+        Person personDoctor = personDirectory.addPerson();
+        Person personPatient = personDirectory.addPerson();
         Patient patient = patientDirectory.addPatient();
         Doctor doctor = doctorDirectory.addDoctor();
         
@@ -158,6 +163,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         patient.setUserID("shubham@patient");
         patient.setPassword("password");
         patient.setRole("Patient");
+        patient.setCommunity("Roxbury1");
         
         doctor.setFirstName("Aditya");
         doctor.setLastName("Kanala");
@@ -165,29 +171,57 @@ public class HomeJFrame extends javax.swing.JFrame {
         doctor.setHospital("Brigham Hospital");
         doctor.setRole("Doctor");
         doctor.setMobileNum("(857)666-666");
-        doctor.setUserID("Aditya");
+        doctor.setUserID("aditya@doctor");
         doctor.setEmailAddress("ak@gmail.com");
         doctor.setPassword("password");
         doctor.setSpecialization("Psychologist");
+        doctor.setCommunity("Roxbury");
         
-        person.setFirstName("Aditya");
-        person.setLastName("Kanala");
-        person.setDateOfBirth(new Date(2000-20-12));
-        person.setRole("Doctor");
-        person.setMobileNum("(857)666-666");
-        person.setUserID("aditya@doctor");
-        person.setEmailAddress("ak@gmail.com");
-        person.setPassword("password");
+        personDoctor.setFirstName("Aditya");
+        personDoctor.setLastName("Kanala");
+        personDoctor.setDateOfBirth(new Date(2000-20-12));
+        personDoctor.setRole("Doctor");
+        personDoctor.setMobileNum("(857)666-666");
+        personDoctor.setUserID("aditya@doctor");
+        personDoctor.setEmailAddress("ak@gmail.com");
+        personDoctor.setPassword("password");
+        personDoctor.setCommunity("Roxbury");
         
-        person.setFirstName("Shubham");
-        person.setLastName("sapkal");
-        person.setDateOfBirth(new Date(01-01-2000));
-        person.setEmailAddress("ss@gmail.com");
-        person.setMobileNum("(999)999-9999");
-        person.setUserID("shubham@patient");
-        person.setUserID("shubham@patient");
-        person.setPassword("password");
-        person.setRole("Patient");
+        personPatient.setFirstName("Shubham");
+        personPatient.setLastName("sapkal");
+        personPatient.setDateOfBirth(new Date(01-01-2000));
+        personPatient.setEmailAddress("ss@gmail.com");
+        personPatient.setMobileNum("(999)999-9999");
+        personPatient.setUserID("shubham@patient");
+        personPatient.setUserID("shubham@patient");
+        personPatient.setPassword("password");
+        personPatient.setRole("Patient");
+        personPatient.setCommunity("Roxbury");
+        
+        
+        Encounter encounter1 = encounterHistory.addEncounter();
+        encounter1.setDoctorName("Aditya");
+        encounter1.setUserID(personPatient.getUserID());
+        
+        encounter1.setEncounterDate("31-Dec-1998");
+        encounter1.setSystole(100);
+        encounter1.setDiastole(100);
+        encounter1.setPreDiet(100);
+        encounter1.setPostDiet(100);
+        encounter1.setHeartRate(72);
+        encounter1.setComments("Very Healthy condition");
+        
+        Encounter encounter2 = encounterHistory.addEncounter();
+        encounter2.setDoctorName("Aditya");
+        encounter2.setUserID(personPatient.getUserID());
+        
+        encounter2.setEncounterDate("31-Dec-2000");
+        encounter2.setSystole(120);
+        encounter2.setDiastole(80);
+        encounter2.setPreDiet(110);
+        encounter2.setPostDiet(160);
+        encounter2.setHeartRate(70);
+        encounter2.setComments("Improvement Needed");
     } 
 
 }

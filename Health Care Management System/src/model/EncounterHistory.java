@@ -45,10 +45,10 @@ public class EncounterHistory {
         return null;
     }
     
-    public Encounter encounterExist(String patientName){
+    public Encounter encounterExist(String userID){
         for(Encounter encounter:encounterHistory){
             
-            if(encounter.getPatientName().equals(patientName)){
+            if(encounter.getUserID().equals(userID)){
                 return encounter;
             }
             
@@ -56,12 +56,12 @@ public class EncounterHistory {
         return null;
     }
     
-    public ArrayList<Encounter> searchEncounter(String searchPatient){
+    public ArrayList<Encounter> searchEncounter(String searchDoctor, String searchPatient){
         ArrayList<Encounter> encounterList = new ArrayList<Encounter>();
         
         for(Encounter encounter:encounterHistory){
-            String name = encounter.getPatientName();
-            if(name.equals(searchPatient)){
+            
+            if(encounter.getUserID().equals(searchPatient) && encounter.getDoctorName().equals(searchDoctor)){
                 encounterList.add(encounter);
             }
             

@@ -45,13 +45,13 @@ public class PersonDirectory {
         return true;
     }
     
-    public boolean isExist(String userID){
+    public String getUserID(String name){
         for(Person person:personDirectory){
-            if(person.getUserID().equals(userID)){
-                return true;
+            if(person.getFirstName().equals(name)){
+                return person.getUserID();
             }
         }
-        return false;
+        return "";
     }
     
     public int nameCount(String name){

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.Doctor;
 import model.DoctorDirectory;
+import model.EncounterHistory;
 import model.Patient;
 import model.Person;
 import model.PersonDirectory;
@@ -27,15 +28,17 @@ public class SignUpJFrame extends javax.swing.JPanel {
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
     Person person;
+    EncounterHistory encounterHistory;
     JSplitPane splitPane;
     
-    public SignUpJFrame(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,JSplitPane splitPane) {
+    public SignUpJFrame(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory,JSplitPane splitPane) {
         initComponents();
         
         this.splitPane = splitPane;
         this.personDirectory = personDirectory;
         this.patientDirectory = patientDirectory;
         this.doctorDirectory = doctorDirectory;
+        this.encounterHistory = encounterHistory;
         this.person = person;
         doctorJPanel.setVisible(false);
         patientJPanel.setVisible(false);
@@ -45,15 +48,20 @@ public class SignUpJFrame extends javax.swing.JPanel {
             btnBack.setVisible(true);
             btnSignIn.setVisible(false);
             lblPassword.setText("Current Pasword");
-            lblRetype.setText("NewPassword");
+            lblRetype.setText("New Password");
             btnCreate.setText("Update");
             lblCreateAccount.setText("View/Update Details");
             txtFirstName.setText(person.getFirstName());
             txtLastName.setText(person.getLastName());
             txtUserID.setText(person.getUserID());
+            chDateOfBirth.setDate(person.getDateOfBirth());
+            txtCommunity.setText(person.getCommunity());
+            
+            
             chRole.setSelectedItem(person.getRole());
             txtEmail.setText(person.getEmailAddress());
             txtMobile.setText(person.getMobileNum());
+            txtUserID.setEditable(false);
 
         }
         
@@ -105,6 +113,8 @@ public class SignUpJFrame extends javax.swing.JPanel {
         txtHeight = new javax.swing.JTextField();
         btnSignIn = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        txtCommunity = new javax.swing.JTextField();
+        lblCommunity = new javax.swing.JLabel();
 
         lblCreateAccount.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         lblCreateAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,7 +148,6 @@ public class SignUpJFrame extends javax.swing.JPanel {
 
         lblPassword.setText("Password");
 
-        fldPassword.setText("password");
         fldPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 fldPasswordFocusGained(evt);
@@ -148,7 +157,6 @@ public class SignUpJFrame extends javax.swing.JPanel {
             }
         });
 
-        fldRetype.setText("password");
         fldRetype.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 fldRetypeFocusGained(evt);
@@ -188,7 +196,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
         doctorJPanelLayout.setHorizontalGroup(
             doctorJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(doctorJPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(112, Short.MAX_VALUE)
                 .addComponent(lblHospital)
                 .addGap(56, 56, 56)
                 .addComponent(txtHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,15 +235,15 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAge)
                     .addComponent(lblWeight))
-                .addGap(61, 61, 61)
-                .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(txtWeight))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
                 .addComponent(lblHeight)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addGap(75, 75, 75)
                 .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(25, 25, 25))
         );
         patientJPanelLayout.setVerticalGroup(
             patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,7 +259,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblWeight)
                     .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnSignIn.setText("Sign in");
@@ -261,12 +269,14 @@ public class SignUpJFrame extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setText("Back");
+        btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+
+        lblCommunity.setText("Community");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -274,66 +284,72 @@ public class SignUpJFrame extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFirstName)
-                            .addComponent(lblRole)
-                            .addComponent(lblPassword)
-                            .addComponent(lblEmail)
-                            .addComponent(lblDateOfBirth))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(chDateOfBirth, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(txtFirstName)
-                            .addComponent(chRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fldPassword)
-                            .addComponent(txtEmail))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblLastName)
-                                    .addComponent(lblUserID))
-                                .addGap(59, 59, 59))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblRetype)
-                                    .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtLastName)
-                            .addComponent(txtUserID)
-                            .addComponent(fldRetype, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(txtMobile)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rdMale)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rdFemale))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSignIn)))
-                .addContainerGap(80, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblFirstName)
+                                    .addComponent(lblRole)
+                                    .addComponent(lblPassword)
+                                    .addComponent(lblEmail)
+                                    .addComponent(lblDateOfBirth))
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(chDateOfBirth, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(txtFirstName)
+                                    .addComponent(chRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(fldPassword)
+                                    .addComponent(txtEmail))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblLastName)
+                                            .addComponent(lblUserID))
+                                        .addGap(59, 59, 59))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblRetype)
+                                            .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtLastName)
+                                    .addComponent(txtUserID)
+                                    .addComponent(fldRetype, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(txtMobile)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rdMale)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(rdFemale))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSignIn)))
+                        .addContainerGap(80, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(doctorJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(patientJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnCreate)
-                                .addGap(324, 324, 324))))))
+                        .addGap(14, 14, 14))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCommunity)
+                        .addGap(47, 47, 47)
+                        .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(patientJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(58, 58, 58))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnCreate)
+                            .addGap(317, 317, 317)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +360,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCreateAccount)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSignIn)
                             .addComponent(btnBack))
                         .addGap(30, 30, 30)
@@ -384,8 +400,12 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(patientJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCommunity)
+                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addComponent(btnCreate)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -403,31 +423,68 @@ public class SignUpJFrame extends javax.swing.JPanel {
         String userID = txtUserID.getText();
         String password = new String(fldPassword.getPassword());
         String reType = new String(fldRetype.getPassword());
-        int height =Integer.parseInt(txtHeight.getText());
-        int weight = Integer.parseInt(txtWeight.getText());
-        int age = Integer.parseInt(txtAge.getText());
+        if(person==null){
+            int height =Integer.parseInt(txtHeight.getText());
+            int weight = Integer.parseInt(txtWeight.getText());
+            int age = Integer.parseInt(txtAge.getText());
+        }
+        
         String hospital = txtHospital.getText();
         String specialization = txtSpecialization.getText();
-        
+        String community =txtCommunity.getText();
         if(person!=null){
             if(password.equals(person.getPassword())){
                 
-                if(personDirectory.checkDuplicatePerson(userID)){
-                    person.setUserID(userID);
+                
+                    //person.setUserID(userID);
                     person.setFirstName(fName);
                     person.setLastName(lName);
-                    person.setPassword(password);
+                    person.setPassword(reType);
                     person.setRole(role);
                     person.setDateOfBirth(dateOfBirth);
                     person.setMobileNum(mobiNum);
                     person.setEmailAddress(emailId);
-                }else{
-                    JOptionPane.showMessageDialog(this, "User with this ID already exist. Please try again!");
+                    person.setCommunity(community);
+
+                    
+                    if(role=="Patient"){
+                    Patient newPatient = patientDirectory.addPatient();
+
+                    newPatient.setFirstName(fName);
+                    newPatient.setLastName(lName);
+                    //newPatient.setUserID(userID);
+                    newPatient.setPassword(reType);
+                    newPatient.setRole(role);
+                    newPatient.setDateOfBirth(dateOfBirth);
+                    newPatient.setMobileNum(mobiNum);
+                    newPatient.setEmailAddress(emailId);
+//                    newPatient.setHeight(height);
+//                    newPatient.setWeight(weight);
+//                    newPatient.setAge(age);
+                    newPatient.setCommunity(community);
+
+                }else if(role.equals("Doctor")){
+                    Doctor newDoctor = doctorDirectory.addDoctor();
+
+                    newDoctor.setFirstName(fName);
+                    newDoctor.setLastName(lName);
+                    //newDoctor.setUserID(userID);
+                    newDoctor.setPassword(reType);
+                    newDoctor.setRole(role);
+                    newDoctor.setEmailAddress(emailId);
+                    newDoctor.setSpecialization(specialization);
+                    newDoctor.setHospital(hospital);
+                    newDoctor.setCommunity(community);
+                    
+                    
+
                 }
+                    JOptionPane.showMessageDialog(this, "Details Updated");
                 
-                
+            }else{
+                JOptionPane.showMessageDialog(this, "Current password didn't match");
             }
-            JOptionPane.showMessageDialog(this, "Current password didn't match");
+            
         }else{
             if(password.equals(reType)){
             if(personDirectory.checkDuplicatePerson(userID)){
@@ -441,6 +498,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 newPerson.setDateOfBirth(dateOfBirth);
                 newPerson.setMobileNum(mobiNum);
                 newPerson.setEmailAddress(emailId);
+                newPerson.setCommunity(community);
 
                 if(role=="Patient"){
                     Patient newPatient = patientDirectory.addPatient();
@@ -453,9 +511,10 @@ public class SignUpJFrame extends javax.swing.JPanel {
                     newPatient.setDateOfBirth(dateOfBirth);
                     newPatient.setMobileNum(mobiNum);
                     newPatient.setEmailAddress(emailId);
-                    newPatient.setHeight(height);
-                    newPatient.setWeight(weight);
-                    newPatient.setAge(age);
+//                    newPatient.setHeight(height);
+//                    newPatient.setWeight(weight);
+//                    newPatient.setAge(age);
+                    newPatient.setCommunity(community);
 
                 }else if(role.equals("Doctor")){
                     Doctor newDoctor = doctorDirectory.addDoctor();
@@ -468,15 +527,31 @@ public class SignUpJFrame extends javax.swing.JPanel {
                     newDoctor.setEmailAddress(emailId);
                     newDoctor.setSpecialization(specialization);
                     newDoctor.setHospital(hospital);
+                    newDoctor.setCommunity(community);
 
                 }
 
 
                 JOptionPane.showMessageDialog(this, "Signup Successful!");
+                
+                txtCommunity.setText("");
+                txtFirstName.setText("");
+                txtLastName.setText("");
+                txtEmail.setText("");
+                txtMobile.setText("");
+                chDateOfBirth.setDate(new Date());
+                chRole.setSelectedIndex(0);
+                txtUserID.setText("");
+                fldPassword.setText("");
+                fldRetype.setText("");
+                txtAge.setText("");
+                txtHeight.setText("");
+                txtWeight.setText("");
+                txtCommunity.setText("");
 
 
                 }else{
-                JOptionPane.showConfirmDialog(this, "User ID already exits!!");
+                JOptionPane.showMessageDialog(this, "User ID already exits!!");
             }
             
 
@@ -507,6 +582,10 @@ public class SignUpJFrame extends javax.swing.JPanel {
             patientJPanel.setVisible(false);
             doctorJPanel.setVisible(false);
         }
+        
+        if(person!=null){
+            patientJPanel.setVisible(false);
+        }
     }//GEN-LAST:event_chRoleActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
@@ -520,7 +599,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
 
     private void fldPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fldPasswordFocusGained
         // TODO add your handling code here:
-        fldPassword.setText("");
+        
     }//GEN-LAST:event_fldPasswordFocusGained
 
     private void fldPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fldPasswordFocusLost
@@ -530,12 +609,11 @@ public class SignUpJFrame extends javax.swing.JPanel {
 
     private void fldRetypeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fldRetypeFocusGained
         // TODO add your handling code here:
-        fldRetype.setText("");
+        
     }//GEN-LAST:event_fldRetypeFocusGained
 
     private void fldRetypeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fldRetypeFocusLost
         // TODO add your handling code here:
-        //fldRetype.setText("password");
     }//GEN-LAST:event_fldRetypeFocusLost
 
     private void txtFirstNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusLost
@@ -549,7 +627,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
         // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,splitPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitPane);
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_btnSignInActionPerformed
 
@@ -557,10 +635,10 @@ public class SignUpJFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         //String patientName = txtFirstName.getText();
         if(person.getRole()=="Patient"){
-            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,splitPane);
+            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,encounterHistory, splitPane);
             splitPane.setRightComponent(patientPane);
         }else if(person.getRole()=="Doctor"){
-            DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,splitPane);
+            DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory, splitPane);
             splitPane.setRightComponent(doc);
         }
         
@@ -577,6 +655,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
     private javax.swing.JPasswordField fldPassword;
     private javax.swing.JPasswordField fldRetype;
     private javax.swing.JLabel lblAge;
+    private javax.swing.JLabel lblCommunity;
     private javax.swing.JLabel lblCreateAccount;
     private javax.swing.JLabel lblDateOfBirth;
     private javax.swing.JLabel lblEmail;
@@ -596,6 +675,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdFemale;
     private javax.swing.JRadioButton rdMale;
     private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtCommunity;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtHeight;
@@ -606,4 +686,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
     private javax.swing.JTextField txtUserID;
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
+
+    private void saveData(){
+        
+    }
+
 }

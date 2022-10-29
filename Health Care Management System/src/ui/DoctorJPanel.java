@@ -37,62 +37,25 @@ public class DoctorJPanel extends javax.swing.JPanel {
     DoctorDirectory doctorDirectory;
     EncounterHistory encounterHistory;
     Person doctor;
+    String selectedPatient;
+    String selectedEncounterDate;
+    String com;
+    
     JSplitPane splitPane;
     
-    public DoctorJPanel(Person person, PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, JSplitPane splitPane){
+    public DoctorJPanel(Person person, PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory, JSplitPane splitPane){
         initComponents();
         this.doctor = person;
         this.patientDirectory=patientDirectory;
         this.personDirectory=personDirectory;
         this.doctorDirectory =doctorDirectory;
+        this.encounterHistory = encounterHistory;
         this.splitPane = splitPane;
-        
-        encounterHistory = new EncounterHistory();
-        
+                
         lblDoctor.setText("Welcome Dr. "+doctor.getFirstName());
-        btnView.setVisible(false);
+        
         encounterPanel.setVisible(false);
-        btnEncounter.setVisible(false);
         
-        Patient patientDaniel = patientDirectory.addPatient();
-        patientDaniel.setFirstName("Daniel_P");
-        
-        Patient patientKal = patientDirectory.addPatient();
-        patientKal.setFirstName("Kal_P");
-        
-        Patient patientBug = patientDirectory.addPatient();
-        patientBug.setFirstName("Bug_P");
-        patientBug.setUserID("Bug_P@patient");
-        
-        Person personBug = personDirectory.addPerson();
-        personBug.setFirstName("Bug_P");
-        personBug.setUserID("Bug_P@patient");
-        
-        Encounter encounterBug = encounterHistory.addEncounter();
-        encounterBug.setDoctorName("John");
-        encounterBug.setPatientName("Bug_P");
-        
-        encounterBug.setEncounterDate("31-Dec-1998");
-        encounterBug.setSystole(100);
-        encounterBug.setDiastole(100);
-        encounterBug.setPreDiet(100);
-        encounterBug.setPostDiet(100);
-        encounterBug.setHeartRate(72);
-        encounterBug.setComments("Very Healthy condition");
-        
-        Encounter encounterBug2 = encounterHistory.addEncounter();
-        encounterBug2.setDoctorName("John");
-        encounterBug2.setPatientName("Bug_P");
-        
-        encounterBug2.setEncounterDate("31-Dec-2000");
-        encounterBug2.setSystole(120);
-        encounterBug2.setDiastole(80);
-        encounterBug2.setPreDiet(110);
-        encounterBug2.setPostDiet(160);
-        encounterBug2.setHeartRate(70);
-        encounterBug2.setComments("Improvement Needed");
-        
-       
     }
 
     /**
@@ -127,17 +90,9 @@ public class DoctorJPanel extends javax.swing.JPanel {
         lblComments = new javax.swing.JLabel();
         lblHeartRate = new javax.swing.JLabel();
         txtHeartRate = new javax.swing.JTextField();
-        btnCURecord = new javax.swing.JButton();
-        lblHeight = new javax.swing.JLabel();
-        txtHeight = new javax.swing.JTextField();
-        lblWeight = new javax.swing.JLabel();
-        txtWeight = new javax.swing.JTextField();
-        lblPatientName = new javax.swing.JLabel();
-        txtPatientName = new javax.swing.JTextField();
+        btnCreate = new javax.swing.JButton();
         btnCreatePatient = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
-        btnView = new javax.swing.JButton();
-        btnEncounter = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -158,6 +113,11 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 "Patient"
             }
         ));
+        tblPatients.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPatientsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPatients);
 
         tblEncounters.setModel(new javax.swing.table.DefaultTableModel(
@@ -171,6 +131,11 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 "Encounter"
             }
         ));
+        tblEncounters.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEncountersMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblEncounters);
 
         lblBP.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -195,81 +160,55 @@ public class DoctorJPanel extends javax.swing.JPanel {
 
         lblHeartRate.setText("Heart Rate");
 
-        btnCURecord.setText("Create/Update");
-        btnCURecord.addActionListener(new java.awt.event.ActionListener() {
+        btnCreate.setText("Create");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCURecordActionPerformed(evt);
+                btnCreateActionPerformed(evt);
             }
         });
-
-        lblHeight.setText("Height");
-
-        lblWeight.setText("Weight");
-
-        lblPatientName.setText("Patient Name");
 
         javax.swing.GroupLayout encounterPanelLayout = new javax.swing.GroupLayout(encounterPanel);
         encounterPanel.setLayout(encounterPanelLayout);
         encounterPanelLayout.setHorizontalGroup(
             encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(encounterPanelLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(encounterPanelLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
                         .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPreDiet)
+                            .addComponent(lblComments)
+                            .addComponent(lblHeartRate)
+                            .addComponent(lblSystole)
+                            .addComponent(lblBP, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(encounterPanelLayout.createSequentialGroup()
                                 .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPreDiet)
-                                    .addComponent(lblComments)
-                                    .addComponent(lblHeartRate)
-                                    .addComponent(lblSystole)
-                                    .addComponent(lblBP, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblHeight))
-                                .addGap(30, 30, 30)
-                                .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPreDiet, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(encounterPanelLayout.createSequentialGroup()
+                                        .addComponent(txtSystole, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
                                         .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtPreDiet, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(encounterPanelLayout.createSequentialGroup()
-                                                .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(txtSystole, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                                    .addComponent(txtHeight))
-                                                .addGap(28, 28, 28)
-                                                .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblDiastole)
-                                                    .addComponent(lblPostDiet)
-                                                    .addComponent(lblWeight))))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtDiastole, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                            .addComponent(txtPostDiet, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                            .addComponent(txtWeight)))))
-                            .addComponent(lblDiabetes)
-                            .addGroup(encounterPanelLayout.createSequentialGroup()
-                                .addComponent(lblPatientName)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPatientName))))
-                    .addGroup(encounterPanelLayout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(btnCURecord)))
+                                            .addComponent(lblDiastole)
+                                            .addComponent(lblPostDiet))))
+                                .addGap(18, 18, 18)
+                                .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtDiastole, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                                    .addComponent(txtPostDiet, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)))))
+                    .addComponent(lblDiabetes))
                 .addContainerGap(84, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, encounterPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCreate)
+                .addGap(206, 206, 206))
         );
         encounterPanelLayout.setVerticalGroup(
             encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(encounterPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPatientName)
-                    .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeight)
-                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblWeight)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(105, 105, 105)
                 .addComponent(lblBP)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,9 +235,9 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 .addGroup(encounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblComments))
-                .addGap(30, 30, 30)
-                .addComponent(btnCURecord)
-                .addGap(17, 17, 17))
+                .addGap(18, 18, 18)
+                .addComponent(btnCreate)
+                .addContainerGap())
         );
 
         btnCreatePatient.setText("Create Encounter");
@@ -312,20 +251,6 @@ public class DoctorJPanel extends javax.swing.JPanel {
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
-            }
-        });
-
-        btnView.setText("View");
-        btnView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewActionPerformed(evt);
-            }
-        });
-
-        btnEncounter.setText("View Encounter");
-        btnEncounter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEncounterActionPerformed(evt);
             }
         });
 
@@ -353,16 +278,10 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(encounterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnView)
-                                .addGap(0, 429, Short.MAX_VALUE)))
+                        .addComponent(encounterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSearch)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEncounter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCreatePatient)
                         .addGap(32, 32, 32))))
@@ -383,14 +302,11 @@ public class DoctorJPanel extends javax.swing.JPanel {
                     .addComponent(lblSearch)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch)
-                    .addComponent(btnEncounter)
                     .addComponent(btnCreatePatient))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(btnView)
-                        .addGap(18, 18, 18)
+                        .addGap(49, 49, 49)
                         .addComponent(encounterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -412,11 +328,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
         }else{
             
             populateSearchResults(patientList);
-            btnView.setVisible(true);
-            
-            txtPatientName.setText("");
-            txtHeight.setText("");
-            txtWeight.setText("");
+           
             txtSystole.setText("");
             txtDiastole.setText("");
             txtPreDiet.setText("");
@@ -431,8 +343,80 @@ public class DoctorJPanel extends javax.swing.JPanel {
         }    
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+    private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
         // TODO add your handling code here:
+        btnCreate.setVisible(true);
+        if(selectedPatient!=null){
+            encounterPanel.setVisible(true);
+        
+            txtSystole.setText("");
+            txtDiastole.setText("");
+            txtPreDiet.setText("");
+            txtPostDiet.setText("");
+            txtHeartRate.setText("");
+            txtComments.setText("");
+            
+            txtSystole.setEditable(true);
+            txtDiastole.setEditable(true);
+            txtPreDiet.setEditable(true);
+            txtPostDiet.setEditable(true);
+            txtHeartRate.setEditable(true);
+            txtComments.setEditable(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Please choose a Patient");
+        }
+        
+
+    }//GEN-LAST:event_btnCreatePatientActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitPane);
+        splitPane.setRightComponent(login);
+    }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+       
+        Encounter encounter = encounterHistory.getEncounter(selectedEncounterDate);
+        try{
+            com  = encounter.getComments();
+        }catch(Exception e){
+            com = null;
+        }
+        if(com!=" " || encounter == null){
+            encounter = encounterHistory.addEncounter();
+            //get todays date
+            LocalDate today = java.time.LocalDate.now();
+            encounter.setEncounterDate(today.toString());
+        }
+
+        encounter.setDoctorName(doctor.getFirstName());
+        encounter.setUserID(personDirectory.getUserID(selectedPatient));
+        encounter.setSystole(Integer.valueOf(txtSystole.getText()));
+        encounter.setDiastole(Integer.valueOf(txtDiastole.getText()));
+        encounter.setHeartRate(Integer.valueOf(txtHeartRate.getText()));
+        encounter.setPreDiet(Integer.valueOf(txtPreDiet.getText()));
+        encounter.setPostDiet(Integer.valueOf(txtPostDiet.getText()));
+        encounter.setComments(txtComments.getText());
+        
+        JOptionPane.showMessageDialog(this, "Details added");
+        
+        txtSystole.setText("");
+        txtDiastole.setText("");
+        txtPreDiet.setText("");
+        txtPostDiet.setText("");
+        txtHeartRate.setText("");
+        txtComments.setText("");
+        
+        encounterPanel.setVisible(false);
+        tblPatientsMouseClicked(null);
+        
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void tblPatientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPatientsMouseClicked
+        // TODO add your handling code here:
+        
         int selectedRowIndex  = tblPatients.getSelectedRow();
         
         if(selectedRowIndex<0){
@@ -441,194 +425,56 @@ public class DoctorJPanel extends javax.swing.JPanel {
         }
         
         DefaultTableModel model = (DefaultTableModel) tblPatients.getModel();
-        String selectedPatient = (String) model.getValueAt(selectedRowIndex,0);
+        selectedPatient = (String) model.getValueAt(selectedRowIndex,0);
         
-        ArrayList<Encounter> encounterList =  encounterHistory.searchEncounter(selectedPatient);
+        ArrayList<Encounter> encounterList =  encounterHistory.searchEncounter(doctor.getFirstName(),personDirectory.getUserID(selectedPatient));
         populateEncounterResults(encounterList);
-        btnEncounter.setVisible(true);
-        btnView.setVisible(false);
-        
-    }//GEN-LAST:event_btnViewActionPerformed
 
-    private void btnEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncounterActionPerformed
+    }//GEN-LAST:event_tblPatientsMouseClicked
+
+    private void tblEncountersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEncountersMouseClicked
         // TODO add your handling code here:
+        
         int selectedRowIndex  = tblEncounters.getSelectedRow();
         
+        btnCreate.setVisible(false);
         if(selectedRowIndex<0){
             JOptionPane.showMessageDialog(this,"Please select a Row to View");
             return;
         }
         
         DefaultTableModel model = (DefaultTableModel) tblEncounters.getModel();
-        String selectedEncounterDate = (String) model.getValueAt(selectedRowIndex,0);
+        selectedEncounterDate = (String) model.getValueAt(selectedRowIndex,0);
         encounterPanel.setVisible(true);
         Encounter encounter =  encounterHistory.getEncounter(selectedEncounterDate);
-        Patient patient = patientDirectory.getPatient(encounter.getPatientName());
-        if(patient!=null){
-            txtPatientName.setText(encounter.getPatientName());
-            txtWeight.setText(String.valueOf(patient.getWeight()));
-            txtHeight.setText(String.valueOf(patient.getHeight()));
-        }
         
+        if(encounter.getComments()==" "){
+            encounterPanel.setVisible(false);
+            JOptionPane.showMessageDialog(this,"No Vitals to view! Please Create");
+            
+    
+        }
         txtSystole.setText(String.valueOf(encounter.getSystole()));
         txtDiastole.setText(String.valueOf(encounter.getDiastole()));
         txtPreDiet.setText(String.valueOf(encounter.getPreDiet()));
         txtPostDiet.setText(String.valueOf(encounter.getPostDiet()));
         txtHeartRate.setText(String.valueOf(encounter.getHeartRate()));
         txtComments.setText(encounter.getComments());
-  
-    }//GEN-LAST:event_btnEncounterActionPerformed
-
-    private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
-        // TODO add your handling code here:
-        encounterPanel.setVisible(true);
         
-        txtPatientName.setText("");
-        txtHeight.setText("");
-        txtWeight.setText("");
-        txtSystole.setText("");
-        txtDiastole.setText("");
-        txtPreDiet.setText("");
-        txtPostDiet.setText("");
-        txtHeartRate.setText("");
-        txtComments.setText("");
-
-    }//GEN-LAST:event_btnCreatePatientActionPerformed
-
-    private void btnCURecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCURecordActionPerformed
-        // TODO add your handling code here:
-        //Creating a New Patient
-        String midUserID="";
-        Encounter encounter;
-        if(!personDirectory.isExist(txtPatientName.getText()+"@patient")){////new patient --create new patient obj
-            
-            Patient patient = patientDirectory.addPatient();
-            patient.setFirstName(txtPatientName.getText());
-            patient.setHeight(Integer.valueOf(txtHeight.getText()));
-            patient.setWeight(Integer.valueOf(txtWeight.getText()));
-            patient.setUserID(txtPatientName.getText()+"@patient");
-            patient.setPassword("password");
-            
-            Person newPatient = personDirectory.addPerson();
-            newPatient.setUserID(txtPatientName.getText()+"@patient");
-            newPatient.setPassword("password");
-            newPatient.setFirstName(txtPatientName.getText());
-            
-            encounter = encounterHistory.addEncounter();
-                    //get todays date
-                    LocalDate today = java.time.LocalDate.now();
-                    encounter.setEncounterDate(today.toString());
-                    encounter.setDoctorName(doctor);
-                encounter.setPatientName(txtPatientName.getText());
-                encounter.setSystole(Integer.valueOf(txtSystole.getText()));
-                encounter.setDiastole(Integer.valueOf(txtDiastole.getText()));
-                encounter.setHeartRate(Integer.valueOf(txtHeartRate.getText()));
-
-                encounter.setPreDiet(Integer.valueOf(txtPreDiet.getText()));
-                encounter.setPostDiet(Integer.valueOf(txtPostDiet.getText()));
-                encounter.setComments(txtComments.getText());
-        }else{
-            
-            
-            encounter = encounterHistory.encounterExist(txtPatientName.getText());
-            if(encounter!=null){
-                encounter.setDoctorName(doctor);
-                encounter.setPatientName(txtPatientName.getText());
-                encounter.setSystole(Integer.valueOf(txtSystole.getText()));
-                encounter.setDiastole(Integer.valueOf(txtDiastole.getText()));
-                encounter.setHeartRate(Integer.valueOf(txtHeartRate.getText()));
-
-                encounter.setPreDiet(Integer.valueOf(txtPreDiet.getText()));
-                encounter.setPostDiet(Integer.valueOf(txtPostDiet.getText()));
-                encounter.setComments(txtComments.getText());
-            }}
-                
-                
-            }else{
-                    int count = personDirectory.nameCount(txtPatientName.getText());
-                    while(count!=0){
-                        midUserID+="1";
-                    }
-                    Patient patient = patientDirectory.addPatient();
-                    patient.setFirstName(txtPatientName.getText());
-                    patient.setHeight(Integer.valueOf(txtHeight.getText()));
-                    patient.setWeight(Integer.valueOf(txtWeight.getText()));
-                    patient.setUserID(txtPatientName.getText()+midUserID+"@patient");
-                    patient.setPassword("password");
-
-                    Person newPatient = personDirectory.addPerson();
-                    newPatient.setUserID(txtPatientName.getText()+midUserID+"@patient");
-                    newPatient.setPassword("password");
-                    newPatient.setFirstName(txtPatientName.getText());
-                    
-                    encounter = encounterHistory.addEncounter();
-                    //get todays date
-                    LocalDate today = java.time.LocalDate.now();
-                    encounter.setEncounterDate(today.toString());
-                    
-                    
-            }
-            
-            
-        }
-        
-        
-        //Creating Vital Signs
-        String selectedEncounterDate="";
-        try{
-            int selectedRowIndex  = tblEncounters.getSelectedRow();
-            DefaultTableModel model = (DefaultTableModel) tblEncounters.getModel();
-            selectedEncounterDate = (String) model.getValueAt(selectedRowIndex,0);
-        }catch(Exception e){
-            
-        }
-        
-        
-//        Encounter encounterExist =  encounterHistory.getEncounter(selectedEncounterDate);
-//        Encounter encounter;
-//        if(encounterExist!=null){
-//              encounter =encounterExist;
-//        }else{
-//            encounter = encounterHistory.addEncounter();
-//            //get todays date
-//            LocalDate today = java.time.LocalDate.now();
-//            encounter.setEncounterDate(today.toString());
-//        }
-        
-        
-        
-        
-        JOptionPane.showMessageDialog(this, "Patient with ID"+txtPatientName.getText()+midUserID+" Created/Updated");
-        txtPatientName.setText("");
-        txtHeight.setText("");
-        txtWeight.setText("");
-        txtSystole.setText("");
-        txtDiastole.setText("");
-        txtPreDiet.setText("");
-        txtPostDiet.setText("");
-        txtHeartRate.setText("");
-        txtComments.setText("");
-        DefaultTableModel clearEncounter = (DefaultTableModel) tblEncounters.getModel();
-        clearEncounter.setRowCount(0);
-        
-        DefaultTableModel clearPatientRecords = (DefaultTableModel) tblPatients.getModel();
-        clearPatientRecords.setRowCount(0);
-    }//GEN-LAST:event_btnCURecordActionPerformed
-
-    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,splitPane);
-        splitPane.setRightComponent(login);
-    }//GEN-LAST:event_btnLogOutActionPerformed
+        txtSystole.setEditable(false);
+        txtDiastole.setEditable(false);
+        txtPreDiet.setEditable(false);
+        txtPostDiet.setEditable(false);
+        txtHeartRate.setEditable(false);
+        txtComments.setEditable(false);
+    }//GEN-LAST:event_tblEncountersMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCURecord;
+    private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnCreatePatient;
-    private javax.swing.JButton btnEncounter;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnView;
     private javax.swing.JPanel encounterPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -639,25 +485,19 @@ public class DoctorJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblDiastole;
     private javax.swing.JLabel lblDoctor;
     private javax.swing.JLabel lblHeartRate;
-    private javax.swing.JLabel lblHeight;
-    private javax.swing.JLabel lblPatientName;
     private javax.swing.JLabel lblPostDiet;
     private javax.swing.JLabel lblPreDiet;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JLabel lblSystole;
-    private javax.swing.JLabel lblWeight;
     private javax.swing.JTable tblEncounters;
     private javax.swing.JTable tblPatients;
     private javax.swing.JTextArea txtComments;
     private javax.swing.JTextField txtDiastole;
     private javax.swing.JTextField txtHeartRate;
-    private javax.swing.JTextField txtHeight;
-    private javax.swing.JTextField txtPatientName;
     private javax.swing.JTextField txtPostDiet;
     private javax.swing.JTextField txtPreDiet;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSystole;
-    private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 
     private void populateSearchResults(ArrayList<Patient> patientDirectory){

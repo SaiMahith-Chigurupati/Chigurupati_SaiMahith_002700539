@@ -7,6 +7,7 @@ package ui;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.DoctorDirectory;
+import model.EncounterHistory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -25,38 +26,40 @@ public class LoginJPanel extends javax.swing.JPanel {
     DoctorDirectory doctorDirectory;
     JSplitPane splitPane;
     Person person;
+    EncounterHistory encounterHistory;
     
-    public LoginJPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, JSplitPane splitPane) {
+    public LoginJPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory, JSplitPane splitPane) {
        
         this.splitPane = splitPane;
         this.personDirectory = personDirectory;
         this.doctorDirectory = doctorDirectory;
         this.patientDirectory = patientDirectory;
+        this.encounterHistory = encounterHistory;
         
         
         initComponents();
         
-        Person doctorJohn = personDirectory.addPerson();
-        Person doctorJohnson = personDirectory.addPerson();
-        Person patient = personDirectory.addPerson();
-        
-        doctorJohn.setFirstName("John");
-        doctorJohn.setLastName("Doctor");
-        doctorJohn.setUserID("John@doctor");
-        doctorJohn.setPassword("password");
-        doctorJohn.setRole("Doctor");
-        
-        patient.setFirstName("John");
-        patient.setLastName("Patient");
-        patient.setUserID("John@patient");
-        patient.setPassword("password");
-        patient.setRole("Patient");
-        
-        doctorJohnson.setFirstName("Johnson");
-        doctorJohnson.setLastName("Banner");
-        doctorJohnson.setUserID("Johnson@doctor");
-        doctorJohnson.setPassword("passwordson");
-        doctorJohnson.setRole("Doctor");
+//        Person doctorJohn = personDirectory.addPerson();
+//        Person doctorJohnson = personDirectory.addPerson();
+//        Person patient = personDirectory.addPerson();
+//        
+//        doctorJohn.setFirstName("John");
+//        doctorJohn.setLastName("Doctor");
+//        doctorJohn.setUserID("John@doctor");
+//        doctorJohn.setPassword("password");
+//        doctorJohn.setRole("Doctor");
+//        
+//        patient.setFirstName("John");
+//        patient.setLastName("Patient");
+//        patient.setUserID("John@patient");
+//        patient.setPassword("password");
+//        patient.setRole("Patient");
+//        
+//        doctorJohnson.setFirstName("Johnson");
+//        doctorJohnson.setLastName("Banner");
+//        doctorJohnson.setUserID("Johnson@doctor");
+//        doctorJohnson.setPassword("passwordson");
+//        doctorJohnson.setRole("Doctor");
         
         
     }
@@ -89,7 +92,6 @@ public class LoginJPanel extends javax.swing.JPanel {
             }
         });
 
-        fldPassword.setText("password");
         fldPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 fldPasswordFocusGained(evt);
@@ -180,11 +182,11 @@ public class LoginJPanel extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(this,"Login Successful");
             if(authenticatedUser.getRole().equals("Doctor")){
                 
-                DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,splitPane);
+                DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory, splitPane);
                 splitPane.setRightComponent(doc);
             }else if(authenticatedUser.getRole().equals("Patient")){
                 //String patientName = authenticatedUser.getFirstName();
-                PatientJPanel pat = new PatientJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,splitPane);
+                PatientJPanel pat = new PatientJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitPane);
                 splitPane.setRightComponent(pat);
                 
             }
@@ -197,7 +199,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void lblSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSignUpMouseClicked
         // TODO add your handling code here:
-        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,splitPane);
+        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory, splitPane);
         splitPane.setRightComponent(signUp);
     }//GEN-LAST:event_lblSignUpMouseClicked
 

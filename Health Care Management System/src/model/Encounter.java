@@ -12,8 +12,9 @@ import java.util.Date;
  */
 public class Encounter extends VitalSigns{
     private String encounterDate;
-    private String patientName;
+    private String userID;
     private String doctorName;
+    private String info;
 
     public String getEncounterDate() {
         return encounterDate;
@@ -23,12 +24,12 @@ public class Encounter extends VitalSigns{
         this.encounterDate = encounterDate;
     }
 
-    public String getPatientName() {
-        return patientName;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getDoctorName() {
@@ -37,6 +38,14 @@ public class Encounter extends VitalSigns{
 
     public void setDoctorName(String doctorName) {
         this.doctorName = doctorName;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
     
 }

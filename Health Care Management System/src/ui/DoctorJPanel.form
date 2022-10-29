@@ -36,19 +36,11 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="encounterPanel" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="btnView" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="429" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="encounterPanel" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnEncounter" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnCreatePatient" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -74,15 +66,12 @@
                   <Component id="lblSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEncounter" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCreatePatient" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Component id="btnView" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="encounterPanel" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -139,6 +128,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblPatientsMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -169,6 +161,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblEncountersMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -178,81 +173,55 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblPreDiet" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblComments" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblHeartRate" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSystole" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblBP" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtHeartRate" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="247" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblPreDiet" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblComments" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblHeartRate" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblSystole" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblBP" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
-                                      <Component id="lblHeight" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtHeartRate" min="-2" pref="88" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" min="-2" pref="247" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
+                                      <Component id="txtPreDiet" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="txtSystole" min="-2" pref="88" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtPreDiet" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="txtSystole" pref="88" max="32767" attributes="0"/>
-                                                      <Component id="txtHeight" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="lblDiastole" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lblPostDiet" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lblWeight" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txtDiastole" pref="88" max="32767" attributes="0"/>
-                                              <Component id="txtPostDiet" pref="88" max="32767" attributes="0"/>
-                                              <Component id="txtWeight" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lblDiastole" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblPostDiet" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                              </Group>
-                              <Component id="lblDiabetes" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblPatientName" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtPatientName" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtDiastole" pref="88" max="32767" attributes="0"/>
+                                      <Component id="txtPostDiet" pref="88" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
-                          <Component id="btnCURecord" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lblDiabetes" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="84" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblPatientName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPatientName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblHeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtHeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblWeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtWeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                   <Component id="lblBP" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -285,9 +254,9 @@
                       <Component id="jScrollPane3" min="-2" pref="66" max="-2" attributes="0"/>
                       <Component id="lblComments" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="btnCURecord" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -364,34 +333,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtHeartRate">
         </Component>
-        <Component class="javax.swing.JButton" name="btnCURecord">
+        <Component class="javax.swing.JButton" name="btnCreate">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Create/Update"/>
+            <Property name="text" type="java.lang.String" value="Create"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCURecordActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblHeight">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Height"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtHeight">
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblWeight">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Weight"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtWeight">
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblPatientName">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Patient Name"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtPatientName">
         </Component>
       </SubComponents>
     </Container>
@@ -409,22 +357,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnView">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="View"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnEncounter">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="View Encounter"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEncounterActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogOut">
