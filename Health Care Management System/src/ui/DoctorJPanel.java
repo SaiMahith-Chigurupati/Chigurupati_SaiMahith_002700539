@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import model.DoctorDirectory;
 import model.Encounter;
 import model.EncounterHistory;
+import model.HospitalDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.Person;
@@ -36,6 +37,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     DoctorDirectory doctorDirectory;
     EncounterHistory encounterHistory;
+    HospitalDirectory hospitalDirectory;
     Person doctor;
     String selectedPatient;
     String selectedEncounterDate;
@@ -43,13 +45,14 @@ public class DoctorJPanel extends javax.swing.JPanel {
     
     JSplitPane splitPane;
     
-    public DoctorJPanel(Person person, PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory, JSplitPane splitPane){
+    public DoctorJPanel(Person person, PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory, JSplitPane splitPane){
         initComponents();
         this.doctor = person;
         this.patientDirectory=patientDirectory;
         this.personDirectory=personDirectory;
         this.doctorDirectory =doctorDirectory;
         this.encounterHistory = encounterHistory;
+        this.hospitalDirectory = hospitalDirectory;
         this.splitPane = splitPane;
                 
         lblDoctor.setText("Welcome Dr. "+doctor.getFirstName());
@@ -340,7 +343,8 @@ public class DoctorJPanel extends javax.swing.JPanel {
             model.setRowCount(0);
             
             
-        }    
+        }
+        encounterPanel.setVisible(false);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
@@ -371,47 +375,49 @@ public class DoctorJPanel extends javax.swing.JPanel {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-       
-        Encounter encounter = encounterHistory.getEncounter(selectedEncounterDate);
-        try{
-            com  = encounter.getComments();
-        }catch(Exception e){
-            com = null;
-        }
-        if(com!=" " || encounter == null){
-            encounter = encounterHistory.addEncounter();
-            //get todays date
-            LocalDate today = java.time.LocalDate.now();
-            encounter.setEncounterDate(today.toString());
-        }
+            
+        
+            Encounter encounter = encounterHistory.getEncounter(selectedEncounterDate);
+            try{
+                com  = encounter.getComments();
+            }catch(Exception e){
+                com = null;
+            }
+            if(com!=" " || encounter == null){
+                encounter = encounterHistory.addEncounter();
+                //get todays date
+                LocalDate today = java.time.LocalDate.now();
+                encounter.setEncounterDate(today.toString());
+            }
 
-        encounter.setDoctorName(doctor.getFirstName());
-        encounter.setUserID(personDirectory.getUserID(selectedPatient));
-        encounter.setSystole(Integer.valueOf(txtSystole.getText()));
-        encounter.setDiastole(Integer.valueOf(txtDiastole.getText()));
-        encounter.setHeartRate(Integer.valueOf(txtHeartRate.getText()));
-        encounter.setPreDiet(Integer.valueOf(txtPreDiet.getText()));
-        encounter.setPostDiet(Integer.valueOf(txtPostDiet.getText()));
-        encounter.setComments(txtComments.getText());
+            encounter.setDoctorName(doctor.getFirstName());
+            encounter.setUserID(personDirectory.getUserID(selectedPatient));
+            encounter.setSystole(Integer.valueOf(txtSystole.getText()));
+            encounter.setDiastole(Integer.valueOf(txtDiastole.getText()));
+            encounter.setHeartRate(Integer.valueOf(txtHeartRate.getText()));
+            encounter.setPreDiet(Integer.valueOf(txtPreDiet.getText()));
+            encounter.setPostDiet(Integer.valueOf(txtPostDiet.getText()));
+            encounter.setComments(txtComments.getText());
+
+            JOptionPane.showMessageDialog(this, "Details added");
+
+            txtSystole.setText("");
+            txtDiastole.setText("");
+            txtPreDiet.setText("");
+            txtPostDiet.setText("");
+            txtHeartRate.setText("");
+            txtComments.setText("");
+
+            encounterPanel.setVisible(false);
+            tblPatientsMouseClicked(null);
         
-        JOptionPane.showMessageDialog(this, "Details added");
-        
-        txtSystole.setText("");
-        txtDiastole.setText("");
-        txtPreDiet.setText("");
-        txtPostDiet.setText("");
-        txtHeartRate.setText("");
-        txtComments.setText("");
-        
-        encounterPanel.setVisible(false);
-        tblPatientsMouseClicked(null);
-        
+  
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void tblPatientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPatientsMouseClicked

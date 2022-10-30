@@ -8,17 +8,17 @@ package model;
  *
  * @author mahith
  */
-public class Hospital {
-    private String hospitalName;
+public class House {
+    private String house;
     private String community;
     private String city;
 
-    public String getHospitalName() {
-        return hospitalName;
+    public String getHouse() {
+        return house;
     }
 
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
+    public void setHouse(String house) {
+        this.house = house;
     }
 
     public String getCommunity() {

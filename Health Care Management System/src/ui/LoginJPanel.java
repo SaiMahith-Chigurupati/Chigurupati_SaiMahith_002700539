@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.DoctorDirectory;
 import model.EncounterHistory;
+import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -24,42 +25,23 @@ public class LoginJPanel extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
+    HospitalDirectory hospitalDirectory;
+            
     JSplitPane splitPane;
     Person person;
     EncounterHistory encounterHistory;
     
-    public LoginJPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory, JSplitPane splitPane) {
+    public LoginJPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory, JSplitPane splitPane) {
        
         this.splitPane = splitPane;
         this.personDirectory = personDirectory;
         this.doctorDirectory = doctorDirectory;
         this.patientDirectory = patientDirectory;
         this.encounterHistory = encounterHistory;
+        this.hospitalDirectory = hospitalDirectory;
         
         
         initComponents();
-        
-//        Person doctorJohn = personDirectory.addPerson();
-//        Person doctorJohnson = personDirectory.addPerson();
-//        Person patient = personDirectory.addPerson();
-//        
-//        doctorJohn.setFirstName("John");
-//        doctorJohn.setLastName("Doctor");
-//        doctorJohn.setUserID("John@doctor");
-//        doctorJohn.setPassword("password");
-//        doctorJohn.setRole("Doctor");
-//        
-//        patient.setFirstName("John");
-//        patient.setLastName("Patient");
-//        patient.setUserID("John@patient");
-//        patient.setPassword("password");
-//        patient.setRole("Patient");
-//        
-//        doctorJohnson.setFirstName("Johnson");
-//        doctorJohnson.setLastName("Banner");
-//        doctorJohnson.setUserID("Johnson@doctor");
-//        doctorJohnson.setPassword("passwordson");
-//        doctorJohnson.setRole("Doctor");
         
         
     }
@@ -182,13 +164,16 @@ public class LoginJPanel extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(this,"Login Successful");
             if(authenticatedUser.getRole().equals("Doctor")){
                 
-                DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory, splitPane);
+                DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory, hospitalDirectory,splitPane);
                 splitPane.setRightComponent(doc);
             }else if(authenticatedUser.getRole().equals("Patient")){
                 //String patientName = authenticatedUser.getFirstName();
-                PatientJPanel pat = new PatientJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitPane);
+                PatientJPanel pat = new PatientJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
                 splitPane.setRightComponent(pat);
                 
+            }else if(authenticatedUser.getRole().equals("System Admin")){
+                SystemAdminPanel admin = new SystemAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
+                splitPane.setRightComponent(admin);
             }
             
 
@@ -199,7 +184,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void lblSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSignUpMouseClicked
         // TODO add your handling code here:
-        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory, splitPane);
+        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory, hospitalDirectory, splitPane);
         splitPane.setRightComponent(signUp);
     }//GEN-LAST:event_lblSignUpMouseClicked
 

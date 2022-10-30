@@ -8,18 +8,9 @@ package model;
  *
  * @author mahith
  */
-public class Hospital {
-    private String hospitalName;
+public class Community {
     private String community;
     private String city;
-
-    public String getHospitalName() {
-        return hospitalName;
-    }
-
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
-    }
 
     public String getCommunity() {
         return community;

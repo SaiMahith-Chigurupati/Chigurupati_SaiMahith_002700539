@@ -10,6 +10,7 @@ import javax.swing.JSplitPane;
 import model.Doctor;
 import model.DoctorDirectory;
 import model.EncounterHistory;
+import model.HospitalDirectory;
 import model.Patient;
 import model.Person;
 import model.PersonDirectory;
@@ -27,11 +28,19 @@ public class SignUpJFrame extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
+    HospitalDirectory hospitalDirectory;
     Person person;
     EncounterHistory encounterHistory;
     JSplitPane splitPane;
     
-    public SignUpJFrame(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory,JSplitPane splitPane) {
+    String hospital;
+    String specialization;
+    int height;
+    int weight;
+    int age;
+    
+    
+    public SignUpJFrame(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,JSplitPane splitPane) {
         initComponents();
         
         this.splitPane = splitPane;
@@ -39,30 +48,16 @@ public class SignUpJFrame extends javax.swing.JPanel {
         this.patientDirectory = patientDirectory;
         this.doctorDirectory = doctorDirectory;
         this.encounterHistory = encounterHistory;
+        this.hospitalDirectory = hospitalDirectory;
         this.person = person;
+        
+        btnSignIn.setVisible(false);
         doctorJPanel.setVisible(false);
         patientJPanel.setVisible(false);
-        btnBack.setVisible(false);
         
-        if (person!=null){
-            btnBack.setVisible(true);
-            btnSignIn.setVisible(false);
-            lblPassword.setText("Current Pasword");
-            lblRetype.setText("New Password");
-            btnCreate.setText("Update");
-            lblCreateAccount.setText("View/Update Details");
-            txtFirstName.setText(person.getFirstName());
-            txtLastName.setText(person.getLastName());
-            txtUserID.setText(person.getUserID());
-            chDateOfBirth.setDate(person.getDateOfBirth());
-            txtCommunity.setText(person.getCommunity());
-            
-            
-            chRole.setSelectedItem(person.getRole());
-            txtEmail.setText(person.getEmailAddress());
-            txtMobile.setText(person.getMobileNum());
-            txtUserID.setEditable(false);
-
+        if(person==null){
+            btnSignIn.setVisible(true);
+            btnBack.setVisible(false);
         }
         
     }
@@ -120,7 +115,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
         lblCreateAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCreateAccount.setText("Create Account");
 
-        lblFirstName.setText("First Name");
+        lblFirstName.setText("First Name*");
 
         txtFirstName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -133,9 +128,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
             }
         });
 
-        lblLastName.setText("Last Name");
+        lblLastName.setText("Last Name*");
 
-        lblRole.setText("Role");
+        lblRole.setText("Role*");
 
         chRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select...", "Doctor", "Patient" }));
         chRole.addActionListener(new java.awt.event.ActionListener() {
@@ -144,9 +139,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
             }
         });
 
-        lblUserID.setText("User ID");
+        lblUserID.setText("User ID*");
 
-        lblPassword.setText("Password");
+        lblPassword.setText("Password*");
 
         fldPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -166,13 +161,16 @@ public class SignUpJFrame extends javax.swing.JPanel {
             }
         });
 
-        lblRetype.setText("Re-type Password");
+        lblRetype.setText("Re-type Password*");
 
-        lblEmail.setText("Email");
+        lblEmail.setText("Email*");
 
         lblMobile.setText("Mobile");
 
-        lblDateOfBirth.setText("Date of Birth");
+        chDateOfBirth.setMaxSelectableDate(new java.util.Date(1672552868000L));
+        chDateOfBirth.setMinSelectableDate(new java.util.Date(-62135747932000L));
+
+        lblDateOfBirth.setText("Date of Birth*");
 
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -181,30 +179,30 @@ public class SignUpJFrame extends javax.swing.JPanel {
             }
         });
 
-        lblGender.setText("Gender");
+        lblGender.setText("Gender*");
 
         rdMale.setText("Male");
 
         rdFemale.setText("Female");
 
-        lblHospital.setText("Hospital");
+        lblHospital.setText("Hospital*");
 
-        lblSpecialization.setText("Specialization");
+        lblSpecialization.setText("Specialization*");
 
         javax.swing.GroupLayout doctorJPanelLayout = new javax.swing.GroupLayout(doctorJPanel);
         doctorJPanel.setLayout(doctorJPanelLayout);
         doctorJPanelLayout.setHorizontalGroup(
             doctorJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(doctorJPanelLayout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHospital)
                 .addGap(56, 56, 56)
                 .addComponent(txtHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(55, 55, 55)
                 .addComponent(lblSpecialization)
-                .addGap(46, 46, 46)
+                .addGap(48, 48, 48)
                 .addComponent(txtSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+                .addGap(50, 50, 50))
         );
         doctorJPanelLayout.setVerticalGroup(
             doctorJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,40 +218,39 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblAge.setText("Age");
+        lblAge.setText("Age*");
 
-        lblWeight.setText("Weight");
+        lblWeight.setText("Weight*");
 
-        lblHeight.setText("Height");
+        lblHeight.setText("Height*");
 
         javax.swing.GroupLayout patientJPanelLayout = new javax.swing.GroupLayout(patientJPanel);
         patientJPanel.setLayout(patientJPanelLayout);
         patientJPanelLayout.setHorizontalGroup(
             patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(patientJPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAge)
                     .addComponent(lblWeight))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAge, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAge, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtWeight, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addComponent(lblHeight)
-                .addGap(75, 75, 75)
+                .addGap(85, 85, 85)
                 .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
         patientJPanelLayout.setVerticalGroup(
             patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(patientJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblHeight)
-                        .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHeight)
+                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAge))
                 .addGap(28, 28, 28)
                 .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -276,7 +273,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
             }
         });
 
-        lblCommunity.setText("Community");
+        lblCommunity.setText("Community*");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -331,7 +328,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
                                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSignIn)))
-                        .addContainerGap(80, Short.MAX_VALUE))
+                        .addContainerGap(70, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(doctorJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(14, 14, 14))))
@@ -339,8 +336,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(lblCommunity)
-                        .addGap(47, 47, 47)
+                        .addGap(41, 41, 41)
                         .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,84 +421,46 @@ public class SignUpJFrame extends javax.swing.JPanel {
         String userID = txtUserID.getText();
         String password = new String(fldPassword.getPassword());
         String reType = new String(fldRetype.getPassword());
-        if(person==null){
-            int height =Integer.parseInt(txtHeight.getText());
-            int weight = Integer.parseInt(txtWeight.getText());
-            int age = Integer.parseInt(txtAge.getText());
+        String community = txtCommunity.getText();
+        
+        if(fName.isBlank() || lName.isBlank() || mobiNum.isBlank() || emailId.isBlank() || dateOfBirth.equals("")|| userID.isBlank() || password.isBlank() || community.isBlank()){
+            JOptionPane.showMessageDialog(this, "Please enter Mandatory Fields");
+        }else if(!emailId.contains("@") || !emailId.contains(".com")){
+            JOptionPane.showMessageDialog(this, "Please enter valid Email address");
+        }else if(mobiNum.length()!=10){
+             JOptionPane.showMessageDialog(this, "Please enter valid Mobile number");
+        }
+           
+        else{
+            
+        if(role.equals("Patient")){
+            try{
+                
+            height =Integer.parseInt(txtHeight.getText());
+            weight = Integer.parseInt(txtWeight.getText());
+            age = Integer.parseInt(txtAge.getText());
+            
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Please enter Correct values in Age, height, Weight");
+            }
         }
         
-        String hospital = txtHospital.getText();
-        String specialization = txtSpecialization.getText();
-        String community =txtCommunity.getText();
-        if(person!=null){
-            if(password.equals(person.getPassword())){
+        
+            if(password.equals(reType)){
                 
-                
-                    //person.setUserID(userID);
-                    person.setFirstName(fName);
-                    person.setLastName(lName);
-                    person.setPassword(reType);
-                    person.setRole(role);
-                    person.setDateOfBirth(dateOfBirth);
-                    person.setMobileNum(mobiNum);
-                    person.setEmailAddress(emailId);
-                    person.setCommunity(community);
-
+                if(personDirectory.checkDuplicatePerson(userID)){
+                    Person newPerson = personDirectory.addPerson();
+                    newPerson.setUserID(userID);
+                    newPerson.setFirstName(fName);
+                    newPerson.setLastName(lName);
+                    newPerson.setPassword(password);
+                    newPerson.setRole(role);
+                    newPerson.setDateOfBirth(dateOfBirth);
+                    newPerson.setMobileNum(mobiNum);
+                    newPerson.setEmailAddress(emailId);
+                    newPerson.setCommunity(community);
                     
                     if(role=="Patient"){
-                    Patient newPatient = patientDirectory.addPatient();
-
-                    newPatient.setFirstName(fName);
-                    newPatient.setLastName(lName);
-                    //newPatient.setUserID(userID);
-                    newPatient.setPassword(reType);
-                    newPatient.setRole(role);
-                    newPatient.setDateOfBirth(dateOfBirth);
-                    newPatient.setMobileNum(mobiNum);
-                    newPatient.setEmailAddress(emailId);
-//                    newPatient.setHeight(height);
-//                    newPatient.setWeight(weight);
-//                    newPatient.setAge(age);
-                    newPatient.setCommunity(community);
-
-                }else if(role.equals("Doctor")){
-                    Doctor newDoctor = doctorDirectory.addDoctor();
-
-                    newDoctor.setFirstName(fName);
-                    newDoctor.setLastName(lName);
-                    //newDoctor.setUserID(userID);
-                    newDoctor.setPassword(reType);
-                    newDoctor.setRole(role);
-                    newDoctor.setEmailAddress(emailId);
-                    newDoctor.setSpecialization(specialization);
-                    newDoctor.setHospital(hospital);
-                    newDoctor.setCommunity(community);
-                    
-                    
-
-                }
-                    JOptionPane.showMessageDialog(this, "Details Updated");
-                
-            }else{
-                JOptionPane.showMessageDialog(this, "Current password didn't match");
-            }
-            
-        }else{
-            if(password.equals(reType)){
-            if(personDirectory.checkDuplicatePerson(userID)){
-                Person newPerson = personDirectory.addPerson();
-            
-                newPerson.setFirstName(fName);
-                newPerson.setLastName(lName);
-                newPerson.setUserID(userID);
-                newPerson.setPassword(password);
-                newPerson.setRole(role);
-                newPerson.setDateOfBirth(dateOfBirth);
-                newPerson.setMobileNum(mobiNum);
-                newPerson.setEmailAddress(emailId);
-                newPerson.setCommunity(community);
-
-                if(role=="Patient"){
                     Patient newPatient = patientDirectory.addPatient();
 
                     newPatient.setFirstName(fName);
@@ -511,12 +471,16 @@ public class SignUpJFrame extends javax.swing.JPanel {
                     newPatient.setDateOfBirth(dateOfBirth);
                     newPatient.setMobileNum(mobiNum);
                     newPatient.setEmailAddress(emailId);
-//                    newPatient.setHeight(height);
-//                    newPatient.setWeight(weight);
-//                    newPatient.setAge(age);
+                    newPatient.setHeight(height);
+                    newPatient.setWeight(weight);
+                    newPatient.setAge(age);
                     newPatient.setCommunity(community);
 
                 }else if(role.equals("Doctor")){
+                    
+                    hospital = txtHospital.getText();
+                    specialization = txtSpecialization.getText();  
+                    
                     Doctor newDoctor = doctorDirectory.addDoctor();
 
                     newDoctor.setFirstName(fName);
@@ -530,37 +494,35 @@ public class SignUpJFrame extends javax.swing.JPanel {
                     newDoctor.setCommunity(community);
 
                 }
-
-
-                JOptionPane.showMessageDialog(this, "Signup Successful!");
-                
-                txtCommunity.setText("");
-                txtFirstName.setText("");
-                txtLastName.setText("");
-                txtEmail.setText("");
-                txtMobile.setText("");
-                chDateOfBirth.setDate(new Date());
-                chRole.setSelectedIndex(0);
-                txtUserID.setText("");
-                fldPassword.setText("");
-                fldRetype.setText("");
-                txtAge.setText("");
-                txtHeight.setText("");
-                txtWeight.setText("");
-                txtCommunity.setText("");
-
-
+                     JOptionPane.showMessageDialog(this, "Signup Successful!");
+                     
+                     txtFirstName.setText("");
+                     txtLastName.setText("");
+                     txtEmail.setText("");
+                     txtMobile.setText("");
+                     chDateOfBirth.setDate(new Date());
+                     chRole.setSelectedIndex(0);
+                     txtCommunity.setText("");
+                     fldPassword.setText("");
+                     fldRetype.setText("");
+                     
+                     if(role.equals("Patient")){
+                         txtAge.setText("");
+                         txtHeight.setText("");
+                         txtWeight.setText("");
+                     }else if(role.equals("Doctor")){
+                         txtHospital.setText("");
+                         txtSpecialization.setText("");
+                     }
                 }else{
-                JOptionPane.showMessageDialog(this, "User ID already exits!!");
-            }
-            
+                    JOptionPane.showMessageDialog(this, "User with this ID already exist. Please try again!");
+                }
 
         }else{
-            JOptionPane.showMessageDialog(this, "Passwords didn't match");
+            
+                JOptionPane.showMessageDialog(this, "Passwords didn't match");
+            }
         }
-
-        }
-        
         
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -583,9 +545,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
             doctorJPanel.setVisible(false);
         }
         
-        if(person!=null){
-            patientJPanel.setVisible(false);
-        }
+        
     }//GEN-LAST:event_chRoleActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
@@ -627,7 +587,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
         // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_btnSignInActionPerformed
 
@@ -635,11 +595,14 @@ public class SignUpJFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         //String patientName = txtFirstName.getText();
         if(person.getRole()=="Patient"){
-            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,encounterHistory, splitPane);
+            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,encounterHistory, hospitalDirectory, splitPane);
             splitPane.setRightComponent(patientPane);
         }else if(person.getRole()=="Doctor"){
-            DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory, splitPane);
+            DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
             splitPane.setRightComponent(doc);
+        }else if(person.getRole()=="System Admin"){
+            SystemAdminPanel admin = new SystemAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
+            splitPane.setRightComponent(admin);
         }
         
     }//GEN-LAST:event_btnBackActionPerformed

@@ -77,7 +77,7 @@
                               <Component id="btnSignIn" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="80" max="32767" attributes="0"/>
+                      <EmptySpace pref="70" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="doctorJPanel" max="32767" attributes="0"/>
@@ -89,8 +89,9 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="lblCommunity" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="txtCommunity" min="-2" pref="160" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -190,7 +191,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFirstName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="First Name"/>
+        <Property name="text" type="java.lang.String" value="First Name*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFirstName">
@@ -201,14 +202,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblLastName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Last Name"/>
+        <Property name="text" type="java.lang.String" value="Last Name*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtLastName">
     </Component>
     <Component class="javax.swing.JLabel" name="lblRole">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Role"/>
+        <Property name="text" type="java.lang.String" value="Role*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="chRole">
@@ -230,14 +231,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblUserID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="User ID"/>
+        <Property name="text" type="java.lang.String" value="User ID*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUserID">
     </Component>
     <Component class="javax.swing.JLabel" name="lblPassword">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Password"/>
+        <Property name="text" type="java.lang.String" value="Password*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="fldPassword">
@@ -254,12 +255,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblRetype">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Re-type Password"/>
+        <Property name="text" type="java.lang.String" value="Re-type Password*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmail">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Email"/>
+        <Property name="text" type="java.lang.String" value="Email*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
@@ -272,10 +273,18 @@
     <Component class="javax.swing.JTextField" name="txtMobile">
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="chDateOfBirth">
+      <Properties>
+        <Property name="maxSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+          <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,1,-123,107,-21,104,-96,120"/>
+        </Property>
+        <Property name="minSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+          <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,-1,-1,-57,124,-28,-47,16,-96,120"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDateOfBirth">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Date of Birth"/>
+        <Property name="text" type="java.lang.String" value="Date of Birth*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCreate">
@@ -288,7 +297,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblGender">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gender"/>
+        <Property name="text" type="java.lang.String" value="Gender*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rdMale">
@@ -307,15 +316,15 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="112" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="lblHospital" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="txtHospital" min="-2" pref="160" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="lblSpecialization" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Component id="txtSpecialization" min="-2" pref="160" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -340,14 +349,14 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblHospital">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Hospital"/>
+            <Property name="text" type="java.lang.String" value="Hospital*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtHospital">
         </Component>
         <Component class="javax.swing.JLabel" name="lblSpecialization">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Specialization"/>
+            <Property name="text" type="java.lang.String" value="Specialization*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSpecialization">
@@ -360,21 +369,21 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblAge" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblWeight" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAge" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblWeight" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="65" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtWeight" min="-2" pref="157" max="-2" attributes="0"/>
                       <Component id="txtAge" alignment="1" min="-2" pref="157" max="-2" attributes="0"/>
+                      <Component id="txtWeight" alignment="1" min="-2" pref="157" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Component id="lblHeight" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                   <Component id="txtHeight" min="-2" pref="160" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -382,13 +391,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtAge" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblHeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtHeight" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="lblAge" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtAge" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblHeight" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtHeight" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAge" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -403,21 +410,21 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblAge">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Age"/>
+            <Property name="text" type="java.lang.String" value="Age*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAge">
         </Component>
         <Component class="javax.swing.JLabel" name="lblWeight">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Weight"/>
+            <Property name="text" type="java.lang.String" value="Weight*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtWeight">
         </Component>
         <Component class="javax.swing.JLabel" name="lblHeight">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Height"/>
+            <Property name="text" type="java.lang.String" value="Height*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtHeight">
@@ -444,7 +451,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblCommunity">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Community"/>
+        <Property name="text" type="java.lang.String" value="Community*"/>
       </Properties>
     </Component>
   </SubComponents>

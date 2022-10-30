@@ -9,6 +9,8 @@ import model.Doctor;
 import model.DoctorDirectory;
 import model.Encounter;
 import model.EncounterHistory;
+import model.Hospital;
+import model.HospitalDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.Person;
@@ -28,6 +30,7 @@ public class HomeJFrame extends javax.swing.JFrame {
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
     EncounterHistory encounterHistory;
+    HospitalDirectory hospitalDirectory;
     
     public HomeJFrame() {
         initComponents();
@@ -36,8 +39,11 @@ public class HomeJFrame extends javax.swing.JFrame {
         patientDirectory = new PatientDirectory();
         doctorDirectory = new DoctorDirectory();
         encounterHistory = new EncounterHistory();
+        hospitalDirectory = new HospitalDirectory();
+        
         preDefinedData();
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitJPane);
+        
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitJPane);
         splitJPane.setRightComponent(login);
     }
 
@@ -85,7 +91,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         );
         lowerJPanelLayout.setVerticalGroup(
             lowerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         splitJPane.setRightComponent(lowerJPanel);
@@ -98,7 +104,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitJPane)
+            .addComponent(splitJPane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
 
         pack();
@@ -149,8 +155,11 @@ public class HomeJFrame extends javax.swing.JFrame {
     public void preDefinedData(){
         Person personDoctor = personDirectory.addPerson();
         Person personPatient = personDirectory.addPerson();
+        Person systemAdmin = personDirectory.addPerson();
         Patient patient = patientDirectory.addPatient();
         Doctor doctor = doctorDirectory.addDoctor();
+        Hospital hospital = hospitalDirectory.addHospital();
+        Hospital hospitalB = hospitalDirectory.addHospital();
         
         patient.setFirstName("Shubham");
         patient.setLastName("sapkal");
@@ -163,7 +172,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         patient.setUserID("shubham@patient");
         patient.setPassword("password");
         patient.setRole("Patient");
-        patient.setCommunity("Roxbury1");
+        patient.setCommunity("Roxbury");
         
         doctor.setFirstName("Aditya");
         doctor.setLastName("Kanala");
@@ -193,7 +202,6 @@ public class HomeJFrame extends javax.swing.JFrame {
         personPatient.setEmailAddress("ss@gmail.com");
         personPatient.setMobileNum("(999)999-9999");
         personPatient.setUserID("shubham@patient");
-        personPatient.setUserID("shubham@patient");
         personPatient.setPassword("password");
         personPatient.setRole("Patient");
         personPatient.setCommunity("Roxbury");
@@ -222,6 +230,21 @@ public class HomeJFrame extends javax.swing.JFrame {
         encounter2.setPostDiet(160);
         encounter2.setHeartRate(70);
         encounter2.setComments("Improvement Needed");
+        
+        systemAdmin.setUserID("sysadmin@admin");
+        systemAdmin.setPassword("password");
+        systemAdmin.setRole("System Admin");
+        systemAdmin.setFirstName("System");
+        systemAdmin.setLastName("Admin");
+        
+        hospital.setCity("Boston");
+        hospital.setCommunity("Roxbury");
+        hospital.setHospitalName("Brigham Hospital");
+        
+        hospitalB.setCity("Boston");
+        hospitalB.setCommunity("Roxbury");
+        hospitalB.setHospitalName("Gotham Hospital");
+        
     } 
 
 }

@@ -45,6 +45,15 @@ public class PersonDirectory {
         return true;
     }
     
+    public String getName(String userID){
+        for(Person person:personDirectory){
+            if(person.getUserID().equals(userID)){
+                return person.getFirstName();
+            }
+        }
+        return "";
+    }
+    
     public String getUserID(String name){
         for(Person person:personDirectory){
             if(person.getFirstName().equals(name)){
@@ -52,6 +61,15 @@ public class PersonDirectory {
             }
         }
         return "";
+    }
+    
+    public Person getUser(String name){
+        for(Person person:personDirectory){
+            if(person.getFirstName().equals(name)){
+                return person;
+            }
+        }
+        return null;
     }
     
     public int nameCount(String name){

@@ -18,6 +18,7 @@ import model.Doctor;
 import model.DoctorDirectory;
 import model.Encounter;
 import model.EncounterHistory;
+import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -34,19 +35,20 @@ public class PatientJPanel extends javax.swing.JPanel {
     PatientDirectory patientDirectory;
     PersonDirectory personDirectory;
     DoctorDirectory doctorDirectory;
+    HospitalDirectory hospitalDirectory;
     JSplitPane splitPane;
     Person patient;
     EncounterHistory encounterHistory;
     String doctorFname;
     
-    public PatientJPanel(Person patient, PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory, JSplitPane splitPane) {
+    public PatientJPanel(Person person, PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory, JSplitPane splitPane) {
         this.patientDirectory = patientDirectory;
         this.personDirectory = personDirectory;
         this.doctorDirectory = doctorDirectory;
         this.encounterHistory = encounterHistory;
         this.splitPane = splitPane;
-        this.patient = patient;
-     
+        this.patient = person;
+        
         initComponents();
         lblPatient.setText("Welcome "+patient.getFirstName());
         vitalsPanel.setVisible(false);
@@ -334,14 +336,6 @@ public class PatientJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblPatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lblPersonalDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtSearchDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearchDoctor)
-                .addGap(52, 52, 52))
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(scrollEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,9 +349,18 @@ public class PatientJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBookAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(lblPersonalDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSearchDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearchDoctor))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogout)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -391,8 +394,8 @@ public class PatientJPanel extends javax.swing.JPanel {
 
     private void lblPersonalDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPersonalDetailsMouseClicked
         // TODO add your handling code here:
-        SignUpJFrame signUp = new SignUpJFrame(patient,personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitPane);
-        splitPane.setRightComponent(signUp);
+        UpdatePanel update = new UpdatePanel(patient,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
+        splitPane.setRightComponent(update);
     }//GEN-LAST:event_lblPersonalDetailsMouseClicked
 
     private void btnBookAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookAppointmentActionPerformed
@@ -482,7 +485,7 @@ public class PatientJPanel extends javax.swing.JPanel {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,splitPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
