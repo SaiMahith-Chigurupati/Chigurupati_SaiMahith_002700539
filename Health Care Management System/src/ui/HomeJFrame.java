@@ -5,12 +5,18 @@
 package ui;
 
 import java.util.Date;
+import model.City;
+import model.CityDirectory;
+import model.Community;
+import model.CommunityDirectory;
 import model.Doctor;
 import model.DoctorDirectory;
 import model.Encounter;
 import model.EncounterHistory;
 import model.Hospital;
 import model.HospitalDirectory;
+import model.House;
+import model.HouseDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.Person;
@@ -31,6 +37,9 @@ public class HomeJFrame extends javax.swing.JFrame {
     DoctorDirectory doctorDirectory;
     EncounterHistory encounterHistory;
     HospitalDirectory hospitalDirectory;
+    CityDirectory cityDirectory;
+    CommunityDirectory communityDirectory;
+    HouseDirectory houseDirectory;
     
     public HomeJFrame() {
         initComponents();
@@ -40,10 +49,14 @@ public class HomeJFrame extends javax.swing.JFrame {
         doctorDirectory = new DoctorDirectory();
         encounterHistory = new EncounterHistory();
         hospitalDirectory = new HospitalDirectory();
+        houseDirectory = new HouseDirectory();
+        communityDirectory = new CommunityDirectory();
+        cityDirectory = new CityDirectory();
+        
         
         preDefinedData();
         
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitJPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, houseDirectory, communityDirectory, cityDirectory, splitJPane);
         splitJPane.setRightComponent(login);
     }
 
@@ -156,6 +169,8 @@ public class HomeJFrame extends javax.swing.JFrame {
         Person personDoctor = personDirectory.addPerson();
         Person personPatient = personDirectory.addPerson();
         Person systemAdmin = personDirectory.addPerson();
+        Person communityAdmin = personDirectory.addPerson();
+        
         Patient patient = patientDirectory.addPatient();
         Doctor doctor = doctorDirectory.addDoctor();
         Hospital hospital = hospitalDirectory.addHospital();
@@ -237,6 +252,12 @@ public class HomeJFrame extends javax.swing.JFrame {
         systemAdmin.setFirstName("System");
         systemAdmin.setLastName("Admin");
         
+        communityAdmin.setUserID("comadmin@admin");
+        communityAdmin.setPassword("password");
+        communityAdmin.setRole("Community Admin");
+        communityAdmin.setFirstName("Community");
+        communityAdmin.setLastName("Admin");
+        
         hospital.setCity("Boston");
         hospital.setCommunity("Roxbury");
         hospital.setHospitalName("Brigham Hospital");
@@ -244,6 +265,35 @@ public class HomeJFrame extends javax.swing.JFrame {
         hospitalB.setCity("Boston");
         hospitalB.setCommunity("Roxbury");
         hospitalB.setHospitalName("Gotham Hospital");
+        
+        
+        City city = cityDirectory.addCity();
+        City cityB = cityDirectory.addCity();
+        
+        Community community = communityDirectory.addCommunity();
+        Community communityB = communityDirectory.addCommunity();
+        
+        House house = houseDirectory.addHouse();
+        House houseB = houseDirectory.addHouse();
+        
+        city.setCity("Gotham");
+        cityB.setCity("Boston");
+        
+        community.setCommunity("Arkham");
+        community.setCity("Gotham");
+        
+        communityB.setCommunity("Bay");
+        communityB.setCity("Boston");
+        
+        house.setHouse("J Vue Appartments");
+        house.setCity("Boston");
+        house.setCommunity("Bay");
+        
+        houseB.setHouse("75 ST Appartments");
+        houseB.setCity("Boston");
+        houseB.setCommunity("Bay");
+        
+        
         
     } 
 

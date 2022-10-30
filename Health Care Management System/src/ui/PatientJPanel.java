@@ -14,11 +14,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import model.CityDirectory;
+import model.CommunityDirectory;
 import model.Doctor;
 import model.DoctorDirectory;
 import model.Encounter;
 import model.EncounterHistory;
 import model.HospitalDirectory;
+import model.HouseDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -36,6 +39,11 @@ public class PatientJPanel extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     DoctorDirectory doctorDirectory;
     HospitalDirectory hospitalDirectory;
+    
+    HouseDirectory houseDirectory;
+    CommunityDirectory communityDirectory;
+    CityDirectory cityDirectory;
+    
     JSplitPane splitPane;
     Person patient;
     EncounterHistory encounterHistory;
@@ -485,7 +493,7 @@ public class PatientJPanel extends javax.swing.JPanel {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, houseDirectory, communityDirectory, cityDirectory, splitPane);
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_btnLogoutActionPerformed
 

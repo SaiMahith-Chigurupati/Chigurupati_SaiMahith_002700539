@@ -6,9 +6,12 @@ package ui;
 
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.CityDirectory;
+import model.CommunityDirectory;
 import model.DoctorDirectory;
 import model.EncounterHistory;
 import model.HospitalDirectory;
+import model.HouseDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -26,12 +29,15 @@ public class LoginJPanel extends javax.swing.JPanel {
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
     HospitalDirectory hospitalDirectory;
+    HouseDirectory houseDirectory;
+    CommunityDirectory communityDirectory;
+    CityDirectory cityDirectory;
             
     JSplitPane splitPane;
     Person person;
     EncounterHistory encounterHistory;
     
-    public LoginJPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory, JSplitPane splitPane) {
+    public LoginJPanel(PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory,CommunityDirectory communityDirectory, CityDirectory cityDirectory, JSplitPane splitPane) {
        
         this.splitPane = splitPane;
         this.personDirectory = personDirectory;
@@ -39,6 +45,9 @@ public class LoginJPanel extends javax.swing.JPanel {
         this.patientDirectory = patientDirectory;
         this.encounterHistory = encounterHistory;
         this.hospitalDirectory = hospitalDirectory;
+        this.houseDirectory = houseDirectory;
+        this.cityDirectory = cityDirectory;
+        this.communityDirectory = communityDirectory;
         
         
         initComponents();
@@ -164,7 +173,7 @@ public class LoginJPanel extends javax.swing.JPanel {
             //JOptionPane.showMessageDialog(this,"Login Successful");
             if(authenticatedUser.getRole().equals("Doctor")){
                 
-                DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory, hospitalDirectory,splitPane);
+                DoctorJPanel doc = new DoctorJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory, hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
                 splitPane.setRightComponent(doc);
             }else if(authenticatedUser.getRole().equals("Patient")){
                 //String patientName = authenticatedUser.getFirstName();
@@ -174,6 +183,9 @@ public class LoginJPanel extends javax.swing.JPanel {
             }else if(authenticatedUser.getRole().equals("System Admin")){
                 SystemAdminPanel admin = new SystemAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
                 splitPane.setRightComponent(admin);
+            }else if(authenticatedUser.getRole().equals("Community Admin")){
+                CommunityAdminPanel comAdmin = new CommunityAdminPanel( houseDirectory, communityDirectory, cityDirectory,splitPane);
+                splitPane.setRightComponent(comAdmin);
             }
             
 

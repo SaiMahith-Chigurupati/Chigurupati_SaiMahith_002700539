@@ -22,7 +22,9 @@ import model.Patient;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
-
+import model.HouseDirectory;
+import model.CommunityDirectory;
+import model.CityDirectory;
 /**
  *
  * @author mahith
@@ -38,6 +40,10 @@ public class DoctorJPanel extends javax.swing.JPanel {
     DoctorDirectory doctorDirectory;
     EncounterHistory encounterHistory;
     HospitalDirectory hospitalDirectory;
+    HouseDirectory houseDirectory;
+    CommunityDirectory communityDirectory;
+    CityDirectory cityDirectory;
+    
     Person doctor;
     String selectedPatient;
     String selectedEncounterDate;
@@ -45,7 +51,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
     
     JSplitPane splitPane;
     
-    public DoctorJPanel(Person person, PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory, JSplitPane splitPane){
+    public DoctorJPanel(Person person, PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory, CommunityDirectory communityDirectory, CityDirectory cityDirectory; JSplitPane splitPane){
         initComponents();
         this.doctor = person;
         this.patientDirectory=patientDirectory;
@@ -53,6 +59,10 @@ public class DoctorJPanel extends javax.swing.JPanel {
         this.doctorDirectory =doctorDirectory;
         this.encounterHistory = encounterHistory;
         this.hospitalDirectory = hospitalDirectory;
+        this.communityDirectory = communityDirectory;
+        this.houseDirectory = houseDirectory;
+        this.cityDirectory = cityDirectory;
+        
         this.splitPane = splitPane;
                 
         lblDoctor.setText("Welcome Dr. "+doctor.getFirstName());
@@ -375,7 +385,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
