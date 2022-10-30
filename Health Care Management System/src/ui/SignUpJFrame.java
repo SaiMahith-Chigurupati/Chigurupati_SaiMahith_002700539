@@ -7,10 +7,13 @@ package ui;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.CityDirectory;
+import model.CommunityDirectory;
 import model.Doctor;
 import model.DoctorDirectory;
 import model.EncounterHistory;
 import model.HospitalDirectory;
+import model.HouseDirectory;
 import model.Patient;
 import model.Person;
 import model.PersonDirectory;
@@ -32,6 +35,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
     Person person;
     EncounterHistory encounterHistory;
     JSplitPane splitPane;
+    HouseDirectory houseDirectory;
+    CommunityDirectory communityDirectory;
+    CityDirectory cityDirectory;
     
     String hospital;
     String specialization;
@@ -49,6 +55,9 @@ public class SignUpJFrame extends javax.swing.JPanel {
         this.doctorDirectory = doctorDirectory;
         this.encounterHistory = encounterHistory;
         this.hospitalDirectory = hospitalDirectory;
+        this.communityDirectory = communityDirectory;
+        this.cityDirectory = cityDirectory;
+        this.houseDirectory = houseDirectory;
         this.person = person;
         
         btnSignIn.setVisible(false);
@@ -110,12 +119,19 @@ public class SignUpJFrame extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         txtCommunity = new javax.swing.JTextField();
         lblCommunity = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCreateAccount.setBackground(new java.awt.Color(204, 204, 255));
         lblCreateAccount.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         lblCreateAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCreateAccount.setText("Create Account");
+        add(lblCreateAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 800, -1));
 
         lblFirstName.setText("First Name*");
+        add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 149, -1, -1));
 
         txtFirstName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -127,10 +143,14 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 txtFirstNameActionPerformed(evt);
             }
         });
+        add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 146, 160, -1));
 
         lblLastName.setText("Last Name*");
+        add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 149, -1, -1));
+        add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 146, 160, -1));
 
         lblRole.setText("Role*");
+        add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 187, -1, -1));
 
         chRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select...", "Doctor", "Patient" }));
         chRole.addActionListener(new java.awt.event.ActionListener() {
@@ -138,10 +158,14 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 chRoleActionPerformed(evt);
             }
         });
+        add(chRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 187, 160, -1));
 
         lblUserID.setText("User ID*");
+        add(lblUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 193, -1, -1));
+        add(txtUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 187, 160, -1));
 
         lblPassword.setText("Password*");
+        add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 230, -1, -1));
 
         fldPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -151,6 +175,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 fldPasswordFocusLost(evt);
             }
         });
+        add(fldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 227, 160, -1));
 
         fldRetype.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -160,17 +185,25 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 fldRetypeFocusLost(evt);
             }
         });
+        add(fldRetype, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 227, 160, -1));
 
         lblRetype.setText("Re-type Password*");
+        add(lblRetype, new org.netbeans.lib.awtextra.AbsoluteConstraints(438, 230, -1, -1));
 
         lblEmail.setText("Email*");
+        add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 268, -1, -1));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 268, 160, -1));
 
         lblMobile.setText("Mobile");
+        add(lblMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 271, 106, -1));
+        add(txtMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 268, 160, -1));
 
         chDateOfBirth.setMaxSelectableDate(new java.util.Date(1672552868000L));
         chDateOfBirth.setMinSelectableDate(new java.util.Date(-62135747932000L));
+        add(chDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 309, 160, -1));
 
         lblDateOfBirth.setText("Date of Birth*");
+        add(lblDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 309, -1, -1));
 
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -178,86 +211,46 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 btnCreateActionPerformed(evt);
             }
         });
+        add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 549, -1, -1));
 
         lblGender.setText("Gender*");
+        add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 311, 106, -1));
 
         rdMale.setText("Male");
+        add(rdMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 309, -1, -1));
 
         rdFemale.setText("Female");
+        add(rdFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 309, -1, -1));
+
+        doctorJPanel.setBackground(new java.awt.Color(204, 204, 255));
+        doctorJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHospital.setText("Hospital*");
+        doctorJPanel.add(lblHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 3, -1, -1));
+        doctorJPanel.add(txtHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 0, 160, -1));
 
         lblSpecialization.setText("Specialization*");
+        doctorJPanel.add(lblSpecialization, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 3, -1, -1));
+        doctorJPanel.add(txtSpecialization, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 6, 160, -1));
 
-        javax.swing.GroupLayout doctorJPanelLayout = new javax.swing.GroupLayout(doctorJPanel);
-        doctorJPanel.setLayout(doctorJPanelLayout);
-        doctorJPanelLayout.setHorizontalGroup(
-            doctorJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(doctorJPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblHospital)
-                .addGap(56, 56, 56)
-                .addComponent(txtHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(lblSpecialization)
-                .addGap(48, 48, 48)
-                .addComponent(txtSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
-        doctorJPanelLayout.setVerticalGroup(
-            doctorJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(doctorJPanelLayout.createSequentialGroup()
-                .addGroup(doctorJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHospital)
-                    .addComponent(txtHospital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSpecialization))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(doctorJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(doctorJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 780, -1));
+
+        patientJPanel.setBackground(new java.awt.Color(204, 204, 255));
+        patientJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAge.setText("Age*");
+        patientJPanel.add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 9, -1, -1));
+        patientJPanel.add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 6, 160, -1));
 
         lblWeight.setText("Weight*");
+        patientJPanel.add(lblWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 60, -1, -1));
+        patientJPanel.add(txtWeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 57, 160, -1));
 
         lblHeight.setText("Height*");
+        patientJPanel.add(lblHeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 9, -1, -1));
+        patientJPanel.add(txtHeight, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 6, 160, -1));
 
-        javax.swing.GroupLayout patientJPanelLayout = new javax.swing.GroupLayout(patientJPanel);
-        patientJPanel.setLayout(patientJPanelLayout);
-        patientJPanelLayout.setHorizontalGroup(
-            patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(patientJPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAge)
-                    .addComponent(lblWeight))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAge, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
-                .addComponent(lblHeight)
-                .addGap(85, 85, 85)
-                .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        patientJPanelLayout.setVerticalGroup(
-            patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(patientJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHeight)
-                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAge))
-                .addGap(28, 28, 28)
-                .addGroup(patientJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblWeight)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(patientJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 391, -1, -1));
 
         btnSignIn.setText("Sign in");
         btnSignIn.addActionListener(new java.awt.event.ActionListener() {
@@ -265,6 +258,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 btnSignInActionPerformed(evt);
             }
         });
+        add(btnSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(658, 93, -1, -1));
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -272,139 +266,12 @@ public class SignUpJFrame extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 93, 83, -1));
+        add(txtCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 160, -1));
 
         lblCommunity.setText("Community*");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblCreateAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFirstName)
-                                    .addComponent(lblRole)
-                                    .addComponent(lblPassword)
-                                    .addComponent(lblEmail)
-                                    .addComponent(lblDateOfBirth))
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(chDateOfBirth, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(txtFirstName)
-                                    .addComponent(chRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(fldPassword)
-                                    .addComponent(txtEmail))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblLastName)
-                                            .addComponent(lblUserID))
-                                        .addGap(59, 59, 59))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblRetype)
-                                            .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtLastName)
-                                    .addComponent(txtUserID)
-                                    .addComponent(fldRetype, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(txtMobile)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rdMale)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rdFemale))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSignIn)))
-                        .addContainerGap(70, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(doctorJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(lblCommunity)
-                        .addGap(41, 41, 41)
-                        .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(patientJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(58, 58, 58))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnCreate)
-                            .addGap(317, 317, 317)))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblUserID)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCreateAccount)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSignIn)
-                            .addComponent(btnBack))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblFirstName)
-                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblLastName)
-                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRole)
-                            .addComponent(chRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
-                    .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRetype)
-                    .addComponent(fldRetype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEmail)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblMobile)
-                        .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chDateOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdFemale)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rdMale)
-                        .addComponent(lblGender))
-                    .addComponent(lblDateOfBirth))
-                .addGap(18, 18, 18)
-                .addComponent(doctorJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(patientJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCommunity)
-                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(btnCreate)
-                .addContainerGap(86, Short.MAX_VALUE))
-        );
+        add(lblCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 0, 800, 660));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -587,7 +454,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
         // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_btnSignInActionPerformed
 
@@ -598,10 +465,10 @@ public class SignUpJFrame extends javax.swing.JPanel {
             PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,encounterHistory, hospitalDirectory, splitPane);
             splitPane.setRightComponent(patientPane);
         }else if(person.getRole()=="Doctor"){
-            DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
+            DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
             splitPane.setRightComponent(doc);
         }else if(person.getRole()=="System Admin"){
-            SystemAdminPanel admin = new SystemAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
+            SystemAdminPanel admin = new SystemAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
             splitPane.setRightComponent(admin);
         }
         
@@ -617,6 +484,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
     private javax.swing.JPanel doctorJPanel;
     private javax.swing.JPasswordField fldPassword;
     private javax.swing.JPasswordField fldRetype;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblCommunity;
     private javax.swing.JLabel lblCreateAccount;

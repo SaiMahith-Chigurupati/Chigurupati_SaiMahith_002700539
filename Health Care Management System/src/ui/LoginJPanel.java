@@ -71,10 +71,15 @@ public class LoginJPanel extends javax.swing.JPanel {
         fldPassword = new javax.swing.JPasswordField();
         lblNewUser = new javax.swing.JLabel();
         lblSignUp = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUserID.setText("User ID");
+        add(lblUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 169, -1, -1));
 
         lblPassword.setText("Password");
+        add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 217, -1, -1));
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +87,8 @@ public class LoginJPanel extends javax.swing.JPanel {
                 btnLoginActionPerformed(evt);
             }
         });
+        add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 271, -1, -1));
+        add(txtUserID, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 166, 160, -1));
 
         fldPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -91,8 +98,10 @@ public class LoginJPanel extends javax.swing.JPanel {
                 fldPasswordFocusLost(evt);
             }
         });
+        add(fldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 214, 160, -1));
 
         lblNewUser.setText("New User?");
+        add(lblNewUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 312, -1, -1));
 
         lblSignUp.setText("Sign Up");
         lblSignUp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,56 +109,10 @@ public class LoginJPanel extends javax.swing.JPanel {
                 lblSignUpMouseClicked(evt);
             }
         });
+        add(lblSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 312, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(227, 227, 227)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(lblNewUser)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblSignUp))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblPassword)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblUserID)
-                                        .addGap(76, 76, 76)
-                                        .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(btnLogin)))
-                .addContainerGap(241, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUserID)
-                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
-                    .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(btnLogin)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSignUp)
-                    .addComponent(lblNewUser))
-                .addContainerGap(271, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/mahith/Downloads/image (2).jpg")); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void fldPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fldPasswordFocusGained
@@ -181,11 +144,14 @@ public class LoginJPanel extends javax.swing.JPanel {
                 splitPane.setRightComponent(pat);
                 
             }else if(authenticatedUser.getRole().equals("System Admin")){
-                SystemAdminPanel admin = new SystemAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
+                SystemAdminPanel admin = new SystemAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
                 splitPane.setRightComponent(admin);
             }else if(authenticatedUser.getRole().equals("Community Admin")){
                 CommunityAdminPanel comAdmin = new CommunityAdminPanel( houseDirectory, communityDirectory, cityDirectory,splitPane);
                 splitPane.setRightComponent(comAdmin);
+            }else if(authenticatedUser.getRole().equals("Hospital Admin")){
+                HospitalAdminPanel hpAdmin = new HospitalAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
+                splitPane.setRightComponent(hpAdmin);
             }
             
 
@@ -204,6 +170,7 @@ public class LoginJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JPasswordField fldPassword;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblNewUser;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblSignUp;

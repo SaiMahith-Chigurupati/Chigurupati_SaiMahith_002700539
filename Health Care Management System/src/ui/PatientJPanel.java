@@ -113,8 +113,13 @@ public class PatientJPanel extends javax.swing.JPanel {
 
         jTextField2.setText("jTextField2");
 
+        setBackground(new java.awt.Color(204, 204, 255));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         lblPatient.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         lblPatient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        add(lblPatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 23, 800, -1));
 
         lblPersonalDetails.setText("   View/Update Details");
         lblPersonalDetails.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -122,6 +127,8 @@ public class PatientJPanel extends javax.swing.JPanel {
                 lblPersonalDetailsMouseClicked(evt);
             }
         });
+        add(lblPersonalDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 73, 142, -1));
+        add(txtSearchDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(524, 70, 140, -1));
 
         btnSearchDoctor.setText("Search Doctor");
         btnSearchDoctor.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +136,9 @@ public class PatientJPanel extends javax.swing.JPanel {
                 btnSearchDoctorActionPerformed(evt);
             }
         });
+        add(btnSearchDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(682, 70, -1, -1));
 
+        tblDoctors.setBackground(new java.awt.Color(255, 255, 204));
         tblDoctors.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -148,6 +157,9 @@ public class PatientJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblDoctors);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 105, 800, 150));
+
+        tblEncounters.setBackground(new java.awt.Color(255, 255, 204));
         tblEncounters.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -166,125 +178,84 @@ public class PatientJPanel extends javax.swing.JPanel {
         });
         scrollEncounters.setViewportView(tblEncounters);
 
+        add(scrollEncounters, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 261, 236, -1));
+
         btnBookAppointment.setText("Book Appointment");
         btnBookAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBookAppointmentActionPerformed(evt);
             }
         });
+        add(btnBookAppointment, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 261, 165, -1));
+
+        vitalsPanel.setBackground(new java.awt.Color(204, 204, 255));
+        vitalsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblBP.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         lblBP.setText("BP:");
+        vitalsPanel.add(lblBP, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 78, 58, -1));
 
         txtSystole.setEditable(false);
+        vitalsPanel.add(txtSystole, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 89, 88, -1));
 
         lblSystole.setText("Systole");
+        vitalsPanel.add(lblSystole, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 101, -1, -1));
 
         lblDiastole.setText("Diastole");
+        vitalsPanel.add(lblDiastole, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 92, -1, -1));
 
         txtDiastole.setEditable(false);
+        vitalsPanel.add(txtDiastole, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 89, 88, -1));
 
         lblDiabetes.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         lblDiabetes.setText("Diabetes:");
+        vitalsPanel.add(lblDiabetes, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 130, -1, -1));
 
         lblPreDiet.setText("Pre Diet");
+        vitalsPanel.add(lblPreDiet, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 165, -1, -1));
 
         txtPreDiet.setEditable(false);
+        vitalsPanel.add(txtPreDiet, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 147, 88, -1));
 
         lblPostDiet.setText("Post Diet");
+        vitalsPanel.add(lblPostDiet, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 150, -1, -1));
 
         txtPostDiet.setEditable(false);
+        vitalsPanel.add(txtPostDiet, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 147, 82, -1));
 
         txtComments.setEditable(false);
         txtComments.setColumns(20);
         txtComments.setRows(5);
         jScrollPane3.setViewportView(txtComments);
 
+        vitalsPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 245, 235, 66));
+
         lblComments.setText("Comments");
+        vitalsPanel.add(lblComments, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 245, -1, -1));
 
         lblHeartRate.setText("Heart Rate");
+        vitalsPanel.add(lblHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 200, -1, -1));
 
         txtHeartRate.setEditable(false);
+        vitalsPanel.add(txtHeartRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 188, 88, -1));
 
-        javax.swing.GroupLayout vitalsPanelLayout = new javax.swing.GroupLayout(vitalsPanel);
-        vitalsPanel.setLayout(vitalsPanelLayout);
-        vitalsPanelLayout.setHorizontalGroup(
-            vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vitalsPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblComments)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(vitalsPanelLayout.createSequentialGroup()
-                        .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtSystole, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPreDiet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(vitalsPanelLayout.createSequentialGroup()
-                                .addComponent(lblDiastole)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDiastole, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(vitalsPanelLayout.createSequentialGroup()
-                                .addComponent(lblPostDiet)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPostDiet))))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(vitalsPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblPreDiet)
-                        .addComponent(lblHeartRate)
-                        .addComponent(lblSystole)
-                        .addComponent(lblBP, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblDiabetes))
-                    .addContainerGap(247, Short.MAX_VALUE)))
-        );
-        vitalsPanelLayout.setVerticalGroup(
-            vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vitalsPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSystole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDiastole)
-                    .addComponent(txtDiastole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPreDiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPostDiet)
-                    .addComponent(txtPostDiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblComments))
-                .addGap(63, 63, 63))
-            .addGroup(vitalsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(vitalsPanelLayout.createSequentialGroup()
-                    .addGap(78, 78, 78)
-                    .addComponent(lblBP)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblSystole)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(lblDiabetes)
-                    .addGap(18, 18, 18)
-                    .addComponent(lblPreDiet)
-                    .addGap(18, 18, 18)
-                    .addComponent(lblHeartRate)
-                    .addContainerGap(169, Short.MAX_VALUE)))
-        );
+        add(vitalsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 314, 320, 374));
+
+        bookAppointmentPanel.setBackground(new java.awt.Color(204, 204, 255));
+        bookAppointmentPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDate.setText("Date");
+        bookAppointmentPanel.add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 67, 56, -1));
+        bookAppointmentPanel.add(chDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 67, 131, -1));
 
         txtInfo.setColumns(20);
         txtInfo.setRows(5);
         jScrollPane4.setViewportView(txtInfo);
 
+        bookAppointmentPanel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 108, 131, -1));
+
         lblInfo.setText("Info");
+        bookAppointmentPanel.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 118, 42, -1));
 
         btnBook.setText("Book");
         btnBook.addActionListener(new java.awt.event.ActionListener() {
@@ -292,45 +263,9 @@ public class PatientJPanel extends javax.swing.JPanel {
                 btnBookActionPerformed(evt);
             }
         });
+        bookAppointmentPanel.add(btnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 225, -1, -1));
 
-        javax.swing.GroupLayout bookAppointmentPanelLayout = new javax.swing.GroupLayout(bookAppointmentPanel);
-        bookAppointmentPanel.setLayout(bookAppointmentPanelLayout);
-        bookAppointmentPanelLayout.setHorizontalGroup(
-            bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookAppointmentPanelLayout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
-                        .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
-                        .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)))
-                .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBook)
-                    .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(chDate, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
-                .addGap(19, 19, 19))
-        );
-        bookAppointmentPanelLayout.setVerticalGroup(
-            bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDate))
-                .addGroup(bookAppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(lblInfo))
-                    .addGroup(bookAppointmentPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addComponent(btnBook)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(bookAppointmentPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 314, 230, 374));
 
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -338,66 +273,7 @@ public class PatientJPanel extends javax.swing.JPanel {
                 btnLogoutActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblPatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(scrollEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(vitalsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bookAppointmentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBookAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lblPersonalDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtSearchDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearchDoctor))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLogout)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lblPatient)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLogout)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPersonalDetails)
-                    .addComponent(txtSearchDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchDoctor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollEncounters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBookAppointment)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(vitalsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookAppointmentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
+        add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 29, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblPersonalDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPersonalDetailsMouseClicked

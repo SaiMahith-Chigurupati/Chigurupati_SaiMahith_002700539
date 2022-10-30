@@ -76,6 +76,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HealthCare System");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(800, 700));
 
         splitJPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -89,7 +90,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         );
         upperJPanelLayout.setVerticalGroup(
             upperJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         splitJPane.setTopComponent(upperJPanel);
@@ -170,6 +171,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         Person personPatient = personDirectory.addPerson();
         Person systemAdmin = personDirectory.addPerson();
         Person communityAdmin = personDirectory.addPerson();
+        Person hospitalAdmin = personDirectory.addPerson();
         
         Patient patient = patientDirectory.addPatient();
         Doctor doctor = doctorDirectory.addDoctor();
@@ -258,6 +260,12 @@ public class HomeJFrame extends javax.swing.JFrame {
         communityAdmin.setFirstName("Community");
         communityAdmin.setLastName("Admin");
         
+        hospitalAdmin.setUserID("hpadmin@admin");
+        hospitalAdmin.setPassword("password");
+        hospitalAdmin.setRole("Hospital Admin");
+        hospitalAdmin.setFirstName("Hospital");
+        hospitalAdmin.setLastName("Admin");
+        
         hospital.setCity("Boston");
         hospital.setCommunity("Roxbury");
         hospital.setHospitalName("Brigham Hospital");
@@ -295,6 +303,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         
         
         
+ 
     } 
 
 }

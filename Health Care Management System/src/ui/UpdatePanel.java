@@ -84,7 +84,12 @@ public class UpdatePanel extends javax.swing.JPanel {
         fldReType = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         lblFirstName.setText("First Name*");
+        add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 116, -1, -1));
 
         txtFirstName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -96,10 +101,14 @@ public class UpdatePanel extends javax.swing.JPanel {
                 txtFirstNameActionPerformed(evt);
             }
         });
+        add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 121, 130, -1));
 
         lblLastName.setText("Last Name*");
+        add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 124, -1, -1));
+        add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 121, 160, -1));
 
         lblPassword.setText("Current Password*");
+        add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 165, -1, -1));
 
         fldPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -109,6 +118,7 @@ public class UpdatePanel extends javax.swing.JPanel {
                 fldPasswordFocusLost(evt);
             }
         });
+        add(fldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 162, 130, -1));
 
         fldNewPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -118,10 +128,15 @@ public class UpdatePanel extends javax.swing.JPanel {
                 fldNewPasswordFocusLost(evt);
             }
         });
+        add(fldNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 211, 130, -1));
 
         lblEmail.setText("Email*");
+        add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 332, -1, -1));
+        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 329, 130, -1));
 
         lblMobile.setText("Mobile");
+        add(lblMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 332, 106, -1));
+        add(txtMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 329, 160, -1));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -129,12 +144,16 @@ public class UpdatePanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 459, -1, -1));
 
         lblGender.setText("Gender*");
+        add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 373, 106, -1));
 
         rdMale.setText("Male");
+        add(rdMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 371, -1, -1));
 
         rdFemale.setText("Female");
+        add(rdFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(682, 371, -1, -1));
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -142,12 +161,17 @@ public class UpdatePanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 60, 83, -1));
+        add(txtCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 370, 130, -1));
 
         lblCommunity.setText("Community*");
+        add(lblCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 373, -1, -1));
 
         lblNewPassword.setText("New Password*");
+        add(lblNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 214, -1, -1));
 
         lblReType.setText("Re-type Password*");
+        add(lblReType, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 267, -1, -1));
 
         fldReType.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -157,118 +181,12 @@ public class UpdatePanel extends javax.swing.JPanel {
                 fldReTypeFocusLost(evt);
             }
         });
+        add(fldReType, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 264, 130, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Update Personal Details");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rdMale)
-                                .addGap(44, 44, 44)
-                                .addComponent(rdFemale))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblLastName)
-                                .addGap(48, 48, 48)
-                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(53, 53, 53))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPassword)
-                                    .addComponent(lblEmail)
-                                    .addComponent(lblCommunity)
-                                    .addComponent(lblNewPassword)
-                                    .addComponent(lblReType))
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(fldNewPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                    .addComponent(fldPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCommunity, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fldReType)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(357, 357, 357)
-                        .addComponent(btnUpdate)))
-                .addContainerGap(370, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(125, 125, 125)
-                            .addComponent(lblFirstName))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(607, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(76, 76, 76)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLastName)
-                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
-                    .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNewPassword)
-                    .addComponent(fldNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblReType)
-                    .addComponent(fldReType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMobile)
-                    .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCommunity)
-                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblGender)
-                    .addComponent(rdMale)
-                    .addComponent(rdFemale))
-                .addGap(66, 66, 66)
-                .addComponent(btnUpdate)
-                .addContainerGap(118, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(60, 60, 60)
-                    .addComponent(btnBack)
-                    .addGap(33, 33, 33)
-                    .addComponent(lblFirstName)
-                    .addContainerGap(467, Short.MAX_VALUE)))
-        );
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 800, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFirstNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusLost

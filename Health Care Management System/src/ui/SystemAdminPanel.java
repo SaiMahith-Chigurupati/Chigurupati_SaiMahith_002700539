@@ -11,12 +11,15 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableModel;
+import model.CityDirectory;
+import model.CommunityDirectory;
 import model.Doctor;
 import model.DoctorDirectory;
 import model.Encounter;
 import model.EncounterHistory;
 import model.Hospital;
 import model.HospitalDirectory;
+import model.HouseDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.Person;
@@ -36,6 +39,10 @@ public class SystemAdminPanel extends javax.swing.JPanel {
     DoctorDirectory doctorDirectory;
     EncounterHistory encounterHistory;
     HospitalDirectory hospitalDirectory;
+    HouseDirectory houseDirectory;
+    CommunityDirectory communityDirectory;
+    CityDirectory cityDirectory;
+    
     
     Person person;
     JSplitPane splitPane;
@@ -45,7 +52,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
     String hospitalName = "";
     String encounterDate="";
     
-    public SystemAdminPanel(Person person,PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,JSplitPane splitPane) {
+    public SystemAdminPanel(Person person,PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory,CommunityDirectory communityDirectory, CityDirectory cityDirectory,JSplitPane splitPane) {
         initComponents();
         this.person = person;
         this.personDirectory = personDirectory;
@@ -53,6 +60,9 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         this.doctorDirectory = doctorDirectory;
         this.encounterHistory = encounterHistory;
         this.hospitalDirectory = hospitalDirectory;
+        this.communityDirectory = communityDirectory;
+        this.cityDirectory = cityDirectory;
+        this.houseDirectory = houseDirectory;
         this.splitPane = splitPane;
         
         createEncounterPanel.setVisible(false);
@@ -121,12 +131,16 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         btnCreateNewHospital = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblDoctors.setBackground(new java.awt.Color(255, 255, 204));
         tblDoctors.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -150,6 +164,9 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblDoctors);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 55, 251, 176));
+
+        tblPatients.setBackground(new java.awt.Color(255, 255, 204));
         tblPatients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -173,6 +190,9 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblPatients);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 55, 251, 176));
+
+        tblHospitals.setBackground(new java.awt.Color(255, 255, 204));
         tblHospitals.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -196,7 +216,11 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblHospitals);
 
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 55, 251, 176));
+        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 26, 124, -1));
+
         btnSearch.setText("Search");
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 26, 109, -1));
 
         btnViewUpdate.setText("View/Update Details");
         btnViewUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -204,6 +228,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
                 btnViewUpdateActionPerformed(evt);
             }
         });
+        add(btnViewUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 241, -1, -1));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +236,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 241, -1, -1));
 
         btnCreateUser.setText("Create New User");
         btnCreateUser.addActionListener(new java.awt.event.ActionListener() {
@@ -218,6 +244,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
                 btnCreateUserActionPerformed(evt);
             }
         });
+        add(btnCreateUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(663, 26, 135, -1));
 
         btnHospital.setText("Create Hospital");
         btnHospital.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +252,9 @@ public class SystemAdminPanel extends javax.swing.JPanel {
                 btnHospitalActionPerformed(evt);
             }
         });
+        add(btnHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 26, 125, -1));
 
+        tblEncounters.setBackground(new java.awt.Color(255, 255, 204));
         tblEncounters.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -249,20 +278,31 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(tblEncounters);
 
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 237, 251, 200));
+
         btnCreateEncounter.setText("Create Encounter");
         btnCreateEncounter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateEncounterActionPerformed(evt);
             }
         });
+        add(btnCreateEncounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 241, -1, -1));
+
+        createEncounterPanel.setBackground(new java.awt.Color(204, 255, 204));
+        createEncounterPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        createEncounterPanel.add(chEncounterDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 72, 134, -1));
 
         lblDate.setText("Date");
+        createEncounterPanel.add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 78, -1, -1));
 
         lblInfo.setText("Info");
+        createEncounterPanel.add(lblInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 113, -1, -1));
 
         txtInfo.setColumns(20);
         txtInfo.setRows(5);
         jScrollPane5.setViewportView(txtInfo);
+
+        createEncounterPanel.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 113, 134, 50));
 
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -270,51 +310,36 @@ public class SystemAdminPanel extends javax.swing.JPanel {
                 btnCreateActionPerformed(evt);
             }
         });
+        createEncounterPanel.add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 193, -1, -1));
 
-        javax.swing.GroupLayout createEncounterPanelLayout = new javax.swing.GroupLayout(createEncounterPanel);
-        createEncounterPanel.setLayout(createEncounterPanelLayout);
-        createEncounterPanelLayout.setHorizontalGroup(
-            createEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(createEncounterPanelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(createEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblInfo)
-                    .addComponent(lblDate))
-                .addGap(26, 26, 26)
-                .addGroup(createEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCreate)
-                    .addGroup(createEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(chEncounterDate, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        createEncounterPanelLayout.setVerticalGroup(
-            createEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(createEncounterPanelLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(createEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDate)
-                    .addComponent(chEncounterDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(createEncounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblInfo)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(btnCreate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(createEncounterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 270, 251, 330));
+
+        updatePanel.setBackground(new java.awt.Color(204, 255, 204));
+        updatePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFirstName.setText("First Name");
+        updatePanel.add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, -1, -1));
+        updatePanel.add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 17, 140, -1));
 
         lblLastName.setText("Last Name");
+        updatePanel.add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 60, -1, -1));
+        updatePanel.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 57, 140, -1));
 
         lblEmail.setText("Email");
+        updatePanel.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 100, -1, -1));
+        updatePanel.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 97, 140, -1));
 
         lblMobile.setText("Mobile");
+        updatePanel.add(lblMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 140, -1, -1));
+        updatePanel.add(txtMobile, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 137, 140, -1));
+        updatePanel.add(txtCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 174, 140, -1));
 
         lblCommunity.setText("Community");
+        updatePanel.add(lblCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 177, -1, -1));
+        updatePanel.add(txtHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 208, 140, -1));
 
         lblHospital.setText("Hospital");
+        updatePanel.add(lblHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 211, -1, -1));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -322,82 +347,24 @@ public class SystemAdminPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
+        updatePanel.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 249, -1, -1));
 
-        javax.swing.GroupLayout updatePanelLayout = new javax.swing.GroupLayout(updatePanel);
-        updatePanel.setLayout(updatePanelLayout);
-        updatePanelLayout.setHorizontalGroup(
-            updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(updatePanelLayout.createSequentialGroup()
-                .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(updatePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(updatePanelLayout.createSequentialGroup()
-                                .addComponent(lblFirstName)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(updatePanelLayout.createSequentialGroup()
-                                .addComponent(lblLastName)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(updatePanelLayout.createSequentialGroup()
-                                .addComponent(lblEmail)
-                                .addGap(49, 49, 49)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(updatePanelLayout.createSequentialGroup()
-                                .addComponent(lblMobile)
-                                .addGap(42, 42, 42)
-                                .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(updatePanelLayout.createSequentialGroup()
-                                .addComponent(lblCommunity)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(updatePanelLayout.createSequentialGroup()
-                                .addComponent(lblHospital)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(updatePanelLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(btnUpdate)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        updatePanelLayout.setVerticalGroup(
-            updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(updatePanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFirstName)
-                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLastName))
-                .addGap(17, 17, 17)
-                .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEmail))
-                .addGap(17, 17, 17)
-                .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMobile))
-                .addGap(14, 14, 14)
-                .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCommunity)
-                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHospital)
-                    .addComponent(txtHospital, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(updatePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 270, 251, 330));
+
+        hospitalPanel.setBackground(new java.awt.Color(204, 255, 204));
+        hospitalPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHospitalName.setText("Hospital Name");
+        hospitalPanel.add(lblHospitalName, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 9, -1, -1));
 
         lblHospitalCommunity.setText("Community");
+        hospitalPanel.add(lblHospitalCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 38, -1, -1));
 
         lblCity.setText("City");
+        hospitalPanel.add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 70, -1, -1));
+        hospitalPanel.add(txtHospitalName, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 6, 130, -1));
+        hospitalPanel.add(txtHospitalCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 35, 130, -1));
+        hospitalPanel.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 64, 130, -1));
 
         btnCreateNewHospital.setText("Create");
         btnCreateNewHospital.addActionListener(new java.awt.event.ActionListener() {
@@ -405,52 +372,9 @@ public class SystemAdminPanel extends javax.swing.JPanel {
                 btnCreateNewHospitalActionPerformed(evt);
             }
         });
+        hospitalPanel.add(btnCreateNewHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 105, -1, -1));
 
-        javax.swing.GroupLayout hospitalPanelLayout = new javax.swing.GroupLayout(hospitalPanel);
-        hospitalPanel.setLayout(hospitalPanelLayout);
-        hospitalPanelLayout.setHorizontalGroup(
-            hospitalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hospitalPanelLayout.createSequentialGroup()
-                .addGroup(hospitalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(hospitalPanelLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(hospitalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(hospitalPanelLayout.createSequentialGroup()
-                                .addComponent(lblHospitalName)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(hospitalPanelLayout.createSequentialGroup()
-                                .addComponent(lblHospitalCommunity)
-                                .addGap(38, 38, 38)
-                                .addComponent(txtHospitalCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(hospitalPanelLayout.createSequentialGroup()
-                                .addComponent(lblCity)
-                                .addGap(81, 81, 81)
-                                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(hospitalPanelLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(btnCreateNewHospital)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        hospitalPanelLayout.setVerticalGroup(
-            hospitalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hospitalPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(hospitalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHospitalName)
-                    .addComponent(txtHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(hospitalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtHospitalCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHospitalCommunity))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(hospitalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCity))
-                .addGap(18, 18, 18)
-                .addComponent(btnCreateNewHospital)
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
+        add(hospitalPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, 250, 160));
 
         jButton1.setText("Log out");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -458,83 +382,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnViewUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDelete))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(updatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(btnCreateEncounter)
-                    .addComponent(createEncounterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hospitalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCreateUser, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 2, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(100, 100, 100))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSearch)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCreateUser)
-                        .addComponent(btnHospital)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnDelete)
-                                .addComponent(btnCreateEncounter))
-                            .addComponent(btnViewUpdate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(createEncounterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(updatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(hospitalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(627, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
@@ -807,14 +655,14 @@ public class SystemAdminPanel extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-                SystemAdminPanel admin = new SystemAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
+                SystemAdminPanel admin = new SystemAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, houseDirectory,communityDirectory,cityDirectory,splitPane);
                 splitPane.setRightComponent(admin);
 
     }//GEN-LAST:event_formMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory, communityDirectory,cityDirectory,splitPane);
         splitPane.setRightComponent(login);
     }//GEN-LAST:event_jButton1ActionPerformed
 

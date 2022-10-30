@@ -103,6 +103,11 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         chHouseCity = new javax.swing.JComboBox<>();
         btnSaveHouse = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 204, 255));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblCommunities.setBackground(new java.awt.Color(255, 255, 204));
         tblCommunities.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -129,6 +134,9 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCommunities);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 6, 249, 201));
+
+        tblHouses.setBackground(new java.awt.Color(255, 255, 204));
         tblHouses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -155,6 +163,9 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblHouses);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 6, 250, 201));
+
+        tblCities.setBackground(new java.awt.Color(255, 255, 204));
         tblCities.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -181,12 +192,15 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblCities);
 
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 237, 201));
+
         btnCreateCity.setText("Create City");
         btnCreateCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateCityActionPerformed(evt);
             }
         });
+        add(btnCreateCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 225, -1, -1));
 
         btnCreateCommunity.setText("Create Community");
         btnCreateCommunity.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +208,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnCreateCommunityActionPerformed(evt);
             }
         });
+        add(btnCreateCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 225, -1, -1));
 
         btnHouse.setText("Create House");
         btnHouse.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +216,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnHouseActionPerformed(evt);
             }
         });
+        add(btnHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 225, -1, -1));
 
         btnUpdateCity.setText("Update City");
         btnUpdateCity.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +224,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnUpdateCityActionPerformed(evt);
             }
         });
+        add(btnUpdateCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 266, -1, -1));
 
         btnUpdateCommunity.setText("Update Community");
         btnUpdateCommunity.addActionListener(new java.awt.event.ActionListener() {
@@ -215,6 +232,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnUpdateCommunityActionPerformed(evt);
             }
         });
+        add(btnUpdateCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 266, -1, -1));
 
         btnUpdateHouse.setText("Update House");
         btnUpdateHouse.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +240,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnUpdateHouseActionPerformed(evt);
             }
         });
+        add(btnUpdateHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 266, -1, -1));
 
         btnDeleteCity.setText("Delete");
         btnDeleteCity.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +248,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnDeleteCityActionPerformed(evt);
             }
         });
+        add(btnDeleteCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 225, -1, -1));
 
         btnDeleteCommunity.setText("Delete");
         btnDeleteCommunity.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +256,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnDeleteCommunityActionPerformed(evt);
             }
         });
+        add(btnDeleteCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 225, -1, -1));
 
         btnDeleteHouse.setText("Delete");
         btnDeleteHouse.addActionListener(new java.awt.event.ActionListener() {
@@ -243,8 +264,14 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnDeleteHouseActionPerformed(evt);
             }
         });
+        add(btnDeleteHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 225, -1, -1));
+
+        cityPanel.setBackground(new java.awt.Color(255, 255, 204));
+        cityPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("City");
+        cityPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 44, -1, -1));
+        cityPanel.add(txtNewCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 44, 112, -1));
 
         btnSaveCity.setText("Create");
         btnSaveCity.addActionListener(new java.awt.event.ActionListener() {
@@ -252,38 +279,19 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnSaveCityActionPerformed(evt);
             }
         });
+        cityPanel.add(btnSaveCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 117, -1, 21));
 
-        javax.swing.GroupLayout cityPanelLayout = new javax.swing.GroupLayout(cityPanel);
-        cityPanel.setLayout(cityPanelLayout);
-        cityPanelLayout.setHorizontalGroup(
-            cityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cityPanelLayout.createSequentialGroup()
-                .addGroup(cityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cityPanelLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1)
-                        .addGap(50, 50, 50)
-                        .addComponent(txtNewCity, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(cityPanelLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(btnSaveCity)))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        cityPanelLayout.setVerticalGroup(
-            cityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cityPanelLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(cityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNewCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(50, 50, 50)
-                .addComponent(btnSaveCity, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(cityPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 307, 240, 287));
+
+        communityPanel.setBackground(new java.awt.Color(255, 255, 204));
+        communityPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("City");
+        communityPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 46, -1, -1));
 
         jLabel3.setText("Community");
+        communityPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 84, -1, -1));
+        communityPanel.add(txtNewCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 81, 112, -1));
 
         btnSaveCommunity.setText("Create");
         btnSaveCommunity.addActionListener(new java.awt.event.ActionListener() {
@@ -291,55 +299,28 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnSaveCommunityActionPerformed(evt);
             }
         });
+        communityPanel.add(btnSaveCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 152, -1, -1));
 
         chComCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select..." }));
+        communityPanel.add(chComCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 40, 112, -1));
 
-        javax.swing.GroupLayout communityPanelLayout = new javax.swing.GroupLayout(communityPanel);
-        communityPanel.setLayout(communityPanelLayout);
-        communityPanelLayout.setHorizontalGroup(
-            communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(communityPanelLayout.createSequentialGroup()
-                .addGroup(communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(communityPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, communityPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, communityPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(31, 31, 31)))
-                        .addGroup(communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNewCommunity)
-                            .addComponent(chComCity, 0, 112, Short.MAX_VALUE)))
-                    .addGroup(communityPanelLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(btnSaveCommunity)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        communityPanelLayout.setVerticalGroup(
-            communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(communityPanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(chComCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(communityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtNewCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(btnSaveCommunity)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(communityPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 307, 265, 287));
+
+        housePanel.setBackground(new java.awt.Color(255, 255, 204));
+        housePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("City");
+        housePanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 45, -1, -1));
 
         jLabel5.setText("Community");
+        housePanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 83, -1, -1));
 
         jLabel6.setText("House");
+        housePanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 130, -1, -1));
+        housePanel.add(txtNewHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 127, 117, -1));
 
         chCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select..." }));
+        housePanel.add(chCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 80, 117, -1));
 
         chHouseCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select..." }));
         chHouseCity.addActionListener(new java.awt.event.ActionListener() {
@@ -347,6 +328,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 chHouseCityActionPerformed(evt);
             }
         });
+        housePanel.add(chHouseCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 39, 117, -1));
 
         btnSaveHouse.setText("Create");
         btnSaveHouse.addActionListener(new java.awt.event.ActionListener() {
@@ -354,120 +336,9 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
                 btnSaveHouseActionPerformed(evt);
             }
         });
+        housePanel.add(btnSaveHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
-        javax.swing.GroupLayout housePanelLayout = new javax.swing.GroupLayout(housePanel);
-        housePanel.setLayout(housePanelLayout);
-        housePanelLayout.setHorizontalGroup(
-            housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(housePanelLayout.createSequentialGroup()
-                .addGroup(housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(housePanelLayout.createSequentialGroup()
-                        .addGroup(housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(housePanelLayout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel4))
-                            .addGroup(housePanelLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))))
-                        .addGap(23, 23, 23)
-                        .addGroup(housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNewHouse)
-                            .addComponent(chCommunity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(chHouseCity, 0, 117, Short.MAX_VALUE)))
-                    .addGroup(housePanelLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(btnSaveHouse)))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        housePanelLayout.setVerticalGroup(
-            housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(housePanelLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(chHouseCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(chCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(housePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtNewHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(btnSaveHouse)
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(cityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(btnCreateCity)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDeleteCity))
-                    .addComponent(btnUpdateCity, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCreateCommunity)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDeleteCommunity))
-                    .addComponent(communityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpdateCommunity))
-                        .addGap(0, 16, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnHouse)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDeleteHouse))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnUpdateHouse)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(housePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreateCity)
-                    .addComponent(btnCreateCommunity)
-                    .addComponent(btnHouse)
-                    .addComponent(btnDeleteCity)
-                    .addComponent(btnDeleteCommunity)
-                    .addComponent(btnDeleteHouse))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdateHouse)
-                    .addComponent(btnUpdateCity)
-                    .addComponent(btnUpdateCommunity))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(communityPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(housePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        add(housePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 307, 250, 290));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCityActionPerformed
