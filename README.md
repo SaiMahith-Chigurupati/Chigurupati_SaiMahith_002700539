@@ -12,6 +12,9 @@
  ## UML Class Diagram
 
  A UML diagram is a diagram based on the UML (Unified Modeling Language) with the purpose of visually representing a system along with its main roles, actions, artifacts or classes, in order to better understand, alter, maintain, or document information about the system.
+ 
+ ![UML class](https://user-images.githubusercontent.com/113262044/198928182-0da396a4-1e38-4094-8ab1-806dacdfd46c.png)
+
 
  ## Sequence Diagram
 
