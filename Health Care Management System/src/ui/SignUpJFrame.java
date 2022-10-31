@@ -468,8 +468,11 @@ public class SignUpJFrame extends javax.swing.JPanel {
             DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
             splitPane.setRightComponent(doc);
         }else if(person.getRole()=="System Admin"){
-            SystemAdminPanel admin = new SystemAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
-            splitPane.setRightComponent(admin);
+            SystemAdminPanel sysadmin = new SystemAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
+            splitPane.setRightComponent(sysadmin);
+        }else if(person.getRole() == "Hospital Admin"){
+            HospitalAdminPanel hpadmin = new HospitalAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
+            splitPane.setRightComponent(hpadmin);
         }
         
     }//GEN-LAST:event_btnBackActionPerformed

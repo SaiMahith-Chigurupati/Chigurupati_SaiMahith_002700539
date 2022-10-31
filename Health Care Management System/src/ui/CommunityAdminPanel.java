@@ -19,6 +19,7 @@ import model.House;
 import model.HouseDirectory;
 import model.Patient;
 import model.PatientDirectory;
+import model.Person;
 import model.PersonDirectory;
 
 /**
@@ -43,6 +44,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
     EncounterHistory encounterHistory;
     HospitalDirectory hospitalDirectory;
     JSplitPane splitPane;
+    Person person;
     
     City selectedCity;
     Community selectedCommunity;
@@ -50,7 +52,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
    
     
     
-    public CommunityAdminPanel(PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory, CommunityDirectory communityDirectory, CityDirectory cityDirectory, JSplitPane splitPane) {
+    public CommunityAdminPanel(Person person,PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory, CommunityDirectory communityDirectory, CityDirectory cityDirectory, JSplitPane splitPane) {
         initComponents();
         
         this.houseDirectory = houseDirectory;
@@ -61,6 +63,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         this.doctorDirectory = doctorDirectory;
         this.encounterHistory = encounterHistory;
         this.hospitalDirectory= hospitalDirectory;
+        this.person = person;
         this.splitPane = splitPane;
         
         populateCities();

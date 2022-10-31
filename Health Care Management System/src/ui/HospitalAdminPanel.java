@@ -126,11 +126,16 @@ public class HospitalAdminPanel extends javax.swing.JPanel {
         txtHospitalCommunity = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
         btnCreateNewHospital = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 204, 255));
+        setBackground(new java.awt.Color(204, 204, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblDoctors.setBackground(new java.awt.Color(255, 255, 204));
@@ -357,13 +362,13 @@ public class HospitalAdminPanel extends javax.swing.JPanel {
 
         add(hospitalPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, 250, 160));
 
-        jButton1.setText("Log out");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogOut.setText("Log out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLogOutActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
+        add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
@@ -590,6 +595,7 @@ public class HospitalAdminPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Hospital Updated");
             
             populateHospitals();
+            btnHospital.setVisible(true);
             btnCreateNewHospital.setText("Create");
         }else if(!hospitalDirectory.isExist(txtHospitalName.getText(),txtHospitalCommunity.getText())){
             
@@ -611,11 +617,17 @@ public class HospitalAdminPanel extends javax.swing.JPanel {
         txtHospitalName.setEditable(true);
     }//GEN-LAST:event_btnCreateNewHospitalActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
         LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory, communityDirectory,cityDirectory,splitPane);
         splitPane.setRightComponent(login);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        HospitalAdminPanel hpadmin = new HospitalAdminPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
+            splitPane.setRightComponent(hpadmin);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -624,12 +636,12 @@ public class HospitalAdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreateNewHospital;
     private javax.swing.JButton btnCreateUser;
     private javax.swing.JButton btnHospital;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnViewUpdate;
     private com.toedter.calendar.JDateChooser chEncounterDate;
     private javax.swing.JPanel createEncounterPanel;
     private javax.swing.JPanel hospitalPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

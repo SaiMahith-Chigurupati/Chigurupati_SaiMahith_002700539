@@ -154,7 +154,7 @@ public class LoginJPanel extends javax.swing.JPanel {
                 SystemAdminPanel admin = new SystemAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
                 splitPane.setRightComponent(admin);
             }else if(authenticatedUser.getRole().equals("Community Admin")){
-                CommunityAdminPanel comAdmin = new CommunityAdminPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory, communityDirectory, cityDirectory,splitPane);
+                CommunityAdminPanel comAdmin = new CommunityAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory, communityDirectory, cityDirectory,splitPane);
                 splitPane.setRightComponent(comAdmin);
             }else if(authenticatedUser.getRole().equals("Hospital Admin")){
                 HospitalAdminPanel hpAdmin = new HospitalAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
