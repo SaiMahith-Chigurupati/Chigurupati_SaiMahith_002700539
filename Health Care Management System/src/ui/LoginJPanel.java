@@ -71,7 +71,8 @@ public class LoginJPanel extends javax.swing.JPanel {
         fldPassword = new javax.swing.JPasswordField();
         lblNewUser = new javax.swing.JLabel();
         lblSignUp = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblBackground = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -111,8 +112,14 @@ public class LoginJPanel extends javax.swing.JPanel {
         });
         add(lblSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 312, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/mahith/Downloads/image (2).jpg")); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
+        lblBackground.setIcon(new javax.swing.ImageIcon("/Users/mahith/Library/Mobile Documents/com~apple~CloudDocs/Husky/Coursework/INFO5100/Assignments/Assignment 01/Chigurupati_SaiMahith_002700539/EmployeeDirectory/Login Page BG.jpg")); // NOI18N
+        add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
+
+        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Health Care Management System");
+        add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 800, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void fldPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fldPasswordFocusGained
@@ -140,14 +147,14 @@ public class LoginJPanel extends javax.swing.JPanel {
                 splitPane.setRightComponent(doc);
             }else if(authenticatedUser.getRole().equals("Patient")){
                 //String patientName = authenticatedUser.getFirstName();
-                PatientJPanel pat = new PatientJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,splitPane);
+                PatientJPanel pat = new PatientJPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory,splitPane);
                 splitPane.setRightComponent(pat);
                 
             }else if(authenticatedUser.getRole().equals("System Admin")){
                 SystemAdminPanel admin = new SystemAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
                 splitPane.setRightComponent(admin);
             }else if(authenticatedUser.getRole().equals("Community Admin")){
-                CommunityAdminPanel comAdmin = new CommunityAdminPanel( houseDirectory, communityDirectory, cityDirectory,splitPane);
+                CommunityAdminPanel comAdmin = new CommunityAdminPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory, communityDirectory, cityDirectory,splitPane);
                 splitPane.setRightComponent(comAdmin);
             }else if(authenticatedUser.getRole().equals("Hospital Admin")){
                 HospitalAdminPanel hpAdmin = new HospitalAdminPanel(authenticatedUser,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
@@ -162,7 +169,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void lblSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSignUpMouseClicked
         // TODO add your handling code here:
-        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory, hospitalDirectory, splitPane);
+        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory, hospitalDirectory,houseDirectory, communityDirectory, cityDirectory, splitPane);
         splitPane.setRightComponent(signUp);
     }//GEN-LAST:event_lblSignUpMouseClicked
 
@@ -170,10 +177,11 @@ public class LoginJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JPasswordField fldPassword;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblNewUser;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblSignUp;
+    private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUserID;
     private javax.swing.JTextField txtUserID;
     // End of variables declaration//GEN-END:variables

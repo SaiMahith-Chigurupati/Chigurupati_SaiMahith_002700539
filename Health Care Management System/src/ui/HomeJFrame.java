@@ -228,7 +228,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         encounter1.setDoctorName("Aditya");
         encounter1.setUserID(personPatient.getUserID());
         
-        encounter1.setEncounterDate("31-Dec-1998");
+        encounter1.setEncounterDate(new Date(31-01-1998));
         encounter1.setSystole(100);
         encounter1.setDiastole(100);
         encounter1.setPreDiet(100);
@@ -240,7 +240,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         encounter2.setDoctorName("Aditya");
         encounter2.setUserID(personPatient.getUserID());
         
-        encounter2.setEncounterDate("31-Dec-2000");
+        encounter2.setEncounterDate(new Date(31-01-2000));
         encounter2.setSystole(120);
         encounter2.setDiastole(80);
         encounter2.setPreDiet(110);

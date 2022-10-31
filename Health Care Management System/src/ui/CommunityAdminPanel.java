@@ -12,9 +12,14 @@ import model.City;
 import model.CityDirectory;
 import model.Community;
 import model.CommunityDirectory;
+import model.DoctorDirectory;
+import model.EncounterHistory;
+import model.HospitalDirectory;
 import model.House;
 import model.HouseDirectory;
 import model.Patient;
+import model.PatientDirectory;
+import model.PersonDirectory;
 
 /**
  *
@@ -32,6 +37,11 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
     HouseDirectory houseDirectory;
     CommunityDirectory communityDirectory;
     CityDirectory cityDirectory;
+    PersonDirectory personDirectory;
+    PatientDirectory patientDirectory;
+    DoctorDirectory doctorDirectory;
+    EncounterHistory encounterHistory;
+    HospitalDirectory hospitalDirectory;
     JSplitPane splitPane;
     
     City selectedCity;
@@ -40,12 +50,17 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
    
     
     
-    public CommunityAdminPanel(HouseDirectory houseDirectory, CommunityDirectory communityDirectory, CityDirectory cityDirectory, JSplitPane splitPane) {
+    public CommunityAdminPanel(PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory, CommunityDirectory communityDirectory, CityDirectory cityDirectory, JSplitPane splitPane) {
         initComponents();
         
         this.houseDirectory = houseDirectory;
         this.communityDirectory = communityDirectory;
         this.cityDirectory = cityDirectory;
+        this.personDirectory = personDirectory;
+        this.patientDirectory = patientDirectory;
+        this.doctorDirectory = doctorDirectory;
+        this.encounterHistory = encounterHistory;
+        this.hospitalDirectory= hospitalDirectory;
         this.splitPane = splitPane;
         
         populateCities();
@@ -102,6 +117,8 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         chCommunity = new javax.swing.JComboBox<>();
         chHouseCity = new javax.swing.JComboBox<>();
         btnSaveHouse = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -134,7 +151,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCommunities);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 6, 249, 201));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 37, 249, 170));
 
         tblHouses.setBackground(new java.awt.Color(255, 255, 204));
         tblHouses.setModel(new javax.swing.table.DefaultTableModel(
@@ -163,7 +180,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblHouses);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 6, 250, 201));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 37, 250, 170));
 
         tblCities.setBackground(new java.awt.Color(255, 255, 204));
         tblCities.setModel(new javax.swing.table.DefaultTableModel(
@@ -192,7 +209,7 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblCities);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 237, 201));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 37, 237, 170));
 
         btnCreateCity.setText("Create City");
         btnCreateCity.addActionListener(new java.awt.event.ActionListener() {
@@ -339,6 +356,20 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         housePanel.add(btnSaveHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
         add(housePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 307, 250, 290));
+
+        jButton1.setText("Log out");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 20)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("                   Welcome Community Admin");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 670, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCityActionPerformed
@@ -629,6 +660,13 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnUpdateHouseActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory, communityDirectory,cityDirectory,splitPane);
+        splitPane.setRightComponent(login);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateCity;
@@ -649,12 +687,14 @@ public class CommunityAdminPanel extends javax.swing.JPanel {
     private javax.swing.JPanel cityPanel;
     private javax.swing.JPanel communityPanel;
     private javax.swing.JPanel housePanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

@@ -36,7 +36,7 @@ public class EncounterHistory {
         encounterHistory.remove(encounter);
     }
     
-    public Encounter getEncounter(String selectedDate){
+    public Encounter getEncounter(Date selectedDate){
         for(Encounter encounter:encounterHistory){
             if(encounter.getEncounterDate().equals(selectedDate)){
                 return encounter;

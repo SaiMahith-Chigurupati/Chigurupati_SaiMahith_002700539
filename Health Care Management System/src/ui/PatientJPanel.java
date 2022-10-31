@@ -49,11 +49,15 @@ public class PatientJPanel extends javax.swing.JPanel {
     EncounterHistory encounterHistory;
     String doctorFname;
     
-    public PatientJPanel(Person person, PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory, JSplitPane splitPane) {
+    public PatientJPanel(Person person, PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory,CommunityDirectory communityDirectory, CityDirectory cityDirectory, JSplitPane splitPane) {
         this.patientDirectory = patientDirectory;
         this.personDirectory = personDirectory;
         this.doctorDirectory = doctorDirectory;
         this.encounterHistory = encounterHistory;
+        this.communityDirectory = communityDirectory;
+        this.cityDirectory = cityDirectory;
+        this.houseDirectory = houseDirectory;
+        this.hospitalDirectory = hospitalDirectory;
         this.splitPane = splitPane;
         this.patient = person;
         
@@ -63,7 +67,7 @@ public class PatientJPanel extends javax.swing.JPanel {
         bookAppointmentPanel.setVisible(false);
         btnBookAppointment.setVisible(false);
         //scrollEncounters.setVisible(false);
-        chDate.setDateFormatString("MM-dd-YYYY");
+        //chDate.setDateFormatString("MM-dd-YYYY");
         populateDoctorTable();
     }
 
@@ -141,15 +145,20 @@ public class PatientJPanel extends javax.swing.JPanel {
         tblDoctors.setBackground(new java.awt.Color(255, 255, 204));
         tblDoctors.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Doctor", "Hospital", "Community"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblDoctors.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDoctorsMouseClicked(evt);
@@ -278,7 +287,7 @@ public class PatientJPanel extends javax.swing.JPanel {
 
     private void lblPersonalDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPersonalDetailsMouseClicked
         // TODO add your handling code here:
-        UpdatePanel update = new UpdatePanel(patient,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
+        UpdatePanel update = new UpdatePanel(patient,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
         splitPane.setRightComponent(update);
     }//GEN-LAST:event_lblPersonalDetailsMouseClicked
 
@@ -327,7 +336,7 @@ public class PatientJPanel extends javax.swing.JPanel {
         int index = tblEncounters.getSelectedRow();
         TableModel model = tblEncounters.getModel();
         
-        String encounterDate = model.getValueAt(index, 0).toString();
+        Date encounterDate =(Date) model.getValueAt(index, 0);
         
         Encounter selectedEncounter = encounterHistory.getEncounter(encounterDate);
         if(selectedEncounter.getComments().equals(" ")){
@@ -350,7 +359,7 @@ public class PatientJPanel extends javax.swing.JPanel {
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         // TODO add your handling code here:
         
-        String appointmentdate = chDate.getDate().toString().substring(0, 10);
+        Date appointmentdate = chDate.getDate();
         String info = txtInfo.getText();
 
         Encounter newEncounter = encounterHistory.addEncounter();

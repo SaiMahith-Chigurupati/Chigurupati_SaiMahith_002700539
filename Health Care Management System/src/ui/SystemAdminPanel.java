@@ -5,6 +5,7 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -43,14 +44,14 @@ public class SystemAdminPanel extends javax.swing.JPanel {
     CommunityDirectory communityDirectory;
     CityDirectory cityDirectory;
     
-    
+    Hospital selectedHospital;
     Person person;
     JSplitPane splitPane;
     Person selectedPerson;
     Doctor selectedDoctor = null;
     Patient selectedPatient = null;
     String hospitalName = "";
-    String encounterDate="";
+    Date encounterDate;
     
     public SystemAdminPanel(Person person,PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory,CommunityDirectory communityDirectory, CityDirectory cityDirectory,JSplitPane splitPane) {
         initComponents();
@@ -69,6 +70,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         updatePanel.setVisible(false);
         btnViewUpdate.setVisible(false);
         hospitalPanel.setVisible(false);
+        chEncounterDate.setMinSelectableDate(new Date());
         
         populatePatients();
         populateDoctors();
@@ -91,8 +93,6 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         tblPatients = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblHospitals = new javax.swing.JTable();
-        txtSearch = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
         btnViewUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCreateUser = new javax.swing.JButton();
@@ -129,7 +129,8 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         txtHospitalCommunity = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
         btnCreateNewHospital = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 204, 255));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -217,10 +218,6 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tblHospitals);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 55, 251, 176));
-        add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 26, 124, -1));
-
-        btnSearch.setText("Search");
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 26, 109, -1));
 
         btnViewUpdate.setText("View/Update Details");
         btnViewUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -264,7 +261,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -376,18 +373,24 @@ public class SystemAdminPanel extends javax.swing.JPanel {
 
         add(hospitalPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, 250, 160));
 
-        jButton1.setText("Log out");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogOut.setText("Log out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLogOutActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(627, 0, -1, -1));
+        add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("                                            Welcome System Admin");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 520, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateUserActionPerformed
         // TODO add your handling code here:
-        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory, splitPane);
+        SignUpJFrame signUp = new SignUpJFrame(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory, communityDirectory, cityDirectory, splitPane);
         splitPane.setRightComponent(signUp);
         
     }//GEN-LAST:event_btnCreateUserActionPerformed
@@ -403,6 +406,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         txtCommunity.setText(selectedPerson.getCommunity());
         if(selectedPerson.getRole().equals("Doctor")){
             txtHospital.setVisible(true);
+            lblHospital.setVisible(true);
             txtHospital.setText(selectedDoctor.getHospital());
             
         }
@@ -448,6 +452,8 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         selectedPatient = patientDirectory.getPatient(patientFname);
         
         btnViewUpdate.setVisible(true);
+        txtHospital.setVisible(false);
+        lblHospital.setVisible(false);
         tblDoctors.clearSelection();
         
         
@@ -464,6 +470,9 @@ public class SystemAdminPanel extends javax.swing.JPanel {
 
     private void btnCreateEncounterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEncounterActionPerformed
         // TODO add your handling code here:
+        
+        txtInfo.setText("");
+        chEncounterDate.setDate(new Date());
         btnCreate.setText("Create");
         
         try{
@@ -480,13 +489,13 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         if(btnCreate.getText().equals("Update")){
-            Encounter enc = encounterHistory.getEncounter(chEncounterDate.getDate().toString().substring(0,10));
-            enc.setEncounterDate(chEncounterDate.getDate().toString().substring(0,10));
+            Encounter enc = encounterHistory.getEncounter(chEncounterDate.getDate());
+            enc.setEncounterDate(chEncounterDate.getDate());
             enc.setInfo(txtInfo.getText());
             JOptionPane.showMessageDialog(this,"Encounter Updated");
             
         }else{
-            String appointmentdate = chEncounterDate.getDate().toString().substring(0, 10);
+            Date appointmentdate = chEncounterDate.getDate();
             String info = txtInfo.getText();
 
             Encounter newEncounter = encounterHistory.addEncounter();
@@ -496,7 +505,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
             newEncounter.setDoctorName(selectedDoctor.getFirstName());
             newEncounter.setComments(" ");
 
-            JOptionPane.showMessageDialog(this, "New Appointment created with "+selectedDoctor.getUserID()+" on "+appointmentdate);
+            JOptionPane.showMessageDialog(this, "New Appointment created with "+selectedDoctor.getFirstName()+" on "+appointmentdate);
         }
  
         createEncounterPanel.setVisible(false);
@@ -554,10 +563,11 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         if(btnCreateNewHospital.getText().equals("Update")){
             Hospital hp = hospitalDirectory.getHospital(txtHospitalName.getText());
             
+            hp.setHospitalName(txtHospitalName.getText());
             hp.setCity(txtCity.getText());
-            hp.setCommunity(txtCommunity.getText());
+            hp.setCommunity(txtHospitalCommunity.getText());
             
-            JOptionPane.showMessageDialog(this, "Hospital Added");
+            JOptionPane.showMessageDialog(this, "Hospital Updated");
             
             populateHospitals();
             btnCreateNewHospital.setText("Create");
@@ -575,7 +585,7 @@ public class SystemAdminPanel extends javax.swing.JPanel {
             
         }else{
             
-            JOptionPane.showMessageDialog(this, "Hospital "+txtHospitalName.getText()+" Alreadt Exist in"+txtHospitalCommunity.getText());
+            JOptionPane.showMessageDialog(this, "Hospital "+txtHospitalName.getText()+" Alreadt Exist in "+txtHospitalCommunity.getText());
         }
         hospitalPanel.setVisible(false);
         txtHospitalName.setEditable(true);
@@ -604,14 +614,14 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblEncounters.getModel();
         model.setRowCount(0);
         
-        if(hospitalName!=""){
-            hospitalDirectory.deleteHospital(hospitalDirectory.getHospital(hospitalName));
+        if(selectedHospital!=null){
+            hospitalDirectory.deleteHospital(selectedHospital);
             hospitalName ="";
         }
         
-        if(encounterDate!=""){
+        if(encounterDate!=null){
             encounterHistory.deleteEncounter(encounterHistory.getEncounter(encounterDate));
-            encounterDate = "";
+            encounterDate = null;
         }
         
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -622,16 +632,22 @@ public class SystemAdminPanel extends javax.swing.JPanel {
         TableModel model = tblHospitals.getModel();
         
         hospitalName = model.getValueAt(index, 0).toString();
-        Hospital hospital = hospitalDirectory.getHospital(hospitalName);
+        try{
+            selectedHospital = hospitalDirectory.getHospital(hospitalName);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Please select Hospital");
+
+        }
+        
         
         btnHospital.setVisible(false);
         
         
         hospitalPanel.setVisible(true);
-        txtHospitalName.setText(hospital.getHospitalName());
+        txtHospitalName.setText(selectedHospital.getHospitalName());
         txtHospitalName.setEditable(false);
-        txtHospitalCommunity.setText(hospital.getCommunity());
-        txtCity.setText(hospital.getCity());
+        txtHospitalCommunity.setText(selectedHospital.getCommunity());
+        txtCity.setText(selectedHospital.getCity());
         
         btnCreateNewHospital.setText("Update");
     }//GEN-LAST:event_tblHospitalsMouseClicked
@@ -639,13 +655,13 @@ public class SystemAdminPanel extends javax.swing.JPanel {
     private void tblEncountersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEncountersMouseClicked
         // TODO add your handling code here:
         int index = tblEncounters.getSelectedRow();
-        TableModel model = tblHospitals.getModel();
+        TableModel model = tblEncounters.getModel();
         
-        encounterDate = model.getValueAt(index, 1).toString();
+        encounterDate =(Date) model.getValueAt(index, 1);
         Encounter encounter = encounterHistory.getEncounter(encounterDate);
         
         createEncounterPanel.setVisible(true);
-        //chEncounterDate.setDate(encounter.getEncounterDate());
+        chEncounterDate.setDate(encounter.getEncounterDate());
         txtInfo.setText(encounter.getInfo());
         
         btnCreate.setText("Update");
@@ -660,11 +676,11 @@ public class SystemAdminPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_formMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
         LoginJPanel login = new LoginJPanel(personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory, communityDirectory,cityDirectory,splitPane);
         splitPane.setRightComponent(login);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -674,13 +690,13 @@ public class SystemAdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreateUser;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHospital;
-    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnViewUpdate;
     private com.toedter.calendar.JDateChooser chEncounterDate;
     private javax.swing.JPanel createEncounterPanel;
     private javax.swing.JPanel hospitalPanel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -711,7 +727,6 @@ public class SystemAdminPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea txtInfo;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtMobile;
-    private javax.swing.JTextField txtSearch;
     private javax.swing.JPanel updatePanel;
     // End of variables declaration//GEN-END:variables
 

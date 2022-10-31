@@ -46,7 +46,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
     int age;
     
     
-    public SignUpJFrame(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,JSplitPane splitPane) {
+    public SignUpJFrame(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory, EncounterHistory encounterHistory,HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory,CommunityDirectory communityDirectory, CityDirectory cityDirectory,JSplitPane splitPane) {
         initComponents();
         
         this.splitPane = splitPane;
@@ -462,7 +462,7 @@ public class SignUpJFrame extends javax.swing.JPanel {
         // TODO add your handling code here:
         //String patientName = txtFirstName.getText();
         if(person.getRole()=="Patient"){
-            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,encounterHistory, hospitalDirectory, splitPane);
+            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,encounterHistory, hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
             splitPane.setRightComponent(patientPane);
         }else if(person.getRole()=="Doctor"){
             DoctorJPanel doc = new DoctorJPanel(person,personDirectory,patientDirectory,doctorDirectory,encounterHistory,hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);

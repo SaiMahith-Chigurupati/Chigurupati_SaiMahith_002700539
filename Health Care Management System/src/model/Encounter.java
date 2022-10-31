@@ -11,16 +11,16 @@ import java.util.Date;
  * @author mahith
  */
 public class Encounter extends VitalSigns{
-    private String encounterDate;
+    private Date encounterDate;
     private String userID;
     private String doctorName;
     private String info;
 
-    public String getEncounterDate() {
+    public Date getEncounterDate() {
         return encounterDate;
     }
 
-    public void setEncounterDate(String encounterDate) {
+    public void setEncounterDate(Date encounterDate) {
         this.encounterDate = encounterDate;
     }
 

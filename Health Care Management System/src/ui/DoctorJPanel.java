@@ -46,7 +46,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
     
     Person doctor;
     String selectedPatient;
-    String selectedEncounterDate;
+    Date selectedEncounterDate;
     String com;
     
     JSplitPane splitPane;
@@ -124,15 +124,20 @@ public class DoctorJPanel extends javax.swing.JPanel {
         tblPatients.setBackground(new java.awt.Color(255, 255, 204));
         tblPatients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Patient"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblPatients.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPatientsMouseClicked(evt);
@@ -145,15 +150,20 @@ public class DoctorJPanel extends javax.swing.JPanel {
         tblEncounters.setBackground(new java.awt.Color(255, 255, 204));
         tblEncounters.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Encounter"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblEncounters.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblEncountersMouseClicked(evt);
@@ -312,7 +322,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 encounter = encounterHistory.addEncounter();
                 //get todays date
                 LocalDate today = java.time.LocalDate.now();
-                encounter.setEncounterDate(today.toString());
+                //encounter.setEncounterDate((Date)today);
             }
 
             encounter.setDoctorName(doctor.getFirstName());
@@ -369,7 +379,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
         }
         
         DefaultTableModel model = (DefaultTableModel) tblEncounters.getModel();
-        selectedEncounterDate = (String) model.getValueAt(selectedRowIndex,0);
+        selectedEncounterDate = (Date) model.getValueAt(selectedRowIndex,0);
         encounterPanel.setVisible(true);
         Encounter encounter =  encounterHistory.getEncounter(selectedEncounterDate);
         

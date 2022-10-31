@@ -6,9 +6,12 @@ package ui;
 
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.CityDirectory;
+import model.CommunityDirectory;
 import model.DoctorDirectory;
 import model.EncounterHistory;
 import model.HospitalDirectory;
+import model.HouseDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.Person;
@@ -30,9 +33,12 @@ public class UpdatePanel extends javax.swing.JPanel {
     DoctorDirectory doctorDirectory;
     EncounterHistory encounterHistory;
     HospitalDirectory hospitalDirectory;
+    HouseDirectory houseDirectory;
+    CommunityDirectory communityDirectory;
+    CityDirectory cityDirectory;
     JSplitPane splitPane;
     
-    public UpdatePanel(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory,DoctorDirectory doctorDirectory,EncounterHistory encounterHistory, HospitalDirectory hospitalDirectory,JSplitPane splitPane) {
+    public UpdatePanel(Person person,PersonDirectory personDirectory,PatientDirectory patientDirectory,DoctorDirectory doctorDirectory,EncounterHistory encounterHistory, HospitalDirectory hospitalDirectory,HouseDirectory houseDirectory,CommunityDirectory communityDirectory,CityDirectory cityDirectory,JSplitPane splitPane) {
         
         initComponents();
         
@@ -42,6 +48,9 @@ public class UpdatePanel extends javax.swing.JPanel {
         this.encounterHistory = encounterHistory;
         this.doctorDirectory = doctorDirectory;
         this.hospitalDirectory = hospitalDirectory;
+        this.communityDirectory = communityDirectory;
+        this.cityDirectory = cityDirectory;
+        this.houseDirectory = houseDirectory;
         this.splitPane = splitPane;
         
         txtFirstName.setText(person.getFirstName());
@@ -244,7 +253,7 @@ public class UpdatePanel extends javax.swing.JPanel {
                     Person newPerson = personDirectory.authenticatePerson(person.getUserID(), password);
                     newPerson.setFirstName(fName);
                     newPerson.setLastName(lName);
-                    newPerson.setPassword(password);
+                    newPerson.setPassword(newPassword);
                     newPerson.setMobileNum(mobiNum);
                     newPerson.setEmailAddress(emailId);
                     newPerson.setCommunity(community);
@@ -286,7 +295,7 @@ public class UpdatePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         //String patientName = txtFirstName.getText();
         
-            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,encounterHistory, hospitalDirectory, splitPane);
+            PatientJPanel patientPane = new PatientJPanel(person, personDirectory, patientDirectory, doctorDirectory,encounterHistory, hospitalDirectory,houseDirectory,communityDirectory,cityDirectory, splitPane);
             splitPane.setRightComponent(patientPane);
         
 
